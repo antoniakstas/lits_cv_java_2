@@ -1,8 +1,9 @@
 package dto;
 
-public class Product {
+public class Product<toString> {
 
-    private String code;
+    private int id;
+    private String index;
     private String name;
     private String manufacturer;
     private int count;
@@ -11,25 +12,36 @@ public class Product {
     public  Product(){
 
     }
-    public Product(String name , String manufacturer, String code, int count) {
+
+    public Product(int id, String index, String name, String manufacturer, int count) {
+        this.id = id;
+        this.index = index;
         this.name = name;
         this.manufacturer = manufacturer;
-        this.code = code;
         this.count = count;
     }
 
-    public Product(String name, String manufacturer, String code) {
-        this.name = name;
-        this.manufacturer = manufacturer;
-        this.code = code;
+    public int getId() {
+        return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public String getNameautoparts() {
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public void setNameautoparts(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -41,30 +53,24 @@ public class Product {
         this.manufacturer = manufacturer;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public int getQuantity() {
+    public int getCount() {
         return count;
     }
 
-    public void setQuantity(int count) {
+    public void setCount(int count) {
         this.count = count;
     }
 
-
     @Override
-    public String toString() { return "|" + name + "| "+ manufacturer + "| "+ code + "| " + count + "|\n";}
-
-
-
-
-
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", index='" + index + '\'' +
+                ", name='" + name + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", count=" + count +
+                '}';
+    }
 }
 
 
