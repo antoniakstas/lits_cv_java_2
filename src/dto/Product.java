@@ -13,6 +13,13 @@ public class Product<toString> {
 
     }
 
+    public Product(int id, String name, String manufacturer, int count) {
+        this.id = id;
+        this.name = name;
+        this.manufacturer = manufacturer;
+        this.count = count;
+    }
+
     public Product(int id, String index, String name, String manufacturer, int count) {
         this.id = id;
         this.index = index;
