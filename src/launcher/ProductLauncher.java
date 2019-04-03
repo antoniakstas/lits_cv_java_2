@@ -20,18 +20,18 @@ public class ProductLauncher {
 
 public static void main(String[] args){
     initializeDriver();
-    selectData();
+    selectProduct();
 //
 //    Product productToInsert = new Product();
-//    insertData(productToInsert);
-//    selectData();
+//    insertProduct(productToInsert);
+//    selectProduct();
 //
 //    int idValueToUpdate = 11;
-//    updateData(idValueToUpdate);
-//    selectData();
+//    updateroduct(idValueToUpdate);
+//    selectProduct();
 //
-//    deleteData(idValueToUpdate);
-//    selectData();
+//    deleteProduct(idValueToUpdate);
+//    selectProduct();
 //
 
 
@@ -46,7 +46,7 @@ public static void main(String[] args){
     }
 
 
-    public static void selectData(){
+    public static void selectProduct(){
 
 
         List<Product> productList = new ArrayList<>();
