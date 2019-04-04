@@ -6,6 +6,9 @@ public class Role {
     public static final String DB_URL = "jdbc:mysql://db4free.net:3306/lits_cv_java_2";
     public static final String DB_USER = "java_2_user";
     public static final String DB_PASSWORD = "java_2_password";
+    public static final String DB_COLUMN_ID = "id";
+    public static final String DB_COLUMN_NAME = "name";
+    public static final String DB_COLUMN_DESCRIPTION = "description";
 
     private int id;
     private String name;
@@ -72,9 +75,9 @@ public class Role {
             ResultSet resultSet = statement.executeQuery(sqlQuery);
 
             while (resultSet.next()) {
-                String idValueFromDB = resultSet.getString("id");
-                String nameValueFromDB = resultSet.getString("name");
-                String descriptionValueFromDB = resultSet.getString("description");
+                String idValueFromDB = resultSet.getString(DB_COLUMN_ID);
+                String nameValueFromDB = resultSet.getString(DB_COLUMN_NAME);
+                String descriptionValueFromDB = resultSet.getString(DB_COLUMN_DESCRIPTION);
 
                 String resultString = "id = " + idValueFromDB + ", name = " + nameValueFromDB+ ", description = "+descriptionValueFromDB;
 
@@ -88,7 +91,7 @@ public class Role {
 
     }
 
-    public static void addNewRole() {
+    public static void addNewRole(String role,String description) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -101,11 +104,29 @@ public class Role {
             statement = connection.createStatement();
 
             String sqlQuery = "INSERT INTO `lits_cv_java_2`.`role` (`name`, `description`) " +
-                    "VALUES ('ROLE_SHOPPER', 'usual shoper of the system');\n";
+                    "VALUES ('"+role+"', '"+description+"');\n";
             statement.executeUpdate(sqlQuery);
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
+    }
 
+    public static void deleteOneRole(String role) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            statement = connection.createStatement();
+
+            String sqlQuery = "DELETE FROM `lits_cv_java_2`.`role` WHERE (`"+DB_COLUMN_NAME+"` = '"+role+"');\n";
+            statement.executeUpdate(sqlQuery);
 
         } catch (SQLException e) {
             e.printStackTrace();
