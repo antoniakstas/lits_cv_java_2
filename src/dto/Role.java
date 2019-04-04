@@ -9,15 +9,15 @@ public class Role {
 
     private int id;
     private String name;
-    private String discription;
+    private String description;
 
     public Role() {
     }
 
-    public Role(int id, String name, String discription) {
+    public Role(int id, String name, String description) {
         this.id = id;
         this.name = name;
-        this.discription = discription;
+        this.description = description;
     }
 
     public int getId() {
@@ -36,12 +36,12 @@ public class Role {
         this.name = name;
     }
 
-    public String getDiscription() {
-        return discription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDiscription(String discription) {
-        this.discription = discription;
+    public void setDescription(String discription) {
+        this.description = discription;
     }
 
     @Override
@@ -49,12 +49,12 @@ public class Role {
         return "Role{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", discription='" + discription + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 
 
-    public static void ReadAllFromDB() {
+    public static void readAllFromDB() {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -74,11 +74,37 @@ public class Role {
             while (resultSet.next()) {
                 String idValueFromDB = resultSet.getString("id");
                 String nameValueFromDB = resultSet.getString("name");
+                String descriptionValueFromDB = resultSet.getString("description");
 
-                String resultString = "id = " + idValueFromDB + " name = " + nameValueFromDB;
+                String resultString = "id = " + idValueFromDB + ", name = " + nameValueFromDB+ ", description = "+descriptionValueFromDB;
 
                 System.out.println(resultString);
             }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void addNewRole() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            statement = connection.createStatement();
+
+            String sqlQuery = "INSERT INTO `lits_cv_java_2`.`role` (`name`, `description`) " +
+                    "VALUES ('ROLE_SHOPPER', 'usual shoper of the system');\n";
+            statement.executeUpdate(sqlQuery);
+
+
 
 
         } catch (SQLException e) {
