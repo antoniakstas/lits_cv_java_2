@@ -46,8 +46,10 @@ public static void main(String[] args){
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             statement = connection.createStatement();
 
-            String sqlQuery = "DELETE FROM `lits_cv_java_2`.`Product` WHERE (`"+DB_COLUMN_PRODUCT_ID+"` = '13');\n";
+            String sqlQuery = "DELETE FROM `lits_cv_java_2`.`Product` WHERE (`"+DB_COLUMN_PRODUCT_ID+"` = '"+idValueToUpdate+"');\n";
             statement.executeUpdate(sqlQuery);
+
+            System.out.println("Delete id with number 13");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -66,9 +68,11 @@ public static void main(String[] args){
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             statement = connection.createStatement();
 
-            String updateTableSQL = "UPDATE Product SET manufacturer  = 'HEPU' WHERE "+DB_COLUMN_PRODUCT_ID+" = 13";
+            String updateTableSQL = "UPDATE Product SET manufacturer  = 'HEPU' WHERE "+DB_COLUMN_PRODUCT_ID+" = "+idValueToUpdate+"";
 
             statement.executeUpdate(updateTableSQL);
+            System.out.println("Update id with number 13: dolzz = HEPU");
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -89,6 +93,7 @@ public static void main(String[] args){
                         + "(id,`index`, name, manufacturer , count ) " + "VALUES"
                         + "(13,'03455555','pomp water','dolzz', 2)";
                         statement.executeUpdate(insertTableSQL);
+        System.out.println("Insert id with number 13");
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
@@ -133,13 +138,13 @@ public static void main(String[] args){
 
                 productList.add(productFromDB);
 
-                String resultString = "Next values from the DB: id = " +
-                        idValueFromDB + ", index = " + indexValueFromDB + ", name = " + nameValueFromDB +
-                        ", manufacturer = " + manufacturerValueFromDB
-                        + ", count = " + countValueFromDB;
-
-                System.out.println(resultString);
-
+//                String resultString = "Next values from the DB: id = " +
+//                        idValueFromDB + ", index = " + indexValueFromDB + ", name = " + nameValueFromDB +
+//                        ", manufacturer = " + manufacturerValueFromDB
+//                        + ", count = " + countValueFromDB;
+//
+//                System.out.println(resultString);
+//
 
 //                for (Product productItem:
 //                        productList) {
@@ -149,7 +154,10 @@ public static void main(String[] args){
         } catch(SQLException e){
             e.printStackTrace();
         }
-    }
+        productList.forEach(System.out::println);
+
+}
+
 
 
 
