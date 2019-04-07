@@ -27,8 +27,8 @@ public static void main(String[] args){
     selectProduct();
 
     int idValueToUpdate = 13;
-//    updateProduct(idValueToUpdate);
-//    selectProduct();
+    updateProduct(idValueToUpdate);
+    selectProduct();
 
     deleteProduct(idValueToUpdate);
     selectProduct();
@@ -56,26 +56,26 @@ public static void main(String[] args){
     }
 
 
-//    private static void updateProduct(int idValueToUpdate) {
-//
-//        try {
-//
-//            Connection connection = null;
-//            Statement statement = null;
-//
-//            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-//            statement = connection.createStatement();
-//
-//            String updateTableSQL = "UPDATE Product SET manufacturer  = 'dolzz' WHERE "+DB_COLUMN_PRODUCT_ID+" = 11";
-//
-//            statement.executeUpdate(updateTableSQL);
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//
-//
-//
-//    }
+    private static void updateProduct(int idValueToUpdate) {
+
+        try {
+
+            Connection connection = null;
+            Statement statement = null;
+
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            statement = connection.createStatement();
+
+            String updateTableSQL = "UPDATE Product SET manufacturer  = 'HEPU' WHERE "+DB_COLUMN_PRODUCT_ID+" = 13";
+
+            statement.executeUpdate(updateTableSQL);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+
+    }
 
     private static void insertProduct() {
 
