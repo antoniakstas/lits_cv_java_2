@@ -21,21 +21,81 @@ public class ProductLauncher {
 public static void main(String[] args){
     initializeDriver();
     selectProduct();
-//
-//    Product productToInsert = new Product();
-//    insertProduct(productToInsert);
+
+//    Product productToInsert = new Product("fff", "gg", 3);
+    insertProduct();
+    selectProduct();
+
+    int idValueToUpdate = 13;
+//    updateProduct(idValueToUpdate);
 //    selectProduct();
-//
-//    int idValueToUpdate = 11;
-//    updateroduct(idValueToUpdate);
-//    selectProduct();
-//
-//    deleteProduct(idValueToUpdate);
-//    selectProduct();
-//
+
+    deleteProduct(idValueToUpdate);
+    selectProduct();
 
 
 }
+
+    private static void deleteProduct(int idValueToUpdate) {
+
+        try {
+
+            Connection connection = null;
+            Statement statement = null;
+
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            statement = connection.createStatement();
+
+            String sqlQuery = "DELETE FROM `lits_cv_java_2`.`Product` WHERE (`"+DB_COLUMN_PRODUCT_ID+"` = '13');\n";
+            statement.executeUpdate(sqlQuery);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+//    private static void updateProduct(int idValueToUpdate) {
+//
+//        try {
+//
+//            Connection connection = null;
+//            Statement statement = null;
+//
+//            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+//            statement = connection.createStatement();
+//
+//            String updateTableSQL = "UPDATE Product SET manufacturer  = 'dolzz' WHERE "+DB_COLUMN_PRODUCT_ID+" = 11";
+//
+//            statement.executeUpdate(updateTableSQL);
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//
+//
+//    }
+
+    private static void insertProduct() {
+
+    try {
+        Connection connection = null;
+        Statement statement = null;
+        connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+        statement = connection.createStatement();
+
+        String insertTableSQL = "INSERT INTO Product"
+                        + "(id,`index`, name, manufacturer , count ) " + "VALUES"
+                        + "(13,'03455555','pomp water','dolzz', 2)";
+                        statement.executeUpdate(insertTableSQL);
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+
+
+        }
+
 
     public static void initializeDriver(){
         try {
@@ -90,6 +150,17 @@ public static void main(String[] args){
             e.printStackTrace();
         }
     }
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
