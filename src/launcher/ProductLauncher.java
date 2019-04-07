@@ -22,8 +22,8 @@ public static void main(String[] args){
     initializeDriver();
     selectProduct();
 
-//    Product productToInsert = new Product(13, "0345555", "pomp water", "dolzz", 2);
-    insertProduct();
+    Product productToInsert = new Product(13, "0345555", "pomp water", "dolzz", 2);
+    insertProduct(productToInsert);
     selectProduct();
 
     int idValueToUpdate = 13;
@@ -63,15 +63,18 @@ public static void main(String[] args){
         }
     }
 
-    private static void insertProduct() {
+    private static void insertProduct(Product productToInsert) {
     try {
         Connection connection = null;
         Statement statement = null;
         connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
         statement = connection.createStatement();
+//        String insertTableSQL = "INSERT INTO Product"
+//                        + "(id,`index`, name, manufacturer , count ) " + "VALUES"
+//                        + "(13,'03455555','pomp water','dolzz', 2)";
         String insertTableSQL = "INSERT INTO Product"
                         + "(id,`index`, name, manufacturer , count ) " + "VALUES"
-                        + "(13,'03455555','pomp water','dolzz', 2)";
+                        + "("+productToInsert.getId()+",'"+productToInsert.getIndex()+"','"+productToInsert.getName()+"','"+productToInsert.getManufacturer()+"', "+productToInsert.getCount()+")";
                         statement.executeUpdate(insertTableSQL);
         System.out.println("Insert id with number 13");
             } catch (SQLException e) {
