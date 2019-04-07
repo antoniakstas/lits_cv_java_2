@@ -22,7 +22,7 @@ public static void main(String[] args){
     initializeDriver();
     selectProduct();
 
-//    Product productToInsert = new Product("fff", "gg", 3);
+//    Product productToInsert = new Product(13, "0345555", "pomp water", "dolzz", 2);
     insertProduct();
     selectProduct();
 
@@ -32,63 +32,43 @@ public static void main(String[] args){
 
     deleteProduct(idValueToUpdate);
     selectProduct();
-
-
 }
 
     private static void deleteProduct(int idValueToUpdate) {
-
         try {
-
             Connection connection = null;
             Statement statement = null;
-
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             statement = connection.createStatement();
-
             String sqlQuery = "DELETE FROM `lits_cv_java_2`.`Product` WHERE (`"+DB_COLUMN_PRODUCT_ID+"` = '"+idValueToUpdate+"');\n";
             statement.executeUpdate(sqlQuery);
-
             System.out.println("Delete id with number 13");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
-
 
     private static void updateProduct(int idValueToUpdate) {
 
         try {
-
             Connection connection = null;
             Statement statement = null;
-
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             statement = connection.createStatement();
-
             String updateTableSQL = "UPDATE Product SET manufacturer  = 'HEPU' WHERE "+DB_COLUMN_PRODUCT_ID+" = "+idValueToUpdate+"";
-
             statement.executeUpdate(updateTableSQL);
             System.out.println("Update id with number 13: dolzz = HEPU");
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
-
-
     }
 
     private static void insertProduct() {
-
     try {
         Connection connection = null;
         Statement statement = null;
         connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
         statement = connection.createStatement();
-
         String insertTableSQL = "INSERT INTO Product"
                         + "(id,`index`, name, manufacturer , count ) " + "VALUES"
                         + "(13,'03455555','pomp water','dolzz', 2)";
@@ -97,10 +77,7 @@ public static void main(String[] args){
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
-
-
         }
-
 
     public static void initializeDriver(){
         try {
@@ -110,9 +87,7 @@ public static void main(String[] args){
         }
     }
 
-
     public static void selectProduct() {
-
 
         List<Product> productList = new ArrayList<>();
         Connection connection = null;
@@ -124,7 +99,6 @@ public static void main(String[] args){
 
             String sqlQuery = "SELECT "+DB_COLUMN_PRODUCT_ID+", `"+DB_COLUMN_PRODUCT_INDEX+"`, "+DB_COLUMN_PRODUCT_NAME+"," +
                     ""+DB_COLUMN_PRODUCT_MANUFACTURER+", "+DB_COLUMN_PRODUCT_COUNT+" FROM Product";
-//            String sqlQuery = "SELECT  id,  `index`,   name,   manufacturer, count FROM Product";
             ResultSet resultSet = statement.executeQuery(sqlQuery);
 
             while (resultSet.next()) {
@@ -135,21 +109,13 @@ public static void main(String[] args){
                 Integer countValueFromDB = resultSet.getInt(DB_COLUMN_PRODUCT_COUNT);
 
                 Product productFromDB = new Product(idValueFromDB, indexValueFromDB, nameValueFromDB, manufacturerValueFromDB, countValueFromDB);
-
                 productList.add(productFromDB);
 
 //                String resultString = "Next values from the DB: id = " +
 //                        idValueFromDB + ", index = " + indexValueFromDB + ", name = " + nameValueFromDB +
 //                        ", manufacturer = " + manufacturerValueFromDB
 //                        + ", count = " + countValueFromDB;
-//
 //                System.out.println(resultString);
-//
-
-//                for (Product productItem:
-//                        productList) {
-//                    System.out.println(productItem.toString());
-//                }
         }
         } catch(SQLException e){
             e.printStackTrace();
@@ -157,17 +123,6 @@ public static void main(String[] args){
         productList.forEach(System.out::println);
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
