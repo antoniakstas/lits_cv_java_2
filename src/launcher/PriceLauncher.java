@@ -1,5 +1,7 @@
 package launcher;
 
+import dto.Price;
+
 import java.sql.*;
 
 public class PriceLauncher {
@@ -13,12 +15,13 @@ public class PriceLauncher {
     public static final String DB_COLUMN_PRICE_ACTIVE = "active";
     public static final String DB_COLUMN_PRICE_DELIVERYDAYS = "deliverydays";
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
+        Price price = new Price(11,12, 21,2,"active","4 days");
 
 
         selectTable();
         System.out.println("  ");
-        createLineFromTable();
+        createLineFromTable(price);
         selectTable();
         System.out.println("  ");
         UpdateFromTable();
@@ -64,35 +67,27 @@ public class PriceLauncher {
             System.out.println(e.getMessage());
         }
     }
-    public static void createLineFromTable(){
-
+    private static void createLineFromTable(Price price) {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-
             Connection connection = null;
             Statement statement = null;
-
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             statement = connection.createStatement();
-
             //         String insertTableSQL = INSERT INTO `lits_cv_java_2`.`price` (`product_id`, `value`, `mult`, `active`, `deliverydays`)
             //         VALUES ('2', '2', '3', 'active', '4 days');
 
             String insertTableSQL = "INSERT INTO price"
-                    + "(id,product_id, value, mult , active, deliverydays ) " + "VALUES"
-                    + "(11,2,2,3,'active', '4 days')";
-
+                    + "(id, product_id, value, mult, active, deliverydays ) " + "VALUES"
+                    + "("+price.getId()+",'"+price.getProdukt_id()+"','"+price.getValue()+"','"+price.getMult()+"', '"+price.getActive()+"', '"+price.getDeliverydays()+"' )";
             statement.executeUpdate(insertTableSQL);
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
-
     }
+
+
+
 
     public static void UpdateFromTable(){
 
@@ -148,3 +143,12 @@ public class PriceLauncher {
     }
 
 }
+
+
+
+
+
+
+
+
+
