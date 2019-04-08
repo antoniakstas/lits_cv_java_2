@@ -103,7 +103,7 @@ public class Role {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             statement = connection.createStatement();
 
-            String sqlQuery = "INSERT INTO `lits_cv_java_2`.`role` (`name`, `description`) " +
+            String sqlQuery = "INSERT INTO `lits_cv_java_2`.`role` (`"+ DB_COLUMN_NAME+"`, `"+DB_COLUMN_DESCRIPTION+"`) " +
                     "VALUES ('"+role+"', '"+description+"');\n";
             statement.executeUpdate(sqlQuery);
 
@@ -147,7 +147,7 @@ public class Role {
             statement = connection.createStatement();
 
             String sqlQuery = "UPDATE `lits_cv_java_2`.`role` SET `description` = '"+ newDescription+"' " +
-                    "WHERE (`description` = '"+oldDescription+"');\n";
+                    "WHERE (`"+DB_COLUMN_DESCRIPTION+"` = '"+oldDescription+"');\n";
             statement.executeUpdate(sqlQuery);
 
         } catch (SQLException e) {
