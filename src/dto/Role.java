@@ -103,7 +103,7 @@ public class Role {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             statement = connection.createStatement();
 
-            String sqlQuery = "INSERT INTO `lits_cv_java_2`.`role` (`name`, `description`) " +
+            String sqlQuery = "INSERT INTO `lits_cv_java_2`.`role` (`"+ DB_COLUMN_NAME+"`, `"+DB_COLUMN_DESCRIPTION+"`) " +
                     "VALUES ('"+role+"', '"+description+"');\n";
             statement.executeUpdate(sqlQuery);
 
@@ -126,6 +126,28 @@ public class Role {
             statement = connection.createStatement();
 
             String sqlQuery = "DELETE FROM `lits_cv_java_2`.`role` WHERE (`"+DB_COLUMN_NAME+"` = '"+role+"');\n";
+            statement.executeUpdate(sqlQuery);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void updateOneRole(String oldDescription,String newDescription) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            statement = connection.createStatement();
+
+            String sqlQuery = "UPDATE `lits_cv_java_2`.`role` SET `description` = '"+ newDescription+"' " +
+                    "WHERE (`"+DB_COLUMN_DESCRIPTION+"` = '"+oldDescription+"');\n";
             statement.executeUpdate(sqlQuery);
 
         } catch (SQLException e) {
