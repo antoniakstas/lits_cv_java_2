@@ -2,7 +2,7 @@ package launcher;
 
 import java.sql.*;
 
-public class Order_to_productLauncher {
+class Order_to_productLauncher {
 
     public static final String DB_URL = "jdbc:mysql://db4free.net:3306/lits_cv_java_2";
     public static final String DB_USER = "java_2_user";

@@ -2,20 +2,29 @@ package launcher;
 
 import dto.Role;
 
+import java.util.Scanner;
+
 public class RoleLauncher {
 
     public static void main(String[] args) {
-        int i = 1;
-        if (i == 1){
-            Role.readAllFromDB();
-        }else if(i==2){
-            Role.addNewRole("ROLE_SHOPPER","usual shopper");
-        }else {
-            Role.deleteOneRole("ROLE_SHOPPER");
-        }
+        int i;
+
+        Scanner scanner = new Scanner(System.in);
+        i = scanner.nextInt();
+
+//        while (i!=0){
+            switch (i){
+                case 1:Role.readAllFromDB();
+                    break;
+                case 2:Role.addNewRole("ROLE_SHOPPER","usual shopper");
+                    break;
+                case 3:Role.deleteOneRole("ROLE_SHOPPER");
+                    break;
+                case 4:Role.updateOneRole("usual shopper","shopper");
+                    break;
+            }
+
+//        }
+        scanner.close();
     }
-
-
-
-
 }

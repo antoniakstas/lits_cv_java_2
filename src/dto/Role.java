@@ -133,4 +133,26 @@ public class Role {
         }
 
     }
+
+    public static void updateOneRole(String oldDescription,String newDescription) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            statement = connection.createStatement();
+
+            String sqlQuery = "UPDATE `lits_cv_java_2`.`role` SET `description` = '"+ newDescription+"' " +
+                    "WHERE (`description` = '"+oldDescription+"');\n";
+            statement.executeUpdate(sqlQuery);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
