@@ -1,6 +1,8 @@
 package dto;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Role {
     public static final String DB_URL = "jdbc:mysql://db4free.net:3306/lits_cv_java_2";
@@ -56,14 +58,18 @@ public class Role {
                 '}';
     }
 
-
-    public static void readAllFromDB() {
-
+    public static void initializeDriver() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public static void readAllFromDB() {
+
+        List<Role> roleList = new ArrayList<>();
         Connection connection = null;
         Statement statement = null;
 
@@ -75,28 +81,27 @@ public class Role {
             ResultSet resultSet = statement.executeQuery(sqlQuery);
 
             while (resultSet.next()) {
-                String idValueFromDB = resultSet.getString(DB_COLUMN_ID);
+                Integer idValueFromDB = resultSet.getInt(DB_COLUMN_ID);
                 String nameValueFromDB = resultSet.getString(DB_COLUMN_NAME);
                 String descriptionValueFromDB = resultSet.getString(DB_COLUMN_DESCRIPTION);
 
-                String resultString = "id = " + idValueFromDB + ", name = " + nameValueFromDB+ ", description = "+descriptionValueFromDB;
+                Role roleFromDB = new Role(idValueFromDB,nameValueFromDB,descriptionValueFromDB);
+                roleList.add(roleFromDB);
 
-                System.out.println(resultString);
+//                String resultString = "id = " + idValueFromDB + ", name = " + nameValueFromDB+ ", description = "+descriptionValueFromDB;
+
+//                System.out.println(resultString);
             }
 
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        roleList.forEach(System.out::println);
 
     }
 
     public static void addNewRole(String role,String description) {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
         Connection connection = null;
         Statement statement = null;
         try {
@@ -114,11 +119,7 @@ public class Role {
     }
 
     public static void deleteOneRole(String role) {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+
         Connection connection = null;
         Statement statement = null;
         try {
@@ -135,11 +136,7 @@ public class Role {
     }
 
     public static void updateOneRole(String oldDescription,String newDescription) {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+
         Connection connection = null;
         Statement statement = null;
         try {
