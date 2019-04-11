@@ -93,6 +93,8 @@ public static void main(String[] args){
     public static void selectProduct() {
 
         List<Product> productList = new ArrayList<>();
+        productList.forEach(System.out::println);
+
         Connection connection = null;
         Statement statement = null;
 
@@ -119,13 +121,11 @@ public static void main(String[] args){
 //                        ", manufacturer = " + manufacturerValueFromDB
 //                        + ", count = " + countValueFromDB;
 //                System.out.println(resultString);
-        }
+            }
         } catch(SQLException e){
             e.printStackTrace();
         }
-        productList.forEach(System.out::println);
-
-}
+    }
 
 }
 
