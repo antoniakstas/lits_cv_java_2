@@ -2,7 +2,10 @@ package launcher;
 
 
 
+import dal.PriceDalImp;
+
 import dto.Price;
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,20 +26,33 @@ public class PriceLauncher {
     public static void main(String[] args){
         Price price = new Price(11,12, 21,2,"active","4 days");
 
-        System.out.println("Select table");
-        selectTable();
-        System.out.println(" createLineFromTable ");
-        createLineFromTable(price);
-        selectTable();
-        System.out.println(" UpdateFromTable ");
-        UpdateFromTable();
-        selectTable();
-        System.out.println(" DeleteLineFromTable ");
-        DeleteLineFromTable();
-        selectTable();
+//        System.out.println("Select table");
+//        selectTable();
+//        System.out.println(" createLineFromTable ");
+//        createLineFromTable(price);
+//        selectTable();
+//        System.out.println(" UpdateFromTable ");
+//        UpdateFromTable();
+//        selectTable();
+//        System.out.println(" DeleteLineFromTable ");
+//        DeleteLineFromTable();
+//        selectTable();
+
+        readPriceDal();
 
 
     }
+
+    public static void readPriceDal() {
+
+        PriceDalImp priceDal = new PriceDalImp();
+
+        List<Price> priceList = priceDal.readAllFromDB();
+
+        priceList.stream().forEach(x -> System.out.println(x));
+
+    }
+
     public static void selectTable(){
 
         List<Price> priceList = new ArrayList<>();
