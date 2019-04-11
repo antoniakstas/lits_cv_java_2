@@ -1,6 +1,6 @@
-package launcher;
+package main.java.launcher;
 
-import dto.Product;
+import main.java.dto.Product;
 
 import java.sql.*;
 import java.util.ArrayList;
