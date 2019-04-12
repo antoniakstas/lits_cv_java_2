@@ -53,6 +53,8 @@ public class PriceLauncher {
 
     }
 
+
+
     public static void selectTable(){
 
         List<Price> priceList = new ArrayList<>();

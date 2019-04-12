@@ -2,7 +2,7 @@
 package dal;
 
 import dto.Price;
-import dto.User;
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -68,12 +68,31 @@ public class PriceDalImp implements PriceDal {
     }
 
     @Override
-    public boolean createPriceInToDB(User user) {
+    public boolean createPriceInToDB(Price price) {
+        try {
+            Connection connection = null;
+            Statement statement = null;
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            statement = connection.createStatement();
+            //         String insertTableSQL = INSERT INTO `lits_cv_java_2`.`price` (`product_id`, `value`, `mult`, `active`, `deliverydays`)
+            //         VALUES ('2', '2', '3', 'active', '4 days');
+
+            String insertTableSQL = "INSERT INTO " + DB_TABLE_PRICE
+                    + "("+DB_COLUMN_PRICE_ID+", "+DB_COLUMN_PRICE_PRODUCT_ID+", "+DB_COLUMN_PRICE_VALUE+", "+DB_COLUMN_PRICE_MULT+", "+DB_COLUMN_PRICE_ACTIVE+", "+DB_COLUMN_PRICE_DELIVERYDAYS+" ) " + "VALUES"
+                    + "("+price.getId()+",'"+price.getProdukt_id()+"','"+price.getValue()+"','"+price.getMult()+"', '"+price.getActive()+"', '"+price.getDeliverydays()+"' )";
+            statement.executeUpdate(insertTableSQL);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+
         return false;
+
     }
 
     @Override
-    public boolean updatePrice(int id, User user) {
+    public boolean updatePrice(int id, Price price) {
         return false;
     }
 
