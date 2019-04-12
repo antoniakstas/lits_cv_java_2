@@ -1,10 +1,13 @@
-package dto;
+package launcher;
+
+import dto.Role;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-public class Role {
+public class RoleLauncher {
     public static final String DB_URL = "jdbc:mysql://db4free.net:3306/lits_cv_java_2";
     public static final String DB_USER = "java_2_user";
     public static final String DB_PASSWORD = "java_2_password";
@@ -12,52 +15,29 @@ public class Role {
     public static final String DB_COLUMN_NAME = "name";
     public static final String DB_COLUMN_DESCRIPTION = "description";
 
-    private int id;
-    private String name;
-    private String description;
+    public static void main(String[] args) {
+        int i;
 
-    public Role() {
+        Scanner scanner = new Scanner(System.in);
+        i = scanner.nextInt();
+
+            switch (i){
+                case 1:RoleLauncher.initializeDriver();
+                    RoleLauncher.readAllFromDB();
+                    break;
+                case 2:RoleLauncher.initializeDriver();
+                    RoleLauncher.addNewRole("ROLE_SHOPPER","usual shopper");
+                    break;
+                case 3:RoleLauncher.initializeDriver();
+                    RoleLauncher.deleteOneRole("ROLE_SHOPPER");
+                    break;
+                case 4:RoleLauncher.initializeDriver();
+                    RoleLauncher.updateOneRole("usual shopper","shopper");
+                    break;
+            }
+
+        scanner.close();
     }
-
-    public Role(int id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String discription) {
-        this.description = discription;
-    }
-
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
-
     public static void initializeDriver() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
