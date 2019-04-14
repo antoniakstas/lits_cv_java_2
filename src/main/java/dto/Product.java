@@ -1,6 +1,6 @@
-package main.java.dto;
+package dto;
 
-public class Product<toString> {
+public class Product{
 
     private int id;
     private String index;
