@@ -57,7 +57,9 @@ public class Order_to_productDalImp implements Order_to_productDal {
                 statement.execute(deleteTableSQL);
             }
             scanner.close();*/
-            String sqlQuery = "SELECT " + DB_ID + ", " + DB_ORDER_ID + ", " + DB_PRODUCT_COUNT + ", " + DB_PRICE_ID + " FROM " + DB_TABLE_ORDER_TO_PRODUCT;
+            String sqlQuery =
+                    "SELECT " + DB_ID + ", " + DB_ORDER_ID + ", " + DB_PRODUCT_COUNT + ", " + DB_PRICE_ID +
+                    " FROM " + DB_TABLE_ORDER_TO_PRODUCT;
            // String sqlQuery = "SELECT * FROM user";
             ResultSet resultSet = statement.executeQuery(sqlQuery);
 

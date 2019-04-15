@@ -5,8 +5,7 @@ import dto.Order_to_product;
 
 import java.util.List;
 
-public class
-Order_to_productLauncher {
+public class Order_to_productLauncher {
 
 	public static void main(String[] args) {
 

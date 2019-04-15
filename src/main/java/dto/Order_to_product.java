@@ -6,7 +6,14 @@ public class Order_to_product {
     int product_count;
     int price_id;
 
-    public Order_to_product(Integer idValueFromDB, Integer order_idValueFromDB, Integer product_countValueFromDB, Integer price_idValueFromDB) {
+    public Order_to_product(Integer idValueFromDB,
+                            Integer order_idValueFromDB,
+                            Integer product_countValueFromDB,
+                            Integer price_idValueFromDB) {
+        this.id = idValueFromDB;
+        this.order_id = order_idValueFromDB;
+        this.product_count = product_countValueFromDB;
+        this.price_id = price_idValueFromDB;
     }
 
 
