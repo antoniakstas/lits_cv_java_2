@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 public class CartDalImp implements CartDal {
 
@@ -36,27 +37,42 @@ public class CartDalImp implements CartDal {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             statement = connection.createStatement();
 
-        /*    Scanner scanner = new Scanner(System.in);
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Input a number: ");
             int num = scanner.nextInt();
             if (num==1){
-                String insert_intoTableSQL = "INSERT INTO `lits_cv_java_2`.`" + DB_TABLE_CART + "` " +
-                        "(`" + DB_ID + "`, `" + DB_ORDER_ID + "`, `" + DB_PRODUCT_COUNT + "`, `" + DB_PRICE_ID + "`) VALUES ('11', '4', '6', '8')";
+                String insert_intoTableSQL = "INSERT INTO `lits_cv_java_2`.`" +
+                        DB_TABLE_CART + "` " + "(`" +
+                        DB_ID + "`, `" +
+                        DB_ORDER_ID + "`, `" +
+                        DB_PRODUCT_COUNT + "`, `" +
+                        DB_PRICE_ID + "`) " +
+                        "VALUES ('11', '4', '6', '8')";
                 statement.execute(insert_intoTableSQL);
             }
             if (num==2){
-                String updateTableSQL = "UPDATE `lits_cv_java_2`." +
-                        "`" + DB_TABLE_CART + "` SET `" + DB_ORDER_ID + "` = '6', " +
-                        "`" + DB_PRODUCT_COUNT + "` = '5', `" + DB_PRICE_ID + "` = '6' WHERE (`" + DB_ID + "` = '3')";
+                String updateTableSQL = "UPDATE `lits_cv_java_2`." + "`" +
+                        DB_TABLE_CART + "` " + "" +
+                        "SET `" +
+                        DB_ORDER_ID + "` = '6', " + "`" +
+                        DB_PRODUCT_COUNT + "` = '5', `" +
+                        DB_PRICE_ID + "` = '6' " +
+                        "WHERE (`" + DB_ID + "` = '3')";
                 statement.execute(updateTableSQL);
             }
             if (num==3){
-                String deleteTableSQL = "DELETE FROM `lits_cv_java_2`.`" + DB_TABLE_CART + "` WHERE (`" + DB_ID + "` = '11')";
+                String deleteTableSQL = "DELETE FROM `lits_cv_java_2`.`" +
+                        DB_TABLE_CART + "` " +
+                        "WHERE (`" + DB_ID + "` = '11')";
                 statement.execute(deleteTableSQL);
             }
-            scanner.close();*/
+            scanner.close();
             String sqlQuery =
-                    "SELECT " + DB_ID + ", " + DB_ORDER_ID + ", " + DB_PRODUCT_COUNT + ", " + DB_PRICE_ID +
+                    "SELECT " +
+                            DB_ID + ", " +
+                            DB_ORDER_ID + ", " +
+                            DB_PRODUCT_COUNT + ", " +
+                            DB_PRICE_ID +
                             " FROM " + DB_TABLE_CART;
             ResultSet resultSet = statement.executeQuery(sqlQuery);
 
@@ -67,7 +83,11 @@ public class CartDalImp implements CartDal {
                 Integer product_countValueFromDB = resultSet.getInt(DB_PRODUCT_COUNT);
                 Integer price_idValueFromDB = resultSet.getInt(DB_PRICE_ID);
 
-                Cart cart = new Cart(idValueFromDB, order_idValueFromDB, product_countValueFromDB, price_idValueFromDB);
+                Cart cart = new Cart(
+                        idValueFromDB,
+                        order_idValueFromDB,
+                        product_countValueFromDB,
+                        price_idValueFromDB);
                 cartList.add(cart);
 
             }
