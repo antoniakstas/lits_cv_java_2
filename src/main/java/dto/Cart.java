@@ -1,15 +1,15 @@
 package dto;
 
-public class Order_to_product {
+public class Cart {
     int id;
     int order_id;
     int product_count;
     int price_id;
 
-    public Order_to_product(Integer idValueFromDB,
-                            Integer order_idValueFromDB,
-                            Integer product_countValueFromDB,
-                            Integer price_idValueFromDB) {
+    public Cart(Integer idValueFromDB,
+                Integer order_idValueFromDB,
+                Integer product_countValueFromDB,
+                Integer price_idValueFromDB) {
         this.id = idValueFromDB;
         this.order_id = order_idValueFromDB;
         this.product_count = product_countValueFromDB;
@@ -51,7 +51,7 @@ public class Order_to_product {
 
     @Override
     public String toString() {
-        return "Order_to_product{" +
+        return "Cart{" +
                 "id=" + id +
                 ", order_id='" + order_id + '\'' +
                 ", product_count='" + product_count + '\'' +
