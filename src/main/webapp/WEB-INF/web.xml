@@ -14,4 +14,14 @@
         <url-pattern>/address</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>productServlet</servlet-name>
+        <servlet-class>servlet.ProductServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>productServlet</servlet-name>
+        <url-pattern>/product</url-pattern>
+    </servlet-mapping>
+
 </web-app>
