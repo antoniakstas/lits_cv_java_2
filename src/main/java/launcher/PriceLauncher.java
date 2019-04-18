@@ -51,6 +51,8 @@ public class PriceLauncher {
 
         priceList.stream().forEach(x -> System.out.println(x));
 
+
+
     }
 
 

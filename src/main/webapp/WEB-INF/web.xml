@@ -24,4 +24,14 @@
         <url-pattern>/product</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>priceServlet</servlet-name>
+        <servlet-class>servlet.PriceServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>priceServlet</servlet-name>
+        <url-pattern>/price</url-pattern>
+    </servlet-mapping>
+
 </web-app>
