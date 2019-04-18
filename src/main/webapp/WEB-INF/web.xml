@@ -34,4 +34,14 @@
         <url-pattern>/price</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>roleServlet</servlet-name>
+        <servlet-class>servlet.RoleServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>roleServlet</servlet-name>
+        <url-pattern>/role</url-pattern>
+    </servlet-mapping>
+
 </web-app>
