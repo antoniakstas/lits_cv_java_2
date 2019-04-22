@@ -1,0 +1,33 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>auto parts demo</title>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8" />
+</head>
+<body>
+<a th:text="${currentUserId}">id</a>
+<a th:text="${userModel.name}">name</a>
+<a th:text="${currentUserName}">action</a>
+
+<a th:href="${url}">urlHere</a>
+
+<table>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>url</th>
+    </tr>
+    <tr th:each="userItem : ${userListModel}">
+        <td th:text="${userItem.id}">someId</td>
+        <td th:text="${userItem.name}">someName</td>
+        <td>
+            <a th:href="${userItem.url}" th:text="${userItem.name}">
+            </a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

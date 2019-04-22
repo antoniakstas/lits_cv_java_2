@@ -2,12 +2,17 @@ package servlet;
 
 import dal.UserDalImp;
 import dto.User;
+import model.UserModel;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.WebContext;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserServlet extends HttpServlet {
@@ -23,45 +28,70 @@ public class UserServlet extends HttpServlet {
 		String parameterAction = request.getParameter("action");
 		String parameterId = request.getParameter("id");
 
-		String uri = request.getScheme() +
+		String uri = getUrl(request, new Integer(parameterId));
+
+		ServletContextTemplateResolver templateResolver =
+				new ServletContextTemplateResolver(this.getServletContext());
+
+		templateResolver.setPrefix("/WEB-INF/page/");
+		templateResolver.setSuffix(".html");
+
+
+		TemplateEngine templateEngine = new TemplateEngine();
+		templateEngine.setTemplateResolver(templateResolver);
+		WebContext ctx = new WebContext(request, response, getServletConfig().getServletContext(), request.getLocale());
+		// This will be prefixed with /WEB-INF/ and suffixed with .html
+		ctx.setVariable("currentDate", 123);
+		ctx.setVariable("currentUserId", parameterId);
+		ctx.setVariable("url", uri);
+
+		UserDalImp userDal = new UserDalImp();
+
+		User user = userDal.readFromDBById(new Integer(parameterId)).get();
+		UserModel userModel =
+				new UserModel(user.getId(), user.getName(), uri);
+
+		ctx.setVariable("userModel", user);
+		List<User> userList = userDal.readAllFromDB();
+
+		List<UserModel> userModelList = new ArrayList<>();
+
+		for (User userItem : userList) {
+			UserModel userModelItem =
+					new UserModel(userItem.getId(),
+							userItem.getName(),
+							getUrl(request, userItem.getId()));
+			userModelList.add(userModelItem);
+		}
+
+		ctx.setVariable("userListModel", userModelList);
+
+
+		try {
+			String template = null;
+			if ("edit".equals(parameterAction)) {
+				template = "userEdit";
+			} else {
+				template = "user";
+			}
+			templateEngine.process(template, ctx, response.getWriter());
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private String getUrl(HttpServletRequest request, int idValue) {
+		return request.getScheme() +
 				"://" +
 				request.getServerName() +
 				":" +
 				request.getServerPort() +
 				request.getRequestURI() +
 				"?" +
-				request.getQueryString();
-
-		try {
-			out = response.getOutputStream();
-			out.println("<html>");
-			out.println("<head><title>Hello Servlet</title></head>");
-			out.println("<body>");
-			out.println("<h3>Hello User</h3>");
-			out.println(uri);
-			out.println("<br>");
-			out.println(parameterId + " was passed as the id");
-			out.println("<br>");
-			out.println(parameterAction + " was passed as the action");
-
-
-			UserDalImp userDal = new UserDalImp();
-			List<User> userList = userDal.readAllFromDB();
-
-			out.println("<ul>");
-			for (User userItem : userList) {
-				out.println("<li>" + userItem.toString() + "</li>");
-			}
-
-			out.println("</ul>");
-			out.println("This is my first Servlet");
-			out.println("</body>");
-			out.println("<html>");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-
+				"id=" +
+				idValue;
 	}
 
 }
