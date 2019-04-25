@@ -5,6 +5,16 @@
 
 
     <servlet>
+        <servlet-name>homeServlet</servlet-name>
+        <servlet-class>servlet.HomeServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>homeServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>addressServlet</servlet-name>
         <servlet-class>servlet.AddressServlet</servlet-class>
     </servlet>
