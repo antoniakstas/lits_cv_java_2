@@ -38,7 +38,7 @@ public class ProductServlet extends HttpServlet {
         templateEngine.setTemplateResolver(templateResolver);
         WebContext ctx = new WebContext(request, response, getServletConfig().getServletContext(), request.getLocale());
         ctx.setVariable("currentDate", 123);
-        ctx.setVariable("currentUserId", parameterId);
+        ctx.setVariable("currentProductId", parameterId);
         ctx.setVariable("url", uri);
 
         ProductDalImp productDal =  new ProductDalImp();
