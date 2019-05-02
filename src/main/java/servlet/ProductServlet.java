@@ -25,7 +25,7 @@ public class ProductServlet extends HttpServlet {
 
         String parameterAction = request.getParameter("action");
         String parameterId = request.getParameter("id");
-        String uri = getUrl(request, new Integer(parameterId));
+        String uri = getUrl(request, Integer.valueOf(parameterId));
 
         ServletContextTemplateResolver templateResolver =
                 new ServletContextTemplateResolver(this.getServletContext());
@@ -43,7 +43,7 @@ public class ProductServlet extends HttpServlet {
 
         ProductDalImp productDal =  new ProductDalImp();
 
-        Product product = productDal.readFromDBById(new Integer(parameterId)).get();
+        Product product = productDal.readFromDBById(Integer.valueOf(parameterId)).get();
         ProductModel productModel = new ProductModel(product.getId(),
                 product.getIndex(),
                 product.getName(),
