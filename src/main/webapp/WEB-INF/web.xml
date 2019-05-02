@@ -3,13 +3,26 @@
     <display-name>lits_cv_java_2 Web Application</display-name>
 
     <servlet>
+        <servlet-name>webmvc</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>webmvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>homeServlet</servlet-name>
         <servlet-class>servlet.HomeServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>homeServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/urls</url-pattern>
     </servlet-mapping>
 
     <servlet>
