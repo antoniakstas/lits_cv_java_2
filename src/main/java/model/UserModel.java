@@ -12,6 +12,9 @@ public class UserModel {
 		this.url = url;
 	}
 
+	public UserModel() {
+	}
+
 	public Integer getId() {
 		return id;
 	}
