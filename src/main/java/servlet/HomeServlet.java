@@ -38,7 +38,8 @@ public class HomeServlet extends HttpServlet {
 				request.getServerName() +
 				":" +
 				request.getServerPort() +
-				request.getRequestURI();
+				getServletContext().getContextPath() +
+				"/";
 
 		for(Map.Entry <String, ? extends ServletRegistration> entry : servletRegistrations.entrySet()) {
 
