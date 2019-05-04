@@ -9,9 +9,14 @@ import java.util.Optional;
 
 public class ProductDalImp implements ProductDal {
 
-    public static final String DB_URL = "jdbc:mysql://db4free.net:3306/lits_cv_java_2";
-    public static final String DB_USER = "java_2_user";
-    public static final String DB_PASSWORD = "java_2_password";
+//    public static final String DB_URL = "jdbc:mysql://db4free.net:3306/lits_cv_java_2";
+//
+//    public static final String DB_USER = "java_2_user";
+//    public static final String DB_PASSWORD = "java_2_password";
+
+    public static final String DB_URL = "jdbc:mysql://localhost:3306/lits_cv_java_2?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    public static final String DB_USER = "root";
+    public static final String DB_PASSWORD = "root";
     public static final String DB_COLUMN_PRODUCT_ID = "id";
     public static final String DB_COLUMN_PRODUCT_INDEX = "index";
     public static final String DB_COLUMN_PRODUCT_NAME = "name";
