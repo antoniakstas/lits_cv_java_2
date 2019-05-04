@@ -37,9 +37,9 @@ public class CartDalImp implements CartDal {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             statement = connection.createStatement();
 
-            /*Scanner scanner = new Scanner(System.in);
-            System.out.println("Input a number: ");
-            int num = scanner.nextInt();
+//            Scanner scanner = new Scanner(System.in);
+//            System.out.println("Input a number: ");
+            int num = 1;
             if (num==1){
                 String insert_intoTableSQL = "INSERT INTO `lits_cv_java_2`.`" +
                         DB_TABLE_CART + "` " + "(`" +
@@ -66,15 +66,14 @@ public class CartDalImp implements CartDal {
                         "WHERE (`" + DB_ID + "` = '11')";
                 statement.execute(deleteTableSQL);
             }
-            scanner.close();*/
+//            scanner.close();
             String sqlQuery =
-                    "SELECT * FROM "+DB_TABLE_CART+"";
-                    /*"SELECT " +
+                    "SELECT " +
                             DB_ID + ", " +
                             DB_ORDER_ID + ", " +
                             DB_PRODUCT_COUNT + ", " +
                             DB_PRICE_ID +
-                            " FROM " + DB_TABLE_CART;*/
+                            " FROM " + DB_TABLE_CART;
             ResultSet resultSet = statement.executeQuery(sqlQuery);
 
 
