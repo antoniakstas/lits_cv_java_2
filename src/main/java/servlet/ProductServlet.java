@@ -34,6 +34,8 @@ public class ProductServlet extends HttpServlet {
                 "?" +
                 request.getQueryString();
 
+
+
         try {
             out = response.getOutputStream();
             out.println("<html>");
@@ -47,7 +49,6 @@ public class ProductServlet extends HttpServlet {
             out.println(parameterAct + " was passed as the action");
 
 
-
             ProductDalImp productDalImp = new ProductDalImp();
             List<Product> productList = productDalImp.readAllFromDB();
 
@@ -57,7 +58,7 @@ public class ProductServlet extends HttpServlet {
             }
 
             out.println("</ul>");
-            out.println("This is my first Servlet");
+            out.println("");
             out.println("</body>");
             out.println("<html>");
         } catch (IOException e) {
