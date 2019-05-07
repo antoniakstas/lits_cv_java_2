@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+<form action="#" th:action="@{/user/listpage/result}" th:object="${userModel}" method="post">
+    <p>id: <input type="text" th:field="*{id}" /></p>
+    <p>name: <input type="text" th:field="*{name}" /></p>
+    <p>url: <input type="text" th:field="*{url}" /></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+</body>
+</html>
