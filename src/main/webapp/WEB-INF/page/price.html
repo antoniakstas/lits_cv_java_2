@@ -1,0 +1,45 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>auto parts demo1</title>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8" />
+</head>
+<body>
+<a th:text="${currentPriceId}">id</a>
+<a th:text="${priceModel.product_id}">product_id</a>
+<a th:text="${priceModel.value}">value</a>
+<a th:text="${priceModel.mult}">mult</a>
+<a th:text="${priceModel.active}">active</a>
+<a th:text="${priceModel.deliverydays}">deliverydays</a>
+<a th:text="${currentPriceName}">action</a>
+
+<a th:href="${url}">urlHere</a>
+
+<table>
+    <tr>
+        <th>id</th>
+        <th>product_id</th>
+        <th>value</th>
+        <th>mult</th>
+        <th>active</th>
+        <th>deliverydays</th>
+        <th>url</th>
+    </tr>
+    <tr th:each="priceItem : ${priceListModel}">
+        <td th:text="${priceItem.id}">someId</td>
+        <td th:text="${priceItem.product_id}">someProduct_id</td>
+        <td th:text="${priceItem.value}">someValue</td>
+        <td th:text="${priceItem.mult}">someMult</td>
+        <td th:text="${priceItem.active}">someActive</td>
+        <td th:text="${priceItem.deliverydays}">someDeliverydays</td>
+        <td>
+            <a th:href="${priceItem.url}" th:text="${priceItem.name}">
+            </a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

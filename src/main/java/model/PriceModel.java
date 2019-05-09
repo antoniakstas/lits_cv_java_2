@@ -7,16 +7,24 @@ public class PriceModel {
     private int mult;
     private String active;
     private String deliverydays;
+    private String url;
 
+    public String getUrl() {
+        return url;
+    }
 
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-    public PriceModel(int id, int produkt_id, int value, int mult, String active, String deliverydays) {
+    public PriceModel(int id, int produkt_id, int value, int mult, String active, String deliverydays, String url) {
         this.id = id;
         this.produkt_id = produkt_id;
         this.value = value;
         this.mult = mult;
         this.active = active;
         this.deliverydays = deliverydays;
+        this.url = url;
     }
 
     public int getId() {
