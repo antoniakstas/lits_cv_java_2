@@ -2,9 +2,7 @@ package servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dal.PriceDalImp;
-import dal.ProductDalImp;
 import dto.Price;
-import dto.Product;
 import model.LoginModel;
 import model.PriceModel;
 import org.thymeleaf.TemplateEngine;
