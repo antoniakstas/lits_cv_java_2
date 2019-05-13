@@ -5,6 +5,16 @@ public class OrderModel {
     private String status;
     private int user_m_id;
     private int user_c_id;
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
 
     @Override
     public String toString() {
@@ -48,10 +58,11 @@ public class OrderModel {
         this.user_c_id = user_c_id;
     }
 
-    public OrderModel(int id, String status, int user_m_id, int user_c_id) {
+    public OrderModel(int id, String status, int user_m_id, int user_c_id, String url) {
         this.id = id;
         this.status = status;
         this.user_m_id = user_m_id;
         this.user_c_id = user_c_id;
+        this.url = url;
     }
 }
