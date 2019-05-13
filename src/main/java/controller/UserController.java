@@ -19,7 +19,6 @@ public class UserController {
         System.out.println("I'm in the GET method!");
         UserModel userModel = new UserModel(123, " user name", "url");
         UserDalImp dal = new UserDalImp();
-        dal.readAllFromDB();
         return dal.readAllFromDB();
     }
 
