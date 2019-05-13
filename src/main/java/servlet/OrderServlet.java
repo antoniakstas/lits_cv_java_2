@@ -1,7 +1,7 @@
 package servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dal.OrderDalImpl;
+import dal.OrderDalImp;
 import dto.Order;
 import model.LoginModel;
 import model.OrderModel;
@@ -54,7 +54,7 @@ public class OrderServlet extends HttpServlet {
             ctx.setVariable("currentUserId", parameterId);
             ctx.setVariable("url", "the null value was here");
 
-            OrderDalImpl orderDal = new OrderDalImpl();
+            OrderDalImp orderDal = new OrderDalImp();
 
             Order order = orderDal.readFromDBById(Integer.valueOf(parameterId)).get();
             ctx.setVariable("orderModel", order);
@@ -118,7 +118,7 @@ public class OrderServlet extends HttpServlet {
         System.out.println(loginModel);
 
 
-        OrderDalImpl imp = new OrderDalImpl();
+        OrderDalImp imp = new OrderDalImp();
 
         List<Order> orderList = imp.readAllFromDB();
 

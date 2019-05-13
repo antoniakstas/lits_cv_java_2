@@ -56,6 +56,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>orderServlet</servlet-name>
+        <servlet-class>servlet.OrderServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>orderServlet</servlet-name>
+        <url-pattern>/order</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>roleServlet</servlet-name>
         <servlet-class>servlet.RoleServlet</servlet-class>
     </servlet>
