@@ -1,10 +1,10 @@
 package servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dal.PriceDalImp;
-import dto.Price;
+import dal.OrderDalImp;
+import dto.Order;
 import model.LoginModel;
-import model.PriceModel;
+import model.OrderModel;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
@@ -19,7 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PriceServlet extends HttpServlet {
+
+
+public class OrderServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request,
@@ -52,36 +54,34 @@ public class PriceServlet extends HttpServlet {
             ctx.setVariable("currentUserId", parameterId);
             ctx.setVariable("url", "the null value was here");
 
-            PriceDalImp priceDal = new PriceDalImp();
+            OrderDalImp orderDal = new OrderDalImp();
 
-            Price price = priceDal.readFromDBById(Integer.valueOf(parameterId)).get();
-            ctx.setVariable("priceModel", price);
-            List<Price> priceList = priceDal.readAllFromDB();
+            Order order = orderDal.readFromDBById(Integer.valueOf(parameterId)).get();
+            ctx.setVariable("orderModel", order);
+            List<Order> orderList = orderDal.readAllFromDB();
 
-            List<PriceModel> priceModelList = new ArrayList<>();
+            List<OrderModel> orderModelList = new ArrayList<>();
 
-            for (Price priceItem : priceList) {
-                PriceModel priceModelItem =
-                        new PriceModel(priceItem.getId(),
-                                priceItem.getProdukt_id(),
-                                priceItem.getValue(),
-                                priceItem.getMult(),
-                                priceItem.getActive(),
-                                priceItem.getDeliverydays(),
+            for (Order orderItem : orderList) {
+                OrderModel orderModelItem =
+                        new OrderModel(orderItem.getId(),
+                                orderItem.getStatus(),
+                                orderItem.getUser_m_id(),
+                                orderItem.getUser_c_id(),
 
-                                getUrl(request, priceItem.getId()));
-                priceModelList.add(priceModelItem);
+                                getUrl(request, orderItem.getId()));
+                orderModelList.add(orderModelItem);
             }
 
-            ctx.setVariable("priceListModel", priceModelList);
+            ctx.setVariable("orderListModel", orderModelList);
 
 
             try {
                 String template = null;
                 if ("edit".equals(parameterAction)) {
-                    template = "priceEdit";
+                    template = "orderEdit";
                 } else {
-                    template = "price";
+                    template = "order";
                 }
                 templateEngine.process(template, ctx, response.getWriter());
 
@@ -118,12 +118,12 @@ public class PriceServlet extends HttpServlet {
         System.out.println(loginModel);
 
 
-        PriceDalImp imp = new PriceDalImp();
+        OrderDalImp imp = new OrderDalImp();
 
-        List<Price> priceList = imp.readAllFromDB();
+        List<Order> orderList = imp.readAllFromDB();
 
 
-        resp.getWriter().write(priceList.toString());
+        resp.getWriter().write(orderList.toString());
         resp.getWriter().flush();
         resp.getWriter().close();
 
