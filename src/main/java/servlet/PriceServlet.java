@@ -120,12 +120,12 @@ public class PriceServlet extends HttpServlet {
         System.out.println(loginModel);
 
 
-        ProductDalImp imp = new ProductDalImp();
+        PriceDalImp imp = new PriceDalImp();
 
-        List<Product> productList = imp.readAllFromDB();
+        List<Price> priceList = imp.readAllFromDB();
 
 
-        resp.getWriter().write(productList.toString());
+        resp.getWriter().write(priceList.toString());
         resp.getWriter().flush();
         resp.getWriter().close();
 
