@@ -3,8 +3,10 @@ package controller;
 import model.AddressListResponseModel;
 import model.AddressResponseModel;
 import model.UserModel;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -49,7 +51,8 @@ class AddressController {
     }
 
     @PostMapping(path = "/item")
-    public AddressResponseModel createItem(@RequestBody AddressResponseModel model) {
+    public AddressResponseModel createItem(@Valid @RequestBody AddressResponseModel model, BindingResult bindingResult) {
+         bindingResult.hasErrors();
         AddressResponseModel responseModel = new AddressResponseModel();
 
 

@@ -1,7 +1,12 @@
 package model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class AddressResponseModel {
 
+    @NotNull(message = "Please provide country")
+    @Size(min=4, max=30)
     String country;
     String town;
     String street;
