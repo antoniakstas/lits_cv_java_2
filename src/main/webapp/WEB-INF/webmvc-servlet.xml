@@ -46,7 +46,11 @@
 
     <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
-    
+
     <bean name="/applicationSwaggerConfig" class="configuration.ApplicationSwaggerConfig"/>
+
+    <bean id="beansValidation"
+          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+    <mvc:annotation-driven validator="beansValidation"/>
 
 </beans>
