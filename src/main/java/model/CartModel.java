@@ -8,13 +8,19 @@ public class CartModel {
 	private Integer price_id;
 
 	public CartModel(Integer id,
-					 Integer order_id,
-					 Integer product_count,
-					 Integer price_id) {
+                     Integer order_id,
+                     Integer product_count,
+                     Integer price_id) {
 		this.id = id;
 		this.order_id = order_id;
 		this.product_count = product_count;
 		this.price_id = price_id;
+	}
+
+	public CartModel(int id, int order_id, int product_count, int price_id) {
+	}
+
+	public CartModel(int id, int order_id, int product_count, int price_id, String url) {
 	}
 
 	public Integer getId() {
