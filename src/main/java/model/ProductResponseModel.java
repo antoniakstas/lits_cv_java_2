@@ -1,11 +1,23 @@
 package model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+@ApiModel
 public class ProductResponseModel {
 
+    @NotNull(message = "please provide index")
+    @Size(min=3, max=50)
+    @ApiModelProperty(notes = "index of the product")
     private String index;
+
+    @ApiModelProperty(notes = "name of the product")
     private String name;
+
+    @ApiModelProperty(notes = "manufacturer of the product")
     private String manufacturer;
-    private Double count;
 
     public String getIndex() {
         return index;
@@ -29,13 +41,5 @@ public class ProductResponseModel {
 
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
-    }
-
-    public Double getCount() {
-        return count;
-    }
-
-    public void setCount(Double count) {
-        this.count = count;
     }
 }

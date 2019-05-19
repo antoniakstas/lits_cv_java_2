@@ -68,8 +68,6 @@ public class ProductServlet extends HttpServlet {
                                 productItem.getIndex(),
                                 productItem.getName(),
                                 productItem.getManufacturer(),
-                                productItem.getCount(),
-
                                 getUrl(request, productItem.getId()));
                 productModelList.add(productModelItem);
             }
@@ -114,12 +112,10 @@ public class ProductServlet extends HttpServlet {
                 objectMapper.readValue(body, LoginModel.class);
 
 
-
-
         System.out.println(loginModel);
 
 
-       ProductDalImp imp = new ProductDalImp();
+        ProductDalImp imp = new ProductDalImp();
 
         List<Product> orderList = imp.readAllFromDB();
 

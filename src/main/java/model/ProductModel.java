@@ -6,16 +6,14 @@ public class ProductModel {
     private String index;
     private String name;
     private String manufacturer;
-    private int count;
-    private  String url;
+    private String url;
 
 
-    public ProductModel(int id, String index, String name, String manufacturer, int count, String url) {
+    public ProductModel(int id, String index, String name, String manufacturer, String url) {
         this.id = id;
         this.index = index;
         this.name = name;
         this.manufacturer = manufacturer;
-        this.count = count;
         this.url = url;
     }
 
@@ -51,14 +49,6 @@ public class ProductModel {
         this.manufacturer = manufacturer;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
     public String getUrl() {
         return url;
     }
@@ -74,7 +64,6 @@ public class ProductModel {
                 ", index='" + index + '\'' +
                 ", name='" + name + '\'' +
                 ", manufacturer='" + manufacturer + '\'' +
-                ", count=" + count +
                 ", url='" + url + '\'' +
                 '}';
     }
