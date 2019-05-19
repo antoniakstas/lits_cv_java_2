@@ -1,9 +1,12 @@
 package controller;
 
+
 import model.CartListResponseModel;
 import model.CartResponseModel;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,15 +31,36 @@ class CartController {
 
 
     @GetMapping(path = "/item")
-    public CartListResponseModel findItem(Integer id) {
+    public CartListResponseModel findItem(Integer id, Integer order_id, Integer product_count, Integer price_id ) {
         CartListResponseModel responseModel = new CartListResponseModel();
 
         return responseModel;
     }
 
     @PostMapping(path = "/item")
-    public CartListResponseModel creat(@RequestBody CartResponseModel model) {
+    public CartListResponseModel creat(@Valid @RequestBody CartResponseModel model, BindingResult bindingResult) {
+        bindingResult.hasErrors();
         CartListResponseModel responseModel = new CartListResponseModel();
+
+
+        return responseModel;
+    }
+
+    @GetMapping(path = "/delete")
+    public CartResponseModel deleteItem(Integer id, Integer order_id, Integer product_count, Integer price_id ) {
+        findAll();
+        CartResponseModel responseModel = new CartResponseModel();
+
+        findAll().getCartResponseModel().remove(id);
+        findAll().getCartResponseModel().remove(order_id);
+        findAll().getCartResponseModel().remove(product_count);
+        findAll().getCartResponseModel().remove(price_id);
+        return responseModel;
+    }
+
+    @PostMapping(path = "/update")
+    public CartResponseModel update(@RequestBody Integer id, Integer order_id, Integer product_count, Integer price_id) {
+        CartResponseModel responseModel = new CartResponseModel();
 
         return responseModel;
     }
