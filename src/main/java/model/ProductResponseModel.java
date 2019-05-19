@@ -8,14 +8,19 @@ import javax.validation.constraints.Size;
 @ApiModel
 public class ProductResponseModel {
 
-    @NotNull(message = "please provide index")
+    @NotNull(message = "Please provide index")
     @Size(min=3, max=50)
     @ApiModelProperty(notes = "index of the product")
     private String index;
 
+    @NotNull(message = "Please provide name of the product")
+    @Size(min=3, max=50)
+
     @ApiModelProperty(notes = "name of the product")
     private String name;
 
+    @NotNull(message = "Please provide manufacturer of the product")
+    @Size(min=3, max=50)
     @ApiModelProperty(notes = "manufacturer of the product")
     private String manufacturer;
 
