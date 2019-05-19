@@ -111,7 +111,7 @@ public class CartServlet extends HttpServlet {
         System.out.println(loginModel);
 
 
-       CartDalImp imp = new CartDalImp();
+        CartDalImp imp = new CartDalImp();
 
         List<Cart> cartList = imp.readAllFromDB();
 
@@ -119,6 +119,9 @@ public class CartServlet extends HttpServlet {
         resp.getWriter().write(cartList.toString());
         resp.getWriter().flush();
         resp.getWriter().close();
+
+
+
 
 
 
