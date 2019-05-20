@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import service.UserService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -24,6 +26,9 @@ public class UserController {
 
     @Autowired
     private MessageSource messageSource;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping(path = "/list")
     public List<User> findAll() {
@@ -62,12 +67,23 @@ public class UserController {
 
     @PostMapping("/registration")
     public UserRegistrationResponse registration(Locale locale, @Valid @RequestBody UserRegistrationRequest request, BindingResult bindingResult) {
-        bindingResult.hasErrors();
+
         UserRegistrationResponse response = new UserRegistrationResponse();
 
-        String errorMessage = messageSource.getMessage("autoparts.validation.messsage.example", new Object[]{"some value"}, locale);
+        if (bindingResult.hasErrors()) {
+            ObjectError error = bindingResult.getAllErrors().get(0);
+            String messageKey = error.getDefaultMessage().substring(1,
+                    error.getDefaultMessage().indexOf("}"));
 
-        response.setErrorMessage(errorMessage);
+            String errorMessage = messageSource.getMessage(messageKey, new Object[]{request.getPassword()}, locale);
+
+            response.setErrorMessage(errorMessage);
+
+        } else {
+            userService.registerUser(request);
+            response.setSuccessMessage("Registration was great!");
+        }
+
         return response;
     }
 }

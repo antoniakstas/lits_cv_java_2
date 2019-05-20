@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = UsernameAndPasswordAreNotTheSameValidator.class)
 public @interface UserNameAndPasswordAreDifferent {
-    String message() default "{autoparts.validation.messsage.example}";
+    String message() default "{autoparts.validation.message.usernameandpassword}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
