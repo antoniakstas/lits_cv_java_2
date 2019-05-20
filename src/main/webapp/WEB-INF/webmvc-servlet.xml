@@ -53,4 +53,10 @@
           class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
     <mvc:annotation-driven validator="beansValidation"/>
 
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename">
+            <value>messages</value>
+        </property>
+    </bean>
+
 </beans>

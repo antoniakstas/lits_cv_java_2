@@ -52,7 +52,7 @@ class AddressController {
 
     @PostMapping(path = "/item")
     public AddressResponseModel createItem(@Valid @RequestBody AddressResponseModel model, BindingResult bindingResult) {
-         bindingResult.hasErrors();
+        bindingResult.hasErrors();
         AddressResponseModel responseModel = new AddressResponseModel();
 
 
