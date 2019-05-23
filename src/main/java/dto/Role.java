@@ -1,8 +1,14 @@
 package dto;
 
+import javax.persistence.*;
+
+@Table
+@Entity(name = "role")
 public class Role {
 
-
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     private String name;
     private String description;
