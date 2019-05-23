@@ -81,7 +81,9 @@ public class UserController {
 
         } else {
             userService.registerUser(request);
-            response.setSuccessMessage("Registration was great!");
+            String successMessage = messageSource.getMessage("autoparts.validation.message.step1.done",
+                    new Object[]{request.getEmail()}, locale);
+            response.setSuccessMessage(successMessage);
         }
 
         return response;
