@@ -38,6 +38,7 @@
 
 
     <bean class="service.UserServiceImpl" id="userService"/>
+    <bean class="service.RoleServiceImpl" id="roleService"/>
 
 
     <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">

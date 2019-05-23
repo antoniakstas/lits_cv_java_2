@@ -6,11 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-
-    static  {
-        System.out.println("here");
-    }
-
     @Override
     public boolean registerUser(UserRegistrationRequest requestData) {
 //  TODO:
