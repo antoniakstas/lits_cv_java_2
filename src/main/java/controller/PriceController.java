@@ -6,8 +6,10 @@ import model.PriceListResponceModel;
 import model.PriceModel;
 
 import model.PriceResponceModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import service.PriceService;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,30 +19,14 @@ import java.util.List;
 @RequestMapping("/price")
 public class PriceController {
 
-//    @GetMapping(path = "/list")
-//    public List<Price> findAll() {
-//        System.out.println("I'm in the GET method!");
-//        PriceModel priceModel = new PriceModel(1, 123, 43,2,"active", "4 days", "url");
-//        PriceDalImp dal = new PriceDalImp();
-//        return dal.readAllFromDB();
-//    }
+@Autowired
+private PriceService priceService;
 
     @GetMapping(path = "/list")
-    public PriceListResponceModel findAll(){
+    public List<Price> findAll(){
 
-        PriceListResponceModel responceModel = new PriceListResponceModel();
-
-        PriceListResponceModel element1 = new PriceListResponceModel();
-        PriceListResponceModel element2 = new PriceListResponceModel();
-
-        List<PriceListResponceModel> priceListResponceModels = new ArrayList<>();
-
-        priceListResponceModels.add(element1);
-        priceListResponceModels.add(element2);
-
-        responceModel.setPriceListResponceModels(priceListResponceModels);
-
-        return responceModel;
+        List<Price> AllPrice = priceService.findAllPrice();
+        return AllPrice;
 
     }
     @GetMapping(path = "/item")

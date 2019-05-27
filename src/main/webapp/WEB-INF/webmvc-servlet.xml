@@ -40,6 +40,7 @@
     <bean class="service.UserServiceImpl" id="userService"/>
     <bean class="service.RoleServiceImpl" id="roleService"/>
     <bean class="service.ProductServiceImpl" id="productService"/>
+    <bean class="service.PriceServiceImpl" id="priceService"/>
 
 
     <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
