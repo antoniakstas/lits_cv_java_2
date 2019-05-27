@@ -1,6 +1,16 @@
 package dto;
 
+
+import javax.persistence.*;
+
+@Table
+@Entity(name = "price")
+
+
 public class Price {
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     private int produkt_id;
     private int value;
