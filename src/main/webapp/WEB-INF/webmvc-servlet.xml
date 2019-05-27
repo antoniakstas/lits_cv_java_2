@@ -39,6 +39,8 @@
 
     <bean class="service.UserServiceImpl" id="userService"/>
     <bean class="service.RoleServiceImpl" id="roleService"/>
+    <bean class="service.ProductServiceImpl" id="productService"/>
+    <bean class="service.PriceServiceImpl" id="priceService"/>
 
 
     <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
@@ -83,6 +85,8 @@
         <property name="annotatedClasses">
             <list>
                 <value>dto.Role</value>
+                <value>dto.Product</value>
+                <value>dto.Price</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -97,6 +101,15 @@
     <bean id="roleDal" class="dal.RoleDalImp">
         <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
     </bean>
+
+    <bean id="productDal" class="dal.ProductDalImp">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="priceDal" class="dal.PriceDalImp">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 

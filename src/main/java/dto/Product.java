@@ -1,7 +1,13 @@
 package dto;
 
-public class Product{
+import javax.persistence.*;
 
+@Table
+@Entity(name = "product")
+public class Product{
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     private String index;
     private String name;

@@ -1,34 +1,37 @@
 package controller;
 
-import dal.ProductDalImp;
 import dto.Product;
 import io.swagger.annotations.Api;
-import model.ProductListResponseModel;
-import model.ProductModel;
 import model.ProductResponseModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import service.ProductService;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
 @RequestMapping("/product")
 @Api(value = "Product Resource REST Endpoint", description = "Shows the product info")
 public class ProductController {
-    @GetMapping(path = "/list")
-    public ProductListResponseModel findAll() {
+    @Autowired
 
-        ProductListResponseModel responseModel = new ProductListResponseModel();
-        ProductResponseModel e1ement1 = new ProductResponseModel();
-        ProductResponseModel e1ement2 = new ProductResponseModel();
-        List<ProductResponseModel> productResponseModels = new ArrayList<>();
-        productResponseModels.add(e1ement1);
-        productResponseModels.add(e1ement2);
-        responseModel.setProductResponseModelList(productResponseModels);
-        return responseModel;
+    private ProductService productService;
+
+    @GetMapping(path = "/list")
+    public List<Product> findAll() {
+
+        List<Product> allProduct = productService.findAllProduct();
+        return allProduct;
+//        ProductListResponseModel responseModel = new ProductListResponseModel();
+//        ProductResponseModel e1ement1 = new ProductResponseModel();
+//        ProductResponseModel e1ement2 = new ProductResponseModel();
+//        List<ProductResponseModel> productResponseModels = new ArrayList<>();
+//        productResponseModels.add(e1ement1);
+//        productResponseModels.add(e1ement2);
+//        responseModel.setProductResponseModelList(productResponseModels);
+//        return responseModel;
     }
 
     @GetMapping(path = "/item")
@@ -52,7 +55,7 @@ public class ProductController {
         findAll();
         ProductResponseModel responseModel = new ProductResponseModel();
 
-        findAll().getProductResponseModelList().remove(id);
+        findAll().remove(id);
         return responseModel;
     }
 
