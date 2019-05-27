@@ -1,6 +1,12 @@
 package model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class PriceResponceModel {
+
+    @NotNull
+    @Size
     private int id;
     private int produkt_id;
     private int value;
