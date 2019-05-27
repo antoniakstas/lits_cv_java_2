@@ -25,6 +25,17 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" >
+
+    <property name="paramName" value="locale"> </property>
+
+</bean>
+
+
+    <mvc:interceptors>
+        <bean id="anyInterceptor" class="interceptor.MyCustomInterceptor"/>
+    </mvc:interceptors>
+
     <bean id="templateResolver"
           class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
         <property name="prefix" value="/WEB-INF/page/"/>
@@ -66,9 +77,11 @@
         <property name="basename">
             <value>messages</value>
         </property>
+        <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
     <context:property-placeholder location="classpath:persistence-mysql.properties"/>
+
 
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"

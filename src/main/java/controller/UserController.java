@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
@@ -66,7 +68,9 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public UserRegistrationResponse registration(Locale locale, @Valid @RequestBody UserRegistrationRequest request, BindingResult bindingResult) {
+    public UserRegistrationResponse registration(HttpServletRequest httpRequest,
+                                                 HttpServletResponse httpResponse,
+                                                 Locale locale, @Valid @RequestBody UserRegistrationRequest request, BindingResult bindingResult) {
 
         UserRegistrationResponse response = new UserRegistrationResponse();
 
