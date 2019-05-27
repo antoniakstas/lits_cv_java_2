@@ -12,21 +12,25 @@ public class Price {
     @Column(name="id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
-    private int produkt_id;
+    @Column(name="product_id")
+    private int productId;
     private int value;
     private int mult;
     private String active;
     private String deliverydays;
 
-
-
-    public Price(int id, int produkt_id, int value, int mult, String active, String deliverydays) {
-        this.id = id;
-        this.produkt_id = produkt_id;
-        this.value = value;
-        this.mult = mult;
-        this.active = active;
-        this.deliverydays = deliverydays;
+    public Price() {
+    }
+    @Override
+    public String toString() {
+        return "Price{" +
+                "id=" + id +
+                ", productId=" + productId +
+                ", value=" + value +
+                ", mult=" + mult +
+                ", active='" + active + '\'' +
+                ", deliverydays='" + deliverydays + '\'' +
+                '}';
     }
 
     public int getId() {
@@ -37,12 +41,12 @@ public class Price {
         this.id = id;
     }
 
-    public int getProdukt_id() {
-        return produkt_id;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProdukt_id(int produkt_id) {
-        this.produkt_id = produkt_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public int getValue() {
@@ -77,16 +81,13 @@ public class Price {
         this.deliverydays = deliverydays;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
-        return "Price{" +
-                "id=" + id +
-                ", produkt_id=" + produkt_id +
-                ", value=" + value +
-                ", mult=" + mult +
-                ", active='" + active + '\'' +
-                ", deliverydays='" + deliverydays + '\'' +
-                '}';
+    public Price(int id, int productId, int value, int mult, String active, String deliverydays) {
+        this.id = id;
+        this.productId = productId;
+        this.value = value;
+        this.mult = mult;
+        this.active = active;
+        this.deliverydays = deliverydays;
     }
 
     {

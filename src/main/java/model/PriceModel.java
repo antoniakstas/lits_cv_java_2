@@ -2,7 +2,7 @@ package model;
 
 public class PriceModel {
     private int id;
-    private int produkt_id;
+    private int product_id;
     private int value;
     private int mult;
     private String active;
@@ -17,9 +17,9 @@ public class PriceModel {
         this.url = url;
     }
 
-    public PriceModel(int id, int produkt_id, int value, int mult, String active, String deliverydays, String url) {
+    public PriceModel(int id, int product_id, int value, int mult, String active, String deliverydays, String url) {
         this.id = id;
-        this.produkt_id = produkt_id;
+        this.product_id = product_id;
         this.value = value;
         this.mult = mult;
         this.active = active;
@@ -35,12 +35,12 @@ public class PriceModel {
         this.id = id;
     }
 
-    public int getProdukt_id() {
-        return produkt_id;
+    public int getProduct_id() {
+        return product_id;
     }
 
-    public void setProdukt_id(int produkt_id) {
-        this.produkt_id = produkt_id;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
     public int getValue() {
@@ -79,7 +79,7 @@ public class PriceModel {
     public java.lang.String toString() {
         return "Price{" +
                 "id=" + id +
-                ", produkt_id=" + produkt_id +
+                ", product_id=" + product_id +
                 ", value=" + value +
                 ", mult=" + mult +
                 ", active='" + active + '\'' +

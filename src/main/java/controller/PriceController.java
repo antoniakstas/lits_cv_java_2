@@ -4,6 +4,7 @@ import dal.PriceDalImp;
 import dto.Price;
 import model.PriceResponceModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import service.PriceService;
@@ -16,6 +17,7 @@ import java.util.List;
 public class PriceController {
 
     @Autowired
+
     private PriceService priceService;
 
     @GetMapping(path = "/list")

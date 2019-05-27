@@ -8,7 +8,7 @@ public class PriceResponceModel {
     @NotNull
     @Size
     private int id;
-    private int produkt_id;
+    private int product_id;
     private int value;
     private int mult;
     private String active;
@@ -22,12 +22,12 @@ public class PriceResponceModel {
         this.id = id;
     }
 
-    public int getProdukt_id() {
-        return produkt_id;
+    public int getProduct_id() {
+        return product_id;
     }
 
-    public void setProdukt_id(int produkt_id) {
-        this.produkt_id = produkt_id;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
     public int getValue() {
