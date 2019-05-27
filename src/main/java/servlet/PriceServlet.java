@@ -63,7 +63,7 @@ public class PriceServlet extends HttpServlet {
             for (Price priceItem : priceList) {
                 PriceModel priceModelItem =
                         new PriceModel(priceItem.getId(),
-                                priceItem.getProdukt_id(),
+                                priceItem.getProductId(),
                                 priceItem.getValue(),
                                 priceItem.getMult(),
                                 priceItem.getActive(),

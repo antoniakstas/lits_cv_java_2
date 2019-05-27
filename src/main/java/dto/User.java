@@ -4,10 +4,19 @@ public class User {
 
 	private Integer id;
 	private String name;
+	private String email;
 
 	public User(Integer id, String name) {
 		this.id = id;
 		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Integer getId() {
@@ -31,6 +40,7 @@ public class User {
 		return "User{" +
 				"id=" + id +
 				", name='" + name + '\'' +
+				", email='" + email + '\'' +
 				'}';
 	}
 }
