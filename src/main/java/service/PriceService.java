@@ -6,5 +6,9 @@ import java.util.List;
 
 public interface PriceService {
 
+
+
+    public boolean createPriceInToDB(Price price);
+
     List<Price> findAllPrice();
 }

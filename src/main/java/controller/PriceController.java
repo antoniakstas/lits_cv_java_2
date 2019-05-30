@@ -28,6 +28,22 @@ public class PriceController {
 
     }
 
+    @PostMapping(value= "/add")
+    public String createPriceInToDB(@ModelAttribute("price") Price price){
+
+       // if(price.getId() != 0){
+            //new person, add it
+        boolean priceWasCreated = this.priceService.createPriceInToDB(price);
+
+
+        if(priceWasCreated){
+            return "price created";
+
+        }
+
+        return "price not created";
+    }
+
     @GetMapping(path = "/item")
     public PriceResponceModel findItem(Integer id) {
 

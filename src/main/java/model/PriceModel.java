@@ -1,7 +1,7 @@
 package model;
 
 public class PriceModel {
-    private int id;
+
     private int product_id;
     private int value;
     private int mult;
@@ -18,22 +18,16 @@ public class PriceModel {
     }
 
     public PriceModel(int id, int product_id, int value, int mult, String active, String deliverydays, String url) {
-        this.id = id;
+
         this.product_id = product_id;
         this.value = value;
         this.mult = mult;
         this.active = active;
         this.deliverydays = deliverydays;
-        this.url = url;
+
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getProduct_id() {
         return product_id;
@@ -78,7 +72,7 @@ public class PriceModel {
     @java.lang.Override
     public java.lang.String toString() {
         return "Price{" +
-                "id=" + id +
+                "" +
                 ", product_id=" + product_id +
                 ", value=" + value +
                 ", mult=" + mult +
