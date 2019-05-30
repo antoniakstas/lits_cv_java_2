@@ -34,11 +34,12 @@ public class PriceDalImp implements PriceDal {
     }
 
     @Override
-    public void createPriceInToDB(Price price) {
+    public Price createPriceInToDB(Price price) {
         Session session = this.sessionFactory.getCurrentSession();
         session.save(price);
      //   session.persist(price);
         logger.info("Price saved successfully, Price Details="+price);
+        return  price;
 
 
 

@@ -9,7 +9,7 @@ public interface PriceDal {
     List<Price> readAllFromDB();
 
     Optional<Price> readFromDBById(int id);
-    public void createPriceInToDB(Price price);
+    public Price createPriceInToDB(Price price);
 
     boolean updatePrice(int id, Price price);
 

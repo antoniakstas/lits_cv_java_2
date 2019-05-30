@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class PriceServiceImpl implements PriceService{
     @Autowired
@@ -23,7 +25,7 @@ public class PriceServiceImpl implements PriceService{
 
     @Override
     @Transactional
-    public boolean createPriceInToDB(Price price) {
+    public Optional<Price> createPriceInToDB(Price price) {
         int productIdFromPrice = price.getProductId();
         boolean productIdIsInDB = false;
         List<Product> productsList = productDal.readAllFromDB();
@@ -34,11 +36,12 @@ public class PriceServiceImpl implements PriceService{
             }
 
         }
+
         if (productIdIsInDB) {
-            this.priceDal.createPriceInToDB(price);
-            return true;
+
+            return Optional.of(this.priceDal.createPriceInToDB(price));
         }
-            return false;
+            return Optional.of(new Price());
 
     }
 

@@ -11,6 +11,7 @@ import service.PriceService;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/price")
@@ -29,19 +30,19 @@ public class PriceController {
     }
 
     @PostMapping(value= "/add")
-    public String createPriceInToDB(@ModelAttribute("price") Price price){
+    public Price createPriceInToDB(@ModelAttribute("price") Price price){
 
        // if(price.getId() != 0){
             //new person, add it
-        boolean priceWasCreated = this.priceService.createPriceInToDB(price);
+        Optional<Price> priceWasCreated = this.priceService.createPriceInToDB(price);
 
 
-        if(priceWasCreated){
-            return "price created";
+        if(priceWasCreated.isPresent()){
+            return priceWasCreated.get();
 
         }
 
-        return "price not created";
+        return null;
     }
 
     @GetMapping(path = "/item")
