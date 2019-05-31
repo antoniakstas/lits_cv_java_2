@@ -52,6 +52,8 @@
     <bean class="service.RoleServiceImpl" id="roleService"/>
     <bean class="service.ProductServiceImpl" id="productService"/>
     <bean class="service.PriceServiceImpl" id="priceService"/>
+    <bean class="service.CartServiceImpl" id="cartService"/>
+
 
 
     <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
@@ -100,6 +102,7 @@
                 <value>dto.Role</value>
                 <value>dto.Product</value>
                 <value>dto.Price</value>
+                <value>dto.Cart</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -120,6 +123,10 @@
     </bean>
 
     <bean id="priceDal" class="dal.PriceDalImp">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="cartDal" class="dal.CartDalImp">
         <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
     </bean>
 
