@@ -28,6 +28,7 @@ public class PriceDalImp implements PriceDal {
         List<Price> priceList = session.createQuery("from price").list();
         return priceList;
     }
+
     @Override
     public Optional<Price> readFromDBById(int id) {
         return Optional.empty();
@@ -37,10 +38,9 @@ public class PriceDalImp implements PriceDal {
     public Price createPriceInToDB(Price price) {
         Session session = this.sessionFactory.getCurrentSession();
         session.save(price);
-     //   session.persist(price);
-        logger.info("Price saved successfully, Price Details="+price);
-        return  price;
-
+        //   session.persist(price);
+        logger.info("Price saved successfully, Price Details=" + price);
+        return price;
 
 
     }
@@ -60,11 +60,41 @@ public class PriceDalImp implements PriceDal {
     public Price updatePrice(Price price) {
         Session session = this.sessionFactory.getCurrentSession();
         session.update(price);
-        logger.info("Price updated successfully, Price Details="+price);
+        logger.info("Price updated successfully, Price Details=" + price);
         return price;
     }
 
+    @Override
+    @Transactional
+
+    public void deleteLine(Long id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        Price price = (Price) session.load(Price.class, new Long(id));
+        if (null != price) {
+            session.delete(price);
+            logger.info("Price deleted successfully, Price Details=" + price);
+        }
+
+    }
+
+
 }
+//    public Price deletePriceFromDB(Long id) {
+//
+//            Session session = this.sessionFactory.getCurrentSession();
+//            Price price = (Price) session.load(Price.class, new Long(id));
+//            if(null != price){
+//                session.delete(price);
+//            }
+//            logger.info("Person deleted successfully, person details="+price);
+//            return price;
+//        }
+
+
+
+
+
+
 
 
 

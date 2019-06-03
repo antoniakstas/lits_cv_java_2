@@ -2,20 +2,17 @@ package dto;
 
 import javax.persistence.*;
 
-  @Table
-  @Entity(name = "cart")
-  public class Cart {
+@Table
+@Entity(name = "cart")
+public class Cart {
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
 
     int id;
     int order_id;
     int product_count;
     int price_id;
-
-    public Cart() {
-    }
 
     public Cart(Integer idValueFromDB,
                 Integer order_idValueFromDB,
@@ -25,6 +22,9 @@ import javax.persistence.*;
         this.order_id = order_idValueFromDB;
         this.product_count = product_countValueFromDB;
         this.price_id = price_idValueFromDB;
+    }
+
+    public Cart() {
     }
 
 

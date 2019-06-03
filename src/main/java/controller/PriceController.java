@@ -72,4 +72,16 @@ public class PriceController {
 
         return null;
     }
+    @RequestMapping(value = "/deletePrice/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
+    public String deletePriceLine(@PathVariable("id") Long id) {
+        priceService.deleteLine(id);
+        return "redirect:/getPrice";
+
+    }
+//    @PostMapping("/remove/id")
+//    public Price removePrice(@PathVariable("id") Long id){
+//
+//        Optional<Price> price = this.priceService.deletePriceFromDB(id);
+//        return price.get();
+//    }
 }
