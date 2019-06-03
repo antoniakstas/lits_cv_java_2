@@ -3,8 +3,11 @@ package controller;
 
 import model.CartListResponseModel;
 import model.CartResponseModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import service.CartService;
+import service.PriceService;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -13,6 +16,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/cart")
 class CartController {
+
+    @Autowired
+    private CartService cartService;
+
     @GetMapping(path = "/list")
     public CartListResponseModel findAll() {
         CartListResponseModel responseModel = new CartListResponseModel();
@@ -31,8 +38,12 @@ class CartController {
 
 
     @GetMapping(path = "/item")
-    public CartListResponseModel findItem(Integer id, Integer order_id, Integer product_count, Integer price_id ) {
+    public CartListResponseModel findItem( Long order_id ) {
         CartListResponseModel responseModel = new CartListResponseModel();
+
+        List<CartResponseModel> allCartByOrderId = cartService.findAllCartByOrderId(order_id);
+        responseModel.setCartResponseModel(allCartByOrderId);
+
 
         return responseModel;
     }

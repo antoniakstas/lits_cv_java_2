@@ -16,5 +16,7 @@ public interface CartDal {
 
     boolean deleteCart(int id);
 
+    List<Cart> readCartListByOrderId(Long orderId);
+
 
 }

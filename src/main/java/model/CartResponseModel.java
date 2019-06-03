@@ -1,5 +1,5 @@
 package model;
-
+//TODO: rename fields
 public class CartResponseModel {
 
         Integer order_id;
