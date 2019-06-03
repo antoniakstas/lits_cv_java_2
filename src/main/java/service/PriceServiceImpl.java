@@ -51,4 +51,15 @@ public class PriceServiceImpl implements PriceService{
         List<Price> priceList = priceDal.readAllFromDB();
         return priceList;
     }
-}
+
+    @Override
+    @Transactional
+    public Optional<Price> updatePrice(Price price) {
+
+            this.priceDal.updatePrice(price);
+     return Optional.of(this.priceDal.updatePrice(price));
+    }
+    }
+
+
+

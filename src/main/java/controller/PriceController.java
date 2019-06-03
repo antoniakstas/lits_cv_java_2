@@ -45,6 +45,9 @@ public class PriceController {
         return null;
     }
 
+
+
+
     @GetMapping(path = "/item")
     public PriceResponceModel findItem(Integer id) {
 
@@ -55,13 +58,18 @@ public class PriceController {
 
     }
 
-    @PostMapping(path = "/item")
-    public PriceResponceModel createItem(@RequestBody PriceResponceModel model) {
-
-        PriceResponceModel responceModel = new PriceResponceModel();
+    @PostMapping(path = "/update")
+    public Price updatePriceInToDB(@ModelAttribute("price") Price price){
 
 
-        return responceModel;
+        Optional<Price> priceWasUpdated = this.priceService.updatePrice(price);
 
+
+        if(priceWasUpdated.isPresent()){
+            return priceWasUpdated.get();
+
+        }
+
+        return null;
     }
 }

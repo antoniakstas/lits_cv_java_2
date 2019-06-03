@@ -12,4 +12,5 @@ public interface PriceService {
     public Optional<Price> createPriceInToDB(Price price);
 
     List<Price> findAllPrice();
+    public  Optional<Price> updatePrice(Price price);
 }

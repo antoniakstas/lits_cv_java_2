@@ -11,9 +11,10 @@ public interface PriceDal {
     Optional<Price> readFromDBById(int id);
     public Price createPriceInToDB(Price price);
 
-    boolean updatePrice(int id, Price price);
+    boolean updatePrice1(int id, Price price);
 
     boolean deletePrice(int id);
+    public Price updatePrice(Price price);
 
 
 }

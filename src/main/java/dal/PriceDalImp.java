@@ -46,13 +46,22 @@ public class PriceDalImp implements PriceDal {
     }
 
     @Override
-    public boolean updatePrice(int id, Price price) {
+    public boolean updatePrice1(int id, Price price) {
         return false;
     }
 
     @Override
     public boolean deletePrice(int id) {
         return false;
+    }
+
+    @Override
+    @Transactional
+    public Price updatePrice(Price price) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(price);
+        logger.info("Price updated successfully, Price Details="+price);
+        return price;
     }
 
 }

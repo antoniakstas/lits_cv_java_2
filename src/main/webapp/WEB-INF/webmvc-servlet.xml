@@ -102,7 +102,7 @@
                 <value>dto.Role</value>
                 <value>dto.Product</value>
                 <value>dto.Price</value>
-                <value>dto.Cart</value>
+<!--                <value>dto.Cart</value>-->
             </list>
         </property>
         <property name="hibernateProperties">
@@ -126,9 +126,9 @@
         <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
     </bean>
 
-    <bean id="cartDal" class="dal.CartDalImp">
-        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
-    </bean>
+<!--    <bean id="cartDal" class="dal.CartDalImp">-->
+<!--        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>-->
+<!--    </bean>-->
 
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
