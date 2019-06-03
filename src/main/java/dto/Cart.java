@@ -1,10 +1,21 @@
 package dto;
 
-public class Cart {
+import javax.persistence.*;
+
+  @Table
+  @Entity(name = "cart")
+  public class Cart {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     int id;
     int order_id;
     int product_count;
     int price_id;
+
+    public Cart() {
+    }
 
     public Cart(Integer idValueFromDB,
                 Integer order_idValueFromDB,
