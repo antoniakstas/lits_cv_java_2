@@ -1,16 +1,21 @@
 package controller;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
 import dto.Product;
 import io.swagger.annotations.Api;
 import model.CartResponseModel;
+import model.CreateNewProductResponse;
 import model.ProductResponseModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import service.ProductService;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @RestController
@@ -18,7 +23,9 @@ import java.util.Optional;
 @Api(value = "Product Resource REST Endpoint", description = "Shows the product info")
 public class ProductController {
     @Autowired
+    private MessageSource messageSource;
 
+    @Autowired
     private ProductService productService;
 
     @GetMapping(path = "/list")
@@ -44,18 +51,27 @@ public class ProductController {
     }
 
     @PostMapping(path = "/item")
-    public Product create(@ModelAttribute("product") Product product) {
-//        bindingResult.hasErrors();
-//        ProductResponseModel responseModel = new ProductResponseModel();
-//
+    public CreateNewProductResponse create(Locale locale, @Valid @RequestBody ProductResponseModel model, BindingResult bindingResult) {
+        bindingResult.hasErrors();
+        ProductResponseModel responseModel = new ProductResponseModel();
+
 //        return responseModel;
 
-        Optional<Product> productWasCreated = this.productService.createProductInToDB(product);
+//        Optional<Product> productWasCreated = this.productService.createProductInToDB(product);
+//
+//        if(productWasCreated.isPresent()){
+//            return productWasCreated.get();
+//        }
+//        return null;
+        CreateNewProductResponse response = new CreateNewProductResponse();
 
-        if(productWasCreated.isPresent()){
-            return productWasCreated.get();
-        }
-        return null;
+        String successMessage = messageSource.getMessage("autoparts.validation.message.step1.done", new Object[]{responseModel.getIndex()}, locale);
+        response.setSuccessMessage(successMessage);
+
+
+        return response;
+
+
     }
 
     //edit-post
