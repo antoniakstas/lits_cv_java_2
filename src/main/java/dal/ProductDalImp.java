@@ -1,17 +1,22 @@
 package dal;
 
+import dto.Price;
 import dto.Product;
 import dto.Role;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+@Repository
 public class ProductDalImp implements ProductDal {
+    private static final Logger logger = LoggerFactory.getLogger(PriceDalImp.class);
 
     private SessionFactory sessionFactory;
 
@@ -32,10 +37,22 @@ public class ProductDalImp implements ProductDal {
         return Optional.empty();
     }
 
+
     @Override
-    public boolean createProductInToDB(Product product) {
-        return false;
+    @Transactional
+    public Product createProductInToDB(Product product) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.save(product);
+        //   session.persist(price);
+        logger.info("Product saved successfully, Product Details=" + product);
+        return product;
+
+
     }
+//    @Override
+//    public boolean createProductInToDB(Product product) {
+//        return false;
+//    }
 
     @Override
     public boolean updateProduct(int id) {

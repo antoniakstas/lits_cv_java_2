@@ -2,6 +2,7 @@ package controller;
 
 import dto.Product;
 import io.swagger.annotations.Api;
+import model.CartResponseModel;
 import model.ProductResponseModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -10,6 +11,7 @@ import service.ProductService;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/product")
@@ -42,11 +44,18 @@ public class ProductController {
     }
 
     @PostMapping(path = "/item")
-    public ProductResponseModel create(@Valid @RequestBody ProductResponseModel model, BindingResult bindingResult) {
-        bindingResult.hasErrors();
-        ProductResponseModel responseModel = new ProductResponseModel();
+    public Product create(@ModelAttribute("product") Product product) {
+//        bindingResult.hasErrors();
+//        ProductResponseModel responseModel = new ProductResponseModel();
+//
+//        return responseModel;
 
-        return responseModel;
+        Optional<Product> productWasCreated = this.productService.createProductInToDB(product);
+
+        if(productWasCreated.isPresent()){
+            return productWasCreated.get();
+        }
+        return null;
     }
 
     //edit-post

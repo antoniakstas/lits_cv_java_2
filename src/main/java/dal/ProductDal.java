@@ -11,7 +11,7 @@ public interface ProductDal {
 
     Optional<Product> readFromDBById(int id);
 
-    boolean createProductInToDB(Product product);
+    public Product createProductInToDB(Product product);
 
     boolean updateProduct(int id);
 
