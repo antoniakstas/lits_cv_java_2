@@ -15,6 +15,8 @@ public interface PriceDal {
 
     boolean deletePrice(int id);
     public Price updatePrice(Price price);
+  //  public Price deletePriceFromDB(Long id);
+  public void deleteLine(Long id);
 
 
 }

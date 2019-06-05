@@ -59,7 +59,18 @@ public class PriceServiceImpl implements PriceService{
             this.priceDal.updatePrice(price);
      return Optional.of(this.priceDal.updatePrice(price));
     }
+
+    @Override
+    @Transactional
+    public void deleteLine(Long id) {
+        priceDal.deleteLine(id);
     }
+
+//    public Optional<Price> deletePriceFromDB(Long id) {
+//        this.priceDal.deletePriceFromDB(id);
+//        return Optional.of(this.priceDal.deletePriceFromDB(id));
+//    }
+}
 
 
 

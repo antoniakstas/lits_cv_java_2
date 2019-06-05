@@ -1,12 +1,15 @@
 package service;
 
 import dal.ProductDal;
+import dto.Price;
 import dto.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -21,4 +24,29 @@ public class ProductServiceImpl implements ProductService {
         List<Product> productList = productDal.readAllFromDB();
         return productList;
     }
+
+    @Override
+    @Transactional
+    public Optional<Product> createProductInToDB(Product product) {
+//        int productIdFromProduct = product.getId();
+//        boolean productIdIsInDB = false;
+//        List<Product> productsList = productDal.readAllFromDB();
+//
+//        for (Product productItem : productsList) {
+//            if (productIdFromProduct == productItem.getId()) {
+//                productIdIsInDB = true;
+//                break;
+//            }
+//
+//        }
+
+//        if (productIdIsInDB) {
+
+           Optional.of(this.productDal.createProductInToDB(product));
+
+        return Optional.of(new Product());
+
+    }
 }
+
+

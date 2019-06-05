@@ -12,31 +12,27 @@ public class Product{
     private String index;
     private String name;
     private String manufacturer;
-    private int count;
 
 
     public  Product(){
 
     }
 
-    public Product(String name, String manufacturer, int count) {
+    public Product(String name, String manufacturer) {
         this.name = name;
         this.manufacturer = manufacturer;
-        this.count = count;
     }
-    public Product(int id, String name, String manufacturer, int count) {
+    public Product(int id, String name, String manufacturer) {
         this.id = id;
         this.name = name;
         this.manufacturer = manufacturer;
-        this.count = count;
     }
 
-    public Product(int id, String index, String name, String manufacturer, int count) {
+    public Product(int id, String index, String name, String manufacturer) {
         this.id = id;
         this.index = index;
         this.name = name;
         this.manufacturer = manufacturer;
-        this.count = count;
     }
 
     public int getId() {
@@ -71,14 +67,6 @@ public class Product{
         this.manufacturer = manufacturer;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
     @Override
     public String toString() {
         return "Product{" +
@@ -86,7 +74,6 @@ public class Product{
                 ", index='" + index + '\'' +
                 ", name='" + name + '\'' +
                 ", manufacturer='" + manufacturer + '\'' +
-                ", count=" + count +
                 '}';
     }
 }
