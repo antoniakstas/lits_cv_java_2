@@ -65,8 +65,8 @@ public class RoleLauncher {
                 String nameValueFromDB = resultSet.getString(DB_COLUMN_NAME);
                 String descriptionValueFromDB = resultSet.getString(DB_COLUMN_DESCRIPTION);
 
-                Role roleFromDB = new Role(idValueFromDB,nameValueFromDB,descriptionValueFromDB);
-                roleList.add(roleFromDB);
+//                Role roleFromDB = new Role(idValueFromDB,nameValueFromDB,descriptionValueFromDB);
+//                roleList.add(roleFromDB);
 
 //                String resultString = "id = " + idValueFromDB + ", name = " + nameValueFromDB+ ", description = "+descriptionValueFromDB;
 

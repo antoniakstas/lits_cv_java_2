@@ -58,7 +58,7 @@ public class RoleDalImp implements RoleDal {
     @Transactional
     public void deleteRole(Long id) {
         Session session = this.sessionFactory.getCurrentSession();
-        Role role = (Role) session.load(Role.class, new Long(id));
+        Role role = (Role) session.load(Role.class, Long.valueOf(id));
         if (role != null) {
             session.delete(role);
             logger.info("Role deleted successfully, Role Details=" + role);

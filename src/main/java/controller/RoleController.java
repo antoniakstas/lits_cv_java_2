@@ -48,4 +48,11 @@ public class RoleController {
 
         return null;
     }
+
+    @GetMapping(value = "/delete")
+    public void deleteLine(Long id){
+
+        Optional<Role> optionalRole = this.roleService.deleteLine(id);
+
+    }
 }

@@ -26,7 +26,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     @Transactional
     public Optional<Role> createRole(Role role) {
-        int roleId = role.getId();
+        Long roleId = role.getId();
         boolean roleIdIsInDB = false;
         List<Role> roleList = roleDal.readAllFromDB();
         for (Role role1 : roleList) {
@@ -53,8 +53,9 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional
-    public void deleteLine(Long id) {
+    public Optional<Role> deleteLine(Long id) {
         roleDal.deleteRole(id);
 
+        return null;
     }
 }

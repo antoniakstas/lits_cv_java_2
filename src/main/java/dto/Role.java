@@ -1,5 +1,7 @@
 package dto;
 
+import io.swagger.models.auth.In;
+
 import javax.persistence.*;
 
 @Table
@@ -9,24 +11,24 @@ public class Role {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
     private String description;
 
     public Role() {
     }
 
-    public Role(int id, String name, String description) {
+    public Role(Long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
