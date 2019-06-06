@@ -33,14 +33,6 @@ public class ProductController {
 
         List<Product> allProduct = productService.findAllProduct();
         return allProduct;
-//        ProductListResponseModel responseModel = new ProductListResponseModel();
-//        ProductResponseModel e1ement1 = new ProductResponseModel();
-//        ProductResponseModel e1ement2 = new ProductResponseModel();
-//        List<ProductResponseModel> productResponseModels = new ArrayList<>();
-//        productResponseModels.add(e1ement1);
-//        productResponseModels.add(e1ement2);
-//        responseModel.setProductResponseModelList(productResponseModels);
-//        return responseModel;
     }
 
     @GetMapping(path = "/item")
@@ -69,36 +61,9 @@ public class ProductController {
 
             response.setErrorMessage(errorMessage);
         }
-//
-//        if(productWasCreated.isPresent()){
-//            return productWasCreated.get();
-//        }
-//        return null;
-
-
-//        if (bindingResult.hasErrors()) {
-//            ObjectError error = bindingResult.getAllErrors().get(0);
-//            String messageKey = error.getDefaultMessage().substring(1,
-//                    error.getDefaultMessage().indexOf("}"));
-//
-//            String errorMessage = messageSource.getMessage(messageKey, new Object[]{responseModel.getIndex()}, locale);
-//
-//            response.setErrorMessage(errorMessage);
-
-//        } else {
-//            productService.createProductInToDB(response);
-//            String successMessage = messageSource.getMessage("autoparts.validation.message.step1.done",
-//                    new Object[]{request.getEmail()}, locale);
-//            response.setSuccessMessage(successMessage);
-//        }
-
-
         return response;
-
-
     }
 
-    //edit-post
     @GetMapping(path = "/delete")
     public ProductResponseModel deleteItem(Integer id) {
         findAll();
