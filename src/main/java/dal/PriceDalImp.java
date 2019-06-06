@@ -79,24 +79,6 @@ public class PriceDalImp implements PriceDal {
 
 
 }
-//    public Price deletePriceFromDB(Long id) {
-//
-//            Session session = this.sessionFactory.getCurrentSession();
-//            Price price = (Price) session.load(Price.class, new Long(id));
-//            if(null != price){
-//                session.delete(price);
-//            }
-//            logger.info("Person deleted successfully, person details="+price);
-//            return price;
-//        }
-
-
-
-
-
-
-
-
 
 
 

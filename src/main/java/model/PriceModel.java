@@ -5,6 +5,7 @@ public class PriceModel {
     private int product_id;
     private int value;
     private int mult;
+    private int count;
     private String active;
     private String deliverydays;
     private String url;
@@ -17,11 +18,20 @@ public class PriceModel {
         this.url = url;
     }
 
-    public PriceModel(int id, int product_id, int value, int mult, String active, String deliverydays, String url) {
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public PriceModel(int id, int product_id, int value, int mult, int count, String active, String deliverydays, String url) {
 
         this.product_id = product_id;
         this.value = value;
         this.mult = mult;
+        this.count = count;
         this.active = active;
         this.deliverydays = deliverydays;
 
@@ -69,15 +79,16 @@ public class PriceModel {
         this.deliverydays = deliverydays;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
-        return "Price{" +
-                "" +
-                ", product_id=" + product_id +
+    @Override
+    public String toString() {
+        return "PriceModel{" +
+                "product_id=" + product_id +
                 ", value=" + value +
                 ", mult=" + mult +
+                ", count=" + count +
                 ", active='" + active + '\'' +
                 ", deliverydays='" + deliverydays + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 

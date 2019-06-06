@@ -12,39 +12,42 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
- @Repository
+@Repository
 public class CartDalImp implements CartDal {
 
     private static final Logger logger = LoggerFactory.getLogger(CartDalImp.class);
 
     private SessionFactory sessionFactory;
-
     public void setSessionFactory(SessionFactory sf) {
         this.sessionFactory = sf;
     }
 
     @Override
-
+    @Transactional
     public List<Cart> readAllFromDB() {
        return null;
     }
 
     @Override
+    @Transactional
     public Optional<Cart> readFromDBById(int id) {
         return Optional.empty();
     }
 
     @Override
+    @Transactional
     public boolean createCartInToDB(Cart cart) {
         return false;
     }
 
     @Override
+    @Transactional
     public boolean updateCart(int id, Cart cart) {
         return false;
     }
 
     @Override
+    @Transactional
     public boolean deleteCart(int id) {
         return false;
     }
@@ -55,9 +58,6 @@ public class CartDalImp implements CartDal {
         logger.info("going to create session");
         Session session = this.sessionFactory.getCurrentSession();
         logger.info("going to read cart list");
-       // TODO: add orderId to filter session.createQuery
-
-
 
         List<Cart> cartList = session.createQuery("from cart").list();
         return cartList;
