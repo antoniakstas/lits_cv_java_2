@@ -10,11 +10,12 @@ public interface RoleDal {
 
     Optional<Role> readFromDBById(int id);
 
-    boolean createRoleInDB(Role role);
+    public Role createRole(Role role);
 
-    boolean updateRole(int id, Role role);
+//    boolean updateRole(int id, Role role);
 
-    boolean deleteRole(int id);
+    public Role updateRole(Role role);
+    void deleteRole(Long id);
 
 
 }
