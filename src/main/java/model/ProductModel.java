@@ -2,14 +2,14 @@ package model;
 
 public class ProductModel {
 
-    private int id;
+    private Long id;
     private String index;
     private String name;
     private String manufacturer;
     private String url;
 
 
-    public ProductModel(int id, String index, String name, String manufacturer, String url) {
+    public ProductModel(Long id, String index, String name, String manufacturer, String url) {
         this.id = id;
         this.index = index;
         this.name = name;
@@ -17,11 +17,11 @@ public class ProductModel {
         this.url = url;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
