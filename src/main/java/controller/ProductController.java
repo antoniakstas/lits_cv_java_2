@@ -58,15 +58,23 @@ public class ProductController {
 //        return responseModel;
 
         Product product = new Product(model);
+        CreateNewProductResponse response = new CreateNewProductResponse();
 
-        Optional<Product> productWasCreated = this.productService.createProductInToDB(product);
+        if (!bindingResult.hasErrors()) {
+            Optional<Product> productWasCreated = this.productService.createProductInToDB(product);
+            String successMessage = messageSource.getMessage("autoparts.validation.message.step1.done", new Object[]{responseModel.getIndex()}, locale);
+            response.setSuccessMessage(successMessage);
+        } else {
+            String errorMessage = messageSource.getMessage("autoparts.validation.message.createproductid", new Object[]{responseModel.getIndex()}, locale);
+
+            response.setErrorMessage(errorMessage);
+        }
 //
 //        if(productWasCreated.isPresent()){
 //            return productWasCreated.get();
 //        }
 //        return null;
 
-        CreateNewProductResponse response = new CreateNewProductResponse();
 
 //        if (bindingResult.hasErrors()) {
 //            ObjectError error = bindingResult.getAllErrors().get(0);
@@ -83,8 +91,6 @@ public class ProductController {
 //                    new Object[]{request.getEmail()}, locale);
 //            response.setSuccessMessage(successMessage);
 //        }
-        String successMessage = messageSource.getMessage("autoparts.validation.message.step1.done", new Object[]{responseModel.getIndex()}, locale);
-        response.setSuccessMessage(successMessage);
 
 
         return response;
