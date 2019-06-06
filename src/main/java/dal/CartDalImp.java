@@ -58,6 +58,7 @@ public class CartDalImp implements CartDal {
         logger.info("going to create session");
         Session session = this.sessionFactory.getCurrentSession();
         logger.info("going to read cart list");
+        // TODO: add orderId to filter session.createQuery
 
         List<Cart> cartList = session.createQuery("from cart").list();
         return cartList;
