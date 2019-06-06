@@ -32,8 +32,8 @@ public class PriceController {
     @PostMapping(value= "/add")
     public Price createPriceInToDB(@ModelAttribute("price") Price price){
 
-       // if(price.getId() != 0){
-            //new person, add it
+
+
         Optional<Price> priceWasCreated = this.priceService.createPriceInToDB(price);
 
 
@@ -78,10 +78,5 @@ public class PriceController {
         return "redirect:/getPrice";
 
     }
-//    @PostMapping("/remove/id")
-//    public Price removePrice(@PathVariable("id") Long id){
-//
-//        Optional<Price> price = this.priceService.deletePriceFromDB(id);
-//        return price.get();
-//    }
+
 }

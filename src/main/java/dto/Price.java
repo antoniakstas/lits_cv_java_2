@@ -16,11 +16,22 @@ public class Price {
     private int productId;
     private int value;
     private int mult;
+    private int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     private String active;
     private String deliverydays;
 
     public Price() {
     }
+
     @Override
     public String toString() {
         return "Price{" +
@@ -28,6 +39,7 @@ public class Price {
                 ", productId=" + productId +
                 ", value=" + value +
                 ", mult=" + mult +
+                ", count=" + count +
                 ", active='" + active + '\'' +
                 ", deliverydays='" + deliverydays + '\'' +
                 '}';
@@ -81,11 +93,12 @@ public class Price {
         this.deliverydays = deliverydays;
     }
 
-    public Price(Long id, int productId, int value, int mult, String active, String deliverydays) {
+    public Price(Long id, int productId, int value, int mult, int count, String active, String deliverydays) {
         this.id = id;
         this.productId = productId;
         this.value = value;
         this.mult = mult;
+        this.count = count;
         this.active = active;
         this.deliverydays = deliverydays;
     }
