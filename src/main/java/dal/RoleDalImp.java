@@ -3,6 +3,8 @@ package dal;
 import dto.Role;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -13,6 +15,7 @@ import java.util.Optional;
 
 @Repository
 public class RoleDalImp implements RoleDal {
+    private static final Logger logger = LoggerFactory.getLogger(RoleDalImp.class);
 
     private SessionFactory sessionFactory;
 
@@ -34,19 +37,34 @@ public class RoleDalImp implements RoleDal {
     }
 
     @Override
-    public boolean createRoleInDB(Role role) {
-        return false;
+    @Transactional
+    public Role createRole(Role role) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.save(role);
+        logger.info("Role saved successfully, Role Details = " + role);
+        return role;
     }
 
     @Override
-    public boolean updateRole(int id, Role role) {
-        return false;
+    @Transactional
+    public Role updateRole(Role role) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(role);
+        logger.info("Role updated successfully, Role Details=" + role);
+        return role;
     }
 
     @Override
-    public boolean deleteRole(int id) {
-        return false;
+    @Transactional
+    public void deleteRole(Long id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        Role role = (Role) session.load(Role.class, new Long(id));
+        if (role != null) {
+            session.delete(role);
+            logger.info("Role deleted successfully, Role Details=" + role);
+        }
     }
+
 
 
 }
