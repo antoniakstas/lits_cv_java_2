@@ -1,6 +1,8 @@
 package dto;
 
 
+import io.swagger.models.auth.In;
+
 import javax.persistence.*;
 
 @Table
@@ -13,7 +15,7 @@ public class Price {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     @Column(name="product_id")
-    private int productId;
+    private Integer productId;
     private int value;
     private int mult;
     private int count;
@@ -53,11 +55,11 @@ public class Price {
         this.id = id;
     }
 
-    public int getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
@@ -93,7 +95,7 @@ public class Price {
         this.deliverydays = deliverydays;
     }
 
-    public Price(Long id, int productId, int value, int mult, int count, String active, String deliverydays) {
+    public Price(Long id, Integer productId, int value, int mult, int count, String active, String deliverydays) {
         this.id = id;
         this.productId = productId;
         this.value = value;
