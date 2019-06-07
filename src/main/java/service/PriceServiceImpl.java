@@ -47,6 +47,7 @@ public class PriceServiceImpl implements PriceService{
 
 
     @Override
+    @Transactional
     public List<Price> findAllPrice() {
         List<Price> priceList = priceDal.readAllFromDB();
         return priceList;
@@ -66,10 +67,7 @@ public class PriceServiceImpl implements PriceService{
         priceDal.deleteLine(id);
     }
 
-//    public Optional<Price> deletePriceFromDB(Long id) {
-//        this.priceDal.deletePriceFromDB(id);
-//        return Optional.of(this.priceDal.deletePriceFromDB(id));
-//    }
+
 }
 
 

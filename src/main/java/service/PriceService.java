@@ -12,8 +12,9 @@ public interface PriceService {
     public Optional<Price> createPriceInToDB(Price price);
 
     List<Price> findAllPrice();
+
     public  Optional<Price> updatePrice(Price price);
-    //public Optional<Price> deletePriceFromDB(Long id);
+
     public void deleteLine(Long id);
 
     }

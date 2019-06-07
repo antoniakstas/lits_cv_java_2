@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -32,12 +33,51 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
+
+
     @GetMapping(path = "/list")
     public List<User> findAll() {
-        System.out.println("I'm in the GET method!");
-        UserModel userModel = new UserModel(123, " user name", "url");
-        UserDalImp dal = new UserDalImp();
-        return dal.readAllFromDB();
+        List<User> userList = userService.findAllUser();
+        return userList;
+    }
+
+    @PostMapping(value= "/add")
+    public User createUserInToDB(@ModelAttribute("user") User user){
+
+
+
+        Optional<User> userWasCreated = this.userService.createUserInToDB(user);
+
+
+        if(userWasCreated.isPresent()){
+            return userWasCreated.get();
+
+        }
+
+        return null;
+    }
+
+    @PostMapping(path = "/update")
+    public User updateUserInToDB(@ModelAttribute("user") User user){
+
+
+        Optional<User> userWasUpdated = this.userService.updateUser(user);
+
+
+        if(userWasUpdated.isPresent()){
+            return userWasUpdated.get();
+
+        }
+
+        return null;
+    }
+
+    @RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
+    public String deleteUserLine(@PathVariable("id") Integer id) {
+        userService.deleteUser(id);
+        return "User was deleted";
+
     }
 
 

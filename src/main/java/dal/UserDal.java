@@ -11,9 +11,9 @@ public interface UserDal {
 
 	Optional<User> readFromDBById(int id);
 
-	boolean createUserInToDB(User user);
+	public User createUserInToDB(User user);
 
-	boolean updateUser(int id, User user);
+	public User updateUser( User user);
 
-	boolean deleteUser(int id);
+	public void deleteUser(Integer id);
 }

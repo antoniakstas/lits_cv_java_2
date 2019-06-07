@@ -5,11 +5,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class UserDalImp implements UserDal {
 	private static final Logger logger = LoggerFactory.getLogger(UserDalImp.class);
 
@@ -38,18 +40,30 @@ public class UserDalImp implements UserDal {
 
 	@Override
 	@Transactional
-	public boolean createUserInToDB(User user) {
-		return false;
+	public User createUserInToDB(User user) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.save(user);
+
+        logger.info("User saved successfully, User Details=" + user);
+        return user;
 	}
 
 	@Override
 	@Transactional
-	public boolean updateUser(int id, User user) {
-		return false;
+	public User updateUser( User user) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(user);
+        logger.info("User updated successfully, User Details=" + user);
+        return user;
 	}
 
 	@Override
-	public boolean deleteUser(int id) {
-		return false;
+	public void deleteUser(Integer id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        User user = (User) session.load(User.class, new Integer(id));
+        if (null != user) {
+            session.delete(user);
+            logger.info("User deleted successfully, User Details=" + user);
+        }
 	}
 }
