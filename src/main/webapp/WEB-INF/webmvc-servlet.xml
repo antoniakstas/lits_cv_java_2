@@ -103,6 +103,8 @@
                 <value>dto.Product</value>
                 <value>dto.Price</value>
                 <value>dto.Cart</value>
+                <value>dto.User</value>
+
             </list>
         </property>
         <property name="hibernateProperties">
@@ -127,6 +129,10 @@
     </bean>
 
     <bean id="cartDal" class="dal.CartDalImp">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="userDal" class="dal.UserDalImp">
         <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
     </bean>
 
