@@ -12,8 +12,6 @@ public interface RoleDal {
 
     public Role createRole(Role role);
 
-//    boolean updateRole(int id, Role role);
-
     public Role updateRole(Role role);
     void deleteRole(Long id);
 

@@ -9,8 +9,8 @@
 <body>
 <a th:text="${currentOrderId}">id</a>
 <a th:text="${orderModel.status}">status</a>
-<a th:text="${orderModel.user_m_id}">user_m_id</a>
-<a th:text="${orderModel.user_c_id}">user_c_id</a>
+<a th:text="${orderModel.userMId}">userMId</a>
+<a th:text="${orderModel.userCId}">userCId</a>
 <a th:text="${currentOrderName}">action</a>
 
 <a th:href="${url}">urlHere</a>
@@ -19,15 +19,15 @@
     <tr>
         <th>id</th>
         <th>status</th>
-        <th>user_m_id</th>
-        <th>user_c_id</th>
+        <th>userMId</th>
+        <th>userCId</th>
         <th>url</th>
     </tr>
     <tr th:each="orderItem : ${orderListModel}">
         <td th:text="${orderItem.id}">someId</td>
         <td th:text="${orderItem.status}">someStatus</td>
-        <td th:text="${orderItem.user_m_id}">someUser_m_id</td>
-        <td th:text="${orderItem.user_c_id}">someUser_c_id</td>
+        <td th:text="${orderItem.userMId}">someUser_m_id</td>
+        <td th:text="${orderItem.userCId}">someUser_c_id</td>
         <td>
             <a th:href="${orderItem.url}" th:text="${orderItem.name}">
             </a>

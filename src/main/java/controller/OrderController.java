@@ -4,15 +4,20 @@ import dal.OrderDalImp;
 import dto.Order;
 import model.AddToOrderModel;
 import model.OrderModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import service.OrderService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/order")
 public class OrderController {
+
+    @Autowired
+    private OrderService orderService;
 
     @GetMapping("/addToCart")
     public ModelAndView addToOrderModel(Model model){
@@ -39,10 +44,16 @@ public class OrderController {
     }
     @GetMapping(path = "/list")
     public List<Order> findAll() {
-        System.out.println("I'm in the GET method!");
-        OrderModel orderModel = new OrderModel(123, " user name", 1, 2,"e");
-        OrderDalImp dal = new OrderDalImp();
-        dal.readAllFromDB();
-        return dal.readAllFromDB();
+
+
+        List<Order> orderList = orderService.findAll();
+
+
+
+//        System.out.println("I'm in the GET method!");
+//        OrderModel orderModel = new OrderModel(123, " user name", 1, 2,"e");
+//        OrderDalImp dal = new OrderDalImp();
+//        dal.readAllFromDB();
+        return orderList;
     }
 }

@@ -66,8 +66,8 @@ public class OrderServlet extends HttpServlet {
                 OrderModel orderModelItem =
                         new OrderModel(orderItem.getId(),
                                 orderItem.getStatus(),
-                                orderItem.getUser_m_id(),
-                                orderItem.getUser_c_id(),
+                                orderItem.getUserMId(),
+                                orderItem.getUserCId(),
 
                                 getUrl(request, orderItem.getId()));
                 orderModelList.add(orderModelItem);
