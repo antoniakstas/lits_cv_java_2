@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import service.CartService;
-import service.PriceService;
-
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,12 +68,12 @@ class CartController {
         return responseModel;
     }
 
-    @PostMapping(path = "/update")
-    public CartResponseModel update(@RequestBody Integer id, Integer order_id, Integer product_count, Integer price_id) {
-        CartResponseModel responseModel = new CartResponseModel();
-
-        return responseModel;
-    }
+//    @PostMapping(path = "/update")
+//    public CartResponseModel update(@RequestBody Integer id, Integer order_id, Integer product_count, Integer price_id) {
+//        CartResponseModel responseModel = new CartResponseModel();
+//
+//        return responseModel;
+//    }
 
 
 }

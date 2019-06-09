@@ -5,7 +5,6 @@ import dto.Order;
 import model.AddToOrderModel;
 import model.OrderModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,8 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/order")
 public class OrderController {
-    @Autowired
-    private MessageSource messageSource;
 
     @Autowired
     private OrderService orderService;
@@ -49,7 +46,7 @@ public class OrderController {
     public List<Order> findAll() {
 
 
-        List<Order> orderList = orderService.findAllOrder();
+        List<Order> orderList = orderService.findAll();
 
 
 
