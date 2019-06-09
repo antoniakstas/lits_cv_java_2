@@ -36,7 +36,7 @@ class CartController {
     }
 
 
-    @GetMapping(path = "/item")
+    @GetMapping(path = "/read")
     public CartListResponseModel findItem( Long order_id ) {
         CartListResponseModel responseModel = new CartListResponseModel();
 
@@ -68,12 +68,12 @@ class CartController {
         return responseModel;
     }
 
-//    @PostMapping(path = "/update")
-//    public CartResponseModel update(@RequestBody Integer id, Integer order_id, Integer product_count, Integer price_id) {
-//        CartResponseModel responseModel = new CartResponseModel();
-//
-//        return responseModel;
-//    }
+    @PostMapping(path = "/update")
+    public CartResponseModel update(@RequestBody Integer id, Integer order_id, Integer product_count, Integer price_id) {
+        CartResponseModel responseModel = new CartResponseModel();
+
+        return responseModel;
+    }
 
 
 }

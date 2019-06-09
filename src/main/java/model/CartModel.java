@@ -20,8 +20,6 @@ public class CartModel {
     public CartModel(int id, int order_id, int product_count, int price_id) {
     }
 
-    public CartModel(int id, int order_id, int product_count, int price_id, String url) {
-    }
 
     public Integer getId() {
         return id;
