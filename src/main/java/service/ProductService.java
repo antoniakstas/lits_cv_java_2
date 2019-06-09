@@ -7,9 +7,11 @@ import java.util.Optional;
 
 public interface ProductService {
 
-    List<Product> findAllProduct();
+    public List<Product> findAllProduct();
 
     public Optional<Product> createProductInToDB(Product product);
 
+    public Optional<Product> updateProductInToDB(Product product);
 
+    public void deletePtoduct(String index);
 }

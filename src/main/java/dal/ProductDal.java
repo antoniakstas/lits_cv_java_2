@@ -13,7 +13,7 @@ public interface ProductDal {
 
     public Product createProductInToDB(Product product);
 
-    boolean updateProduct(int id);
+    public Product updateProduct(Product product);
 
     boolean deleteProduct(int id);
 }

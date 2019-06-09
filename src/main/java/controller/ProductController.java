@@ -74,9 +74,28 @@ public class ProductController {
     }
 
     @PostMapping(path = "/update")
-    public ProductResponseModel update(@RequestBody Integer id) {
+    public CreateNewProductResponse update(Locale locale, @Valid @RequestBody ProductResponseModel model, BindingResult bindingResult) {
+        bindingResult.hasErrors();
         ProductResponseModel responseModel = new ProductResponseModel();
+        Product product = new Product(model);
 
-        return responseModel;
+        CreateNewProductResponse response = new CreateNewProductResponse();
+        if (!bindingResult.hasErrors()) {
+            Optional<Product> productWasUpdate = this.productService.updateProductInToDB(product);
+
+            String successMessage = messageSource.getMessage("autoparts.validation.message.step1.done", new Object[]{responseModel.getIndex()}, locale);
+            response.setSuccessMessage(successMessage);
+
+            if(productWasUpdate.isPresent()){
+                productWasUpdate.get();
+
+            } else {
+            String errorMessage = messageSource.getMessage("autoparts.validation.message.updateproductid", new Object[]{responseModel.getIndex()}, locale);
+
+            response.setErrorMessage(errorMessage);
+        }
+
+        }
+        return response;
     }
 }

@@ -47,6 +47,42 @@ public class ProductServiceImpl implements ProductService {
         return Optional.of(new Product());
 
     }
+
+    @Override
+    @Transactional
+    public Optional<Product> updateProductInToDB(Product product) {
+//       this.productDal.updateProduct(product);
+
+
+//       String productIdFromProduct = product.getIndex();
+//        boolean productIdIsInDB = false;
+//        List<Product> productsList = productDal.readAllFromDB();
+//        for (Product productItem : productsList) {
+//            if (productIdFromProduct == productItem.getIndex()) {
+//                productIdIsInDB = true;
+//                break;
+//            }
+//
+//        }
+//
+//        if (productIdIsInDB) {
+//
+//
+//            return Optional.of(this.productDal.updateProduct(product));
+//        }
+//        return Optional.of(new Price());
+
+
+
+        return Optional.of(this.productDal.updateProduct(product));
+    }
+
+    @Override
+    public void deletePtoduct(String index) {
+
+    }
+
+
 }
 
 

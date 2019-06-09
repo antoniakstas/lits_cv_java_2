@@ -49,15 +49,19 @@ public class ProductDalImp implements ProductDal {
 
 
     }
+
+    @Override
+    public Product updateProduct(Product product) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(product);
+        logger.info("Product updated successfully, Product Details=" + product);
+        return product;
+    }
 //    @Override
 //    public boolean createProductInToDB(Product product) {
 //        return false;
 //    }
 
-    @Override
-    public boolean updateProduct(int id) {
-        return false;
-    }
 
     @Override
     public boolean deleteProduct(int id) {
