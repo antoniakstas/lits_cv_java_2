@@ -53,7 +53,7 @@
     <bean class="service.ProductServiceImpl" id="productService"/>
     <bean class="service.PriceServiceImpl" id="priceService"/>
     <bean class="service.CartServiceImpl" id="cartService"/>
-   <!-- <bean class="service.OrderServiceImpl" id="orderService"/>-->
+    <bean class="service.OrderServiceImpl" id="orderService"/>
 
 
 
@@ -105,7 +105,7 @@
                 <value>dto.Price</value>
                 <value>dto.Cart</value>
                 <value>dto.User</value>
-              <!--  <value>dto.Order</value>-->
+                <value>dto.Order</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -137,9 +137,9 @@
         <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
     </bean>
 
- <!--   <bean id="orderDal" class="dal.OrderDalImp">
+    <bean id="orderDal" class="dal.OrderDalImp">
         <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
-    </bean>-->
+    </bean>
 
 
     <tx:annotation-driven transaction-manager="transactionManager"/>

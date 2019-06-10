@@ -1,38 +1,38 @@
-//
-//package dal;
-//
-//import dto.Order;
-//import dto.User;
-//import org.hibernate.Session;
-//import org.hibernate.SessionFactory;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//import org.springframework.stereotype.Repository;
-//
-//import javax.transaction.Transactional;
-//import java.sql.*;
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Optional;
-//
-//@Repository
-//public class OrderDalImp implements OrderDal {
-//    private static final Logger logger = LoggerFactory.getLogger(OrderDalImp.class);
-//
-//    private SessionFactory sessionFactory;
-//
-//    public void setSessionFactory(SessionFactory sf) {
-//        this.sessionFactory = sf;
-//    }
 
-//    @Override
-//    @Transactional
-//    public List<Order> readAllFromDB() {
-//        Session session = this.sessionFactory.getCurrentSession();
-//        List<Order> orderList = session.createQuery("from orders").list();
-//
-//        return orderList;
-//
+package dal;
+
+import dto.Order;
+import dto.User;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+
+import javax.transaction.Transactional;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public class OrderDalImp implements OrderDal {
+    private static final Logger logger = LoggerFactory.getLogger(OrderDalImp.class);
+
+    private SessionFactory sessionFactory;
+
+    public void setSessionFactory(SessionFactory sf) {
+        this.sessionFactory = sf;
+    }
+
+    @Override
+    @Transactional
+    public List<Order> readAllFromDB() {
+        Session session = this.sessionFactory.getCurrentSession();
+        List<Order> orderList = session.createQuery("from orders").list();
+
+        return orderList;
+
 
 
 //        Connection connection = null;
@@ -59,26 +59,26 @@
 //            }
 //
 //
-//        }
+        }
 //
-//        @Override
-//        public Optional<Order> readFromDBById(int id) {
-//            return Optional.empty();
-//        }
-//
-//
-//        @Override
-//        public boolean updateOrder(int id, Order order) {
-//            return false;
-//        }
-//
-//        @Override
-//        public boolean deleteOrder(int id) {
-//            return false;
-//        }
-//
-//        @Override
-//        public boolean createOrderInToDB(Order order) {
+        @Override
+        public Optional<Order> readFromDBById(int id) {
+            return Optional.empty();
+        }
+
+
+        @Override
+        public boolean updateOrder(int id, Order order) {
+            return false;
+        }
+
+        @Override
+        public boolean deleteOrder(int id) {
+            return false;
+        }
+
+        @Override
+        public boolean createOrderInToDB(Order order) {
 //            try {
 //                Connection connection = null;
 //                Statement statement = null;
@@ -96,12 +96,12 @@
 //            }
 
 
-//            return false;
+            return false;
+
+        }
 //
-//        }
 //
-//
-//    }
+    }
 
 
 

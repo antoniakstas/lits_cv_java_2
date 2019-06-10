@@ -46,7 +46,7 @@ public class OrderController {
     public List<Order> findAll() {
 
 
-        List<Order> orderList = orderService.findAll();
+        List<Order> orderList = orderService.findAllOrder();
 
 
 
