@@ -9,30 +9,31 @@ public class Cart {
     @Column(name="id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
 
-    int id;
+    private Long id;
     int order_id;
     int product_count;
     int price_id;
 
-    public Cart(Integer idValueFromDB,
-                Integer order_idValueFromDB,
-                Integer product_countValueFromDB,
-                Integer price_idValueFromDB) {
-        this.id = idValueFromDB;
-        this.order_id = order_idValueFromDB;
-        this.product_count = product_countValueFromDB;
-        this.price_id = price_idValueFromDB;
+    public Cart(Long id,
+                Integer order_id,//ValueFromDB,
+                Integer product_count, //ValueFromDB,
+                Integer price_id //ValueFromDB
+    ) {
+        this.id = id;
+        this.order_id = order_id; //ValueFromDB;
+        this.product_count = product_count; //ValueFromDB;
+        this.price_id = price_id; //ValueFromDB;
     }
 
     public Cart() {
     }
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

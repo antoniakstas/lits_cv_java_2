@@ -7,8 +7,11 @@ import model.CartResponseModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 
@@ -18,14 +21,6 @@ public class CartServiceImpl implements CartService {
     @Autowired
     @Qualifier(value = "cartDal")
     private CartDal cartDal;
-
-
-    @Override
-    public List<Cart> findAllCart() {
-        List<Cart> cartList = cartDal.readAllFromDB();
-        return cartList;
-
-    }
 
     public List<CartResponseModel> findAllCartByOrderId(Long orderId) {
         List<Cart> carts = cartDal.readCartListByOrderId(orderId);
@@ -43,6 +38,52 @@ public class CartServiceImpl implements CartService {
 
         return cartListByOrderId;
 
+    }
+
+
+
+
+
+    @Override
+    public List<Cart> findAllCarts() {
+        List<Cart> cartList = cartDal.readAllFromDB();
+        return cartList;
+    }
+
+    @Override
+    @Transactional
+    public Optional<Cart> createCart(Cart cart) {
+        Long cartId = cart.getId();
+        boolean cartIdIsInDB = false;
+        List<Cart> cartList = cartDal.readAllFromDB();
+        for (Cart cart1 : cartList) {
+            if (cartId == cart1.getId()) {
+                cartIdIsInDB = true;
+                break;
+            }
+        }
+
+        if (!cartIdIsInDB) {
+            return Optional.of(this.cartDal.createCart(cart));
+        }
+        return Optional.of(new Cart());
+    }
+
+    @Override
+    @Transactional
+    public Optional<Cart> updateCart(Cart cart) {
+
+        this.cartDal.updateCart(cart);
+
+        return Optional.of(this.cartDal.updateCart(cart));
+    }
+
+    @Override
+    @Transactional
+    public Optional<Cart> deleteLine(Long id) {
+        cartDal.deleteCart(id);
+
+        return null;
     }
 
 }

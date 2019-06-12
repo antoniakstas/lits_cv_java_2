@@ -1,6 +1,7 @@
 package controller;
 
 
+import dto.Cart;
 import model.CartListResponseModel;
 import model.CartResponseModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import service.CartService;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/cart")
@@ -18,22 +20,6 @@ class CartController {
 
     @Autowired
     private CartService cartService;
-
-    @GetMapping(path = "/list")
-    public CartListResponseModel findAll() {
-        CartListResponseModel responseModel = new CartListResponseModel();
-
-        CartResponseModel element1 = new CartResponseModel();
-        CartResponseModel element2 = new CartResponseModel();
-        List<CartResponseModel> cartResponseModel = new ArrayList<>();
-
-        cartResponseModel.add(element1);
-        cartResponseModel.add(element2);
-
-        responseModel.setCartResponseModel(cartResponseModel);
-
-        return responseModel;
-    }
 
 
     @GetMapping(path = "/read")
@@ -47,34 +33,47 @@ class CartController {
         return responseModel;
     }
 
-    @PostMapping(path = "/item")
-    public CartListResponseModel creat(@Valid @RequestBody CartResponseModel model, BindingResult bindingResult) {
-        bindingResult.hasErrors();
-        CartListResponseModel responseModel = new CartListResponseModel();
 
 
-        return responseModel;
+    @GetMapping(path = "/list")
+    public List<Cart> findAll() {
+        List<Cart> allCarts = cartService.findAllCarts();
+        return allCarts;
+
     }
 
-    @GetMapping(path = "/delete")
-    public CartResponseModel deleteItem(Integer id, Integer order_id, Integer product_count, Integer price_id ) {
-        findAll();
-        CartResponseModel responseModel = new CartResponseModel();
+    @PostMapping(value = "/add")
+    public Cart createCart(@ModelAttribute("cart") Cart cart) {
 
-        findAll().getCartResponseModel().remove(id);
-        findAll().getCartResponseModel().remove(order_id);
-        findAll().getCartResponseModel().remove(product_count);
-        findAll().getCartResponseModel().remove(price_id);
-        return responseModel;
+        Optional<Cart> cartWasCreated = this.cartService.createCart(cart);
+
+
+        if (cartWasCreated.isPresent()) {
+            return cartWasCreated.get();
+
+        }
+
+        return null;
     }
 
-    @PostMapping(path = "/update")
-    public CartResponseModel update(@RequestBody Integer id, Integer order_id, Integer product_count, Integer price_id) {
-        CartResponseModel responseModel = new CartResponseModel();
+    @PostMapping(value = "/update")
+    public Cart updateCart(@ModelAttribute("cart") Cart cart){
 
-        return responseModel;
+        Optional<Cart> cartWasUpdated = this.cartService.updateCart(cart);
+
+        if (cartWasUpdated.isPresent()){
+            return cartWasUpdated.get();
+        }
+
+        return null;
     }
 
+    @GetMapping(value = "/delete")
+    public void deleteLine(Long id){
+
+        Optional<Cart> optionalCart = this.cartService.deleteLine(id);
+
+    }
 
 }
 

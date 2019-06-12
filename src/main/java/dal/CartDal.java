@@ -2,21 +2,23 @@ package dal;
 
 import dto.Cart;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 public interface CartDal {
+    List<Cart> readCartListByOrderId(Long orderId);
+
+
     List<Cart> readAllFromDB();
 
     Optional<Cart> readFromDBById(int id);
 
-    boolean createCartInToDB(Cart cart);
+    public Cart createCart(Cart cart);
 
-    boolean updateCart(int id, Cart cart);
-
-    boolean deleteCart(int id);
-
-    List<Cart> readCartListByOrderId(Long orderId);
-
+    public Cart updateCart(Cart cart);
+    void deleteCart(Long id);
 
 }
+
+

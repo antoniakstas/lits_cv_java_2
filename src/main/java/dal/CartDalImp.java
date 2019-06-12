@@ -23,43 +23,6 @@ public class CartDalImp implements CartDal {
 
     @Override
     @Transactional
-    public List<Cart> readAllFromDB() {
-       // SELECT * FROM lits_cv_java_2.cart;
-        return null;
-    }
-
-    @Override
-    @Transactional
-    public Optional<Cart> readFromDBById(int id) {
-        return Optional.empty();
-    }
-
-    @Override
-    @Transactional
-    public boolean createCartInToDB(Cart cart) {
-        return false;
-    }
-
-    @Override
-    @Transactional
-    public boolean updateCart(int id, Cart cart) {
-//        INSERT INTO `lits_cv_java_2`.`cart` (`id`,
-//            `order_id`,
-//            `product_count`,
-//            `price_id`)
-//        VALUES ('12', '3', '4', '4');
-        return false;
-    }
-
-    @Override
-    @Transactional
-    public boolean deleteCart(int id ) {
-        //DELETE FROM `lits_cv_java_2`.`cart` WHERE (`id` = '11');
-        return false;
-    }
-
-    @Override
-    @Transactional
     public List<Cart> readCartListByOrderId(Long orderId) {
         logger.info("going to create session");
         Session session = this.sessionFactory.getCurrentSession();
@@ -67,10 +30,58 @@ public class CartDalImp implements CartDal {
         // TODO: add orderId to filter session.createQuery
 
         List<Cart> cartList = session.createQuery("from cart").list();
-       // SELECT * FROM lits_cv_java_2.cart;
+
         return cartList;
 
     }
+
+
+
+
+
+
+    @Override
+    @Transactional
+    public List<Cart> readAllFromDB() {
+        Session session = this.sessionFactory.getCurrentSession();
+        List<Cart> cartList = session.createQuery("from cart").list();
+        return cartList;
+    }
+
+    @Override
+    public Optional<Cart> readFromDBById(int id) {
+        return Optional.empty();
+    }
+
+    @Override
+    @Transactional
+    public Cart createCart(Cart cart) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.save(cart);
+        logger.info("Cart saved successfully, Cart Details = " + cart);
+        return cart;
+    }
+
+    @Override
+    @Transactional
+    public Cart updateCart(Cart cart) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(cart);
+        logger.info("Cart updated successfully, Cart Details=" + cart);
+        return cart;
+    }
+
+    @Override
+    @Transactional
+    public void deleteCart(Long id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        Cart cart = (Cart) session.load(Cart.class, Long.valueOf(id));
+        if (cart != null) {
+            session.delete(cart);
+            logger.info("Cart deleted successfully, Cart Details=" + cart);
+        }
+    }
+
 }
 
 
