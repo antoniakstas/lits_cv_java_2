@@ -78,7 +78,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deletePtoduct(String index) {
+    @Transactional
+    public void deletePtoduct(Long id) {productDal.deleteLine(id);
 
     }
 

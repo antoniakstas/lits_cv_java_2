@@ -16,4 +16,6 @@ public interface ProductDal {
     public Product updateProduct(Product product);
 
     boolean deleteProduct(int id);
+
+    public void deleteLine(Long id);
 }

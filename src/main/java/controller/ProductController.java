@@ -8,6 +8,7 @@ import model.CreateNewProductResponse;
 import model.ProductResponseModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
@@ -30,10 +31,16 @@ public class ProductController {
 
     @GetMapping(path = "/list")
     public List<Product> findAll() {
+//        List<ProductResponseModel> productResponseModelList = null;
 
         List<Product> allProduct = productService.findAllProduct();
+//        for (Product productitem:allProduct) {
+//            ProductResponseModel productResponseModel = new ProductResponseModel(productitem);
+//            productResponseModelList.add(productResponseModel);
+//        }
         return allProduct;
     }
+
 
     @GetMapping(path = "/item")
     public ProductResponseModel findItem(Integer id) {
@@ -64,14 +71,14 @@ public class ProductController {
         return response;
     }
 
-    @GetMapping(path = "/delete")
-    public ProductResponseModel deleteItem(Integer id) {
-        findAll();
-        ProductResponseModel responseModel = new ProductResponseModel();
-
-        findAll().remove(id);
-        return responseModel;
-    }
+//    @GetMapping(path = "/delete")
+//    public ProductResponseModel deleteItem(Integer id) {
+//        findAll();
+//        ProductResponseModel responseModel = new ProductResponseModel();
+//
+//        findAll().remove(id);
+//        return responseModel;
+//    }
 
     @PostMapping(path = "/update")
     public CreateNewProductResponse update(Locale locale, @Valid @RequestBody ProductResponseModel model, BindingResult bindingResult) {
@@ -98,4 +105,21 @@ public class ProductController {
         }
         return response;
     }
+
+    @GetMapping(path = "/delete")
+//    @RequestMapping(value = "/deleteProduct/id", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String deleteProductLine( Integer id) {
+        productService.deletePtoduct(Long.valueOf(id));
+        return null;
+
+    }
+
+//
+//    @GetMapping(path = "/item")
+//    public ProductResponseModel findItem(Integer id) {
+//        ProductResponseModel responseModel = new ProductResponseModel();
+//
+//        return responseModel;
+//    }
+
 }

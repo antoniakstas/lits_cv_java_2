@@ -13,5 +13,5 @@ public interface ProductService {
 
     public Optional<Product> updateProductInToDB(Product product);
 
-    public void deletePtoduct(String index);
+    public void deletePtoduct(Long id);
 }

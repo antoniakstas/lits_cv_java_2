@@ -1,5 +1,6 @@
 package model;
 
+import dto.Product;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -23,6 +24,21 @@ public class ProductResponseModel {
     @Size(min=3, max=50)
     @ApiModelProperty(notes = "manufacturer of the product")
     private String manufacturer;
+
+    public ProductResponseModel() {
+    }
+
+    public ProductResponseModel(String index, String name, String manufacturer) {
+        this.index = index;
+        this.name = name;
+        this.manufacturer = manufacturer;
+    }
+
+    public ProductResponseModel(Product product) {
+        this.index = product.getIndex();
+        this.manufacturer = product.getManufacturer();
+        this.name = product.getName();
+    }
 
     public String getIndex() {
         return index;

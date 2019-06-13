@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +68,18 @@ public class ProductDalImp implements ProductDal {
     public boolean deleteProduct(int id) {
         return false;
     }
+
+    @Override
+    public void deleteLine(Long id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        Product product = session.load(Product.class, id);
+        if (product != null) {
+            session.delete(product);
+            logger.info("Product deleted successfully, Product Details=" + product);
+        }
+
+    }
+
 
 }
 
