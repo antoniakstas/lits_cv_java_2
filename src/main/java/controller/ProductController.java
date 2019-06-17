@@ -74,10 +74,12 @@ public class ProductController {
             List<PriceModel> priceModels = new ArrayList<>();
 
             for (Price priceItem : allPriceByProductId) {
-                PriceModel priceModel = new PriceModel(priceItem.getId(),
+                PriceModel priceModel = new PriceModel(
+                        priceItem.getId(),
                         productItemId,
-                        Long.valueOf(priceItem.getValue() * priceItem.getMult())
-                        , 0L, priceItem.getMult(), priceItem.getActive(),
+                        Long.valueOf(priceItem.getValue() * priceItem.getMult()),
+                        0L,
+                        priceItem.getCount(), priceItem.getActive(),
                         priceItem.getDeliverydays(), "URL HAS To Be Here");
                 priceModels.add(priceModel);
             }
@@ -101,10 +103,10 @@ public class ProductController {
         List<Product> allProduct = productService.findAllProduct();
 
         List<ProductResponseModel> productResponseModels = new ArrayList<>();
-        for (Product productitem:allProduct) {
+        for (Product productitem : allProduct) {
 //            ProductResponseModel productResponseModel = new ProductResponseModel(productitem);
 //
-            ProductResponseModel productResponseModel1 = new ProductResponseModel(productitem.getIndex(),productitem.getIndex(),productitem.getManufacturer());
+            ProductResponseModel productResponseModel1 = new ProductResponseModel(productitem.getIndex(), productitem.getIndex(), productitem.getManufacturer());
             productResponseModels.add(productResponseModel1);
         }
         return productResponseModels;
@@ -162,14 +164,14 @@ public class ProductController {
             String successMessage = messageSource.getMessage("autoparts.validation.message.step1.done", new Object[]{responseModel.getIndex()}, locale);
             response.setSuccessMessage(successMessage);
 
-            if(productWasUpdate.isPresent()){
+            if (productWasUpdate.isPresent()) {
                 productWasUpdate.get();
 
             } else {
-            String errorMessage = messageSource.getMessage("autoparts.validation.message.updateproductid", new Object[]{responseModel.getIndex()}, locale);
+                String errorMessage = messageSource.getMessage("autoparts.validation.message.updateproductid", new Object[]{responseModel.getIndex()}, locale);
 
-            response.setErrorMessage(errorMessage);
-        }
+                response.setErrorMessage(errorMessage);
+            }
 
         }
         return response;
@@ -177,7 +179,7 @@ public class ProductController {
 
     @GetMapping(path = "/delete")
 //    @RequestMapping(value = "/deleteProduct/id", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String deleteProductLine( Integer id) {
+    public String deleteProductLine(Integer id) {
         productService.deletePtoduct(Long.valueOf(id));
         return null;
 

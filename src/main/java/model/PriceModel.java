@@ -37,7 +37,14 @@ public class PriceModel {
 
     }
 
-
+    public PriceModel(Long product_id, Long value, Long count, String active, String deliverydays, String url) {
+        this.product_id = product_id;
+        this.value = value;
+        this.count = count;
+        this.active = active;
+        this.deliverydays = deliverydays;
+        this.url = url;
+    }
 
     public Long getProduct_id() {
         return product_id;
