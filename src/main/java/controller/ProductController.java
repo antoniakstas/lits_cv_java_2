@@ -12,9 +12,11 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import service.PriceService;
 import service.ProductService;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -29,16 +31,37 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping(path = "/list")
-    public List<Product> findAll() {
+    @Autowired
+    private PriceService priceService;
+
+    @GetMapping(path = "/list/prices")
+    public List<Long> findAllProduct() {
 //        List<ProductResponseModel> productResponseModelList = null;
 
         List<Product> allProduct = productService.findAllProduct();
-//        for (Product productitem:allProduct) {
+        List<Long> productIdList = new ArrayList<>();
+        for (Product productitem:allProduct) {
+            productIdList.add(productitem.getId());
+           }
+
+//        priceService.findAllProductId();
+        return productIdList;
+    }
+
+    @GetMapping(path = "/list")
+    public List<ProductResponseModel> findAll() {
+//        List<ProductResponseModel> productResponseModelList = null;
+
+        List<Product> allProduct = productService.findAllProduct();
+
+        List<ProductResponseModel> productResponseModels = new ArrayList<>();
+        for (Product productitem:allProduct) {
 //            ProductResponseModel productResponseModel = new ProductResponseModel(productitem);
-//            productResponseModelList.add(productResponseModel);
-//        }
-        return allProduct;
+//
+            ProductResponseModel productResponseModel1 = new ProductResponseModel(productitem.getIndex(),productitem.getIndex(),productitem.getManufacturer());
+            productResponseModels.add(productResponseModel1);
+        }
+        return productResponseModels;
     }
 
 

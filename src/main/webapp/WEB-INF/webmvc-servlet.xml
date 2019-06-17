@@ -31,7 +31,6 @@
 
 </bean>
 
-
     <mvc:interceptors>
         <bean id="anyInterceptor" class="interceptor.MyCustomInterceptor"/>
     </mvc:interceptors>
@@ -148,4 +147,9 @@
         <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
     </bean>
 
+    <bean name="javaSecurityConfig" class="configuration.SecurityConfig" />
+
 </beans>
+
+
+
