@@ -26,7 +26,7 @@ public class PriceServiceImpl implements PriceService{
     @Override
     @Transactional
     public Optional<Price> createPriceInToDB(Price price) {
-        int productIdFromPrice = price.getProductId();
+        Long productIdFromPrice = price.getProductId();
         boolean productIdIsInDB = false;
         List<Product> productsList = productDal.readAllFromDB();
         for (Product productItem : productsList) {
@@ -65,6 +65,14 @@ public class PriceServiceImpl implements PriceService{
     @Transactional
     public void deleteLine(Long id) {
         priceDal.deleteLine(id);
+    }
+
+    @Override
+    @Transactional
+
+    public List<Price> readAllFromDBByProductId(Long productIdValue) {
+        List<Price> priceList = priceDal.readAllFromDBByProductId(productIdValue);
+        return priceList;
     }
 
 

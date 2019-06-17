@@ -2,10 +2,10 @@ package model;
 
 public class PriceModel {
 
-    private int product_id;
-    private int value;
-    private int mult;
-    private int count;
+    private Long product_id;
+    private Long value;
+    private Long mult;
+    private Long count;
     private String active;
     private String deliverydays;
     private String url;
@@ -18,15 +18,15 @@ public class PriceModel {
         this.url = url;
     }
 
-    public int getCount() {
+    public Long getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(Long count) {
         this.count = count;
     }
 
-    public PriceModel(int id, int product_id, int value, int mult, int count, String active, String deliverydays, String url) {
+    public PriceModel(Long id, Long product_id, Long value, Long mult, Long count, String active, String deliverydays, String url) {
 
         this.product_id = product_id;
         this.value = value;
@@ -39,27 +39,27 @@ public class PriceModel {
 
 
 
-    public int getProduct_id() {
+    public Long getProduct_id() {
         return product_id;
     }
 
-    public void setProduct_id(int product_id) {
+    public void setProduct_id(Long product_id) {
         this.product_id = product_id;
     }
 
-    public int getValue() {
+    public Long getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(Long value) {
         this.value = value;
     }
 
-    public int getMult() {
+    public Long getMult() {
         return mult;
     }
 
-    public void setMult(int mult) {
+    public void setMult(Long mult) {
         this.mult = mult;
     }
 

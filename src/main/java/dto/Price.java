@@ -15,16 +15,16 @@ public class Price {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     @Column(name="product_id")
-    private Integer productId;
-    private int value;
-    private int mult;
-    private int count;
+    private Long productId;
+    private Long value;
+    private Long mult;
+    private Long count;
 
-    public int getCount() {
+    public Long getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(Long count) {
         this.count = count;
     }
 
@@ -55,27 +55,27 @@ public class Price {
         this.id = id;
     }
 
-    public Integer getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(Integer productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
-    public int getValue() {
+    public Long getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(Long value) {
         this.value = value;
     }
 
-    public int getMult() {
+    public Long getMult() {
         return mult;
     }
 
-    public void setMult(int mult) {
+    public void setMult(Long mult) {
         this.mult = mult;
     }
 
@@ -95,7 +95,7 @@ public class Price {
         this.deliverydays = deliverydays;
     }
 
-    public Price(Long id, Integer productId, int value, int mult, int count, String active, String deliverydays) {
+    public Price(Long id, Long productId, Long value, Long mult, Long count, String active, String deliverydays) {
         this.id = id;
         this.productId = productId;
         this.value = value;

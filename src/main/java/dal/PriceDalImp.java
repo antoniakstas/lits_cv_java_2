@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@Transactional
+
 public class PriceDalImp implements PriceDal {
     private static final Logger logger = LoggerFactory.getLogger(PriceDalImp.class);
 
@@ -76,7 +78,18 @@ public class PriceDalImp implements PriceDal {
         }
 
     }
+    @Override
+    public List<Price> readAllFromDBByProductId(Long productIdValue) {
+        Session session = this.sessionFactory.getCurrentSession();
+        List<Price> priceList = (List<Price>) session
+                .createQuery(
+                        "select p from dto.Price p " +
+                                "where p.productId = :abc")
+                .setParameter("abc", productIdValue)
+                .list();
 
+        return priceList;
+    }
 
 }
 

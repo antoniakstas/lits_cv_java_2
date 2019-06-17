@@ -1,11 +1,10 @@
 package controller;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
+import dto.Price;
 import dto.Product;
 import io.swagger.annotations.Api;
-import model.CartResponseModel;
-import model.CreateNewProductResponse;
-import model.ProductResponseModel;
+import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.MediaType;
@@ -34,18 +33,65 @@ public class ProductController {
     @Autowired
     private PriceService priceService;
 
-    @GetMapping(path = "/list/prices")
-    public List<Long> findAllProduct() {
-//        List<ProductResponseModel> productResponseModelList = null;
+//    @GetMapping(path = "/list/prices")
+//    public List<Long> findAllProduct() {
+////        List<ProductResponseModel> productResponseModelList = null;
+//
+//        List<Product> allProduct = productService.findAllProduct();
+//        List<Long> productIdList = new ArrayList<>();
+//        for (Product productitem:allProduct) {
+//            productIdList.add(productitem.getId());
+//           }
+//
+////        priceService.findAllProductId();
+//        return productIdList;
+//    }
+
+    @GetMapping(path = "/list/price")
+    public List<ProductWithPricesResponse> findAllProductsWithPrices() {
+
+        List<ProductWithPricesResponse> response = new ArrayList<>();
+
 
         List<Product> allProduct = productService.findAllProduct();
         List<Long> productIdList = new ArrayList<>();
-        for (Product productitem:allProduct) {
-            productIdList.add(productitem.getId());
-           }
 
-//        priceService.findAllProductId();
-        return productIdList;
+
+        for (Product productItem : allProduct) {
+            productIdList.add(productItem.getId());
+        }
+
+
+        for (Product productItem : allProduct) {
+
+            Long productItemId = productItem.getId();
+            String id = productItemId.toString();
+            String url = "http://localhost:8880/application/product/item?id=" + id;
+
+            List<Price> allPriceByProductId =
+                    priceService.readAllFromDBByProductId(productItemId);
+
+            List<PriceModel> priceModels = new ArrayList<>();
+
+            for (Price priceItem : allPriceByProductId) {
+                PriceModel priceModel = new PriceModel(priceItem.getId(),
+                        productItemId,
+                        Long.valueOf(priceItem.getValue() * priceItem.getMult())
+                        , 0L, priceItem.getMult(), priceItem.getActive(),
+                        priceItem.getDeliverydays(), "URL HAS To Be Here");
+                priceModels.add(priceModel);
+            }
+
+
+            ProductWithPricesResponse item = new ProductWithPricesResponse(productItemId,
+                    productItem.getIndex(), productItem.getName(), productItem.getManufacturer(),
+                    url, priceModels);
+
+            response.add(item);
+        }
+
+
+        return response;
     }
 
     @GetMapping(path = "/list")

@@ -20,5 +20,6 @@ public interface PriceDal {
 
     public void deleteLine(Long id);
 
+    public List<Price> readAllFromDBByProductId(Long productIdValue);
 
 }
