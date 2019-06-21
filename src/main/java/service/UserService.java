@@ -2,13 +2,14 @@ package service;
 
 import dto.User;
 import model.UserRegistrationRequest;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
 
 
     public Optional<User> createUserInToDB(User user);
