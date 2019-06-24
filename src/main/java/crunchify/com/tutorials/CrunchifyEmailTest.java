@@ -19,8 +19,8 @@ public class CrunchifyEmailTest {
 
         // @Service("crunchifyEmail") <-- same annotation you specified in CrunchifyEmailAPI.java
         CrunchifyEmailAPI crunchifyEmailAPI = (CrunchifyEmailAPI) context.getBean("crunchifyEmail");
-        String toAddr = "test@crunchify.com";
-        String fromAddr = "test@crunchify.com";
+        String toAddr = "ilia97ap76@gmail.com";
+        String fromAddr = "ilia97ap76@gmail.com";
 
         // email subject
         String subject = "Hey.. This email sent by Crunchify's Spring MVC Tutorial";
