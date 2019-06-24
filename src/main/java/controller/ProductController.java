@@ -106,7 +106,7 @@ public class ProductController {
         for (Product productitem : allProduct) {
 //            ProductResponseModel productResponseModel = new ProductResponseModel(productitem);
 //
-            ProductResponseModel productResponseModel1 = new ProductResponseModel(productitem.getIndex(), productitem.getIndex(), productitem.getManufacturer());
+            ProductResponseModel productResponseModel1 = new ProductResponseModel(productitem.getIndex(), productitem.getName(), productitem.getManufacturer());
             productResponseModels.add(productResponseModel1);
         }
         return productResponseModels;

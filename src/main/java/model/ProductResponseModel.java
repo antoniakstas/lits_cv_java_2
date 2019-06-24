@@ -16,7 +16,6 @@ public class ProductResponseModel {
 
     @NotNull(message = "Please provide name of the product")
     @Size(min=3, max=50)
-
     @ApiModelProperty(notes = "name of the product")
     private String name;
 
@@ -36,8 +35,9 @@ public class ProductResponseModel {
 
     public ProductResponseModel(Product product) {
         this.index = product.getIndex();
-        this.manufacturer = product.getManufacturer();
         this.name = product.getName();
+        this.manufacturer = product.getManufacturer();
+
     }
 
     public String getIndex() {
