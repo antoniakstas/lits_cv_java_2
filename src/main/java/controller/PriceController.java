@@ -5,6 +5,7 @@ import dto.Price;
 import model.PriceResponceModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import service.PriceService;
@@ -54,6 +55,7 @@ public class PriceController {
         PriceResponceModel responceModel = new PriceResponceModel();
 
 
+
         return responceModel;
 
     }
@@ -78,5 +80,15 @@ public class PriceController {
         return "redirect:/getPrice";
 
     }
+
+    @GetMapping(path = "/list1")
+    public List<Price> getPriceByProductId(Long product_id) {
+
+        List<Price> allPrice = priceService.readAllFromDBByProductId(product_id);
+        return allPrice;
+
+    }
+
+
 
 }

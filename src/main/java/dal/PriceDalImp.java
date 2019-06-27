@@ -36,6 +36,7 @@ public class PriceDalImp implements PriceDal {
         return Optional.empty();
     }
 
+
     @Override
     public Price createPriceInToDB(Price price) {
         Session session = this.sessionFactory.getCurrentSession();

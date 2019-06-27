@@ -149,6 +149,9 @@
 
     <bean name="javaSecurityConfig" class="configuration.SecurityConfig" />
 
+<!--    <import resource="resources/ crunchify-beans.xml"/>-->
+
+
 </beans>
 
 
