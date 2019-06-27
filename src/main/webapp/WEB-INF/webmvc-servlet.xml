@@ -53,7 +53,7 @@
     <bean class="service.PriceServiceImpl" id="priceService"/>
     <bean class="service.CartServiceImpl" id="cartService"/>
     <bean class="service.OrderServiceImpl" id="orderService"/>
-
+    <bean class="service.FileStorageService" id="fileStorageService"/>
 
 
     <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
@@ -150,7 +150,11 @@
     <bean name="javaSecurityConfig" class="configuration.SecurityConfig" />
 
 <!--    <import resource="resources/ crunchify-beans.xml"/>-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 
+        <property name="maxUploadSize" value="100000"/>
+    </bean>
 
 </beans>
 
