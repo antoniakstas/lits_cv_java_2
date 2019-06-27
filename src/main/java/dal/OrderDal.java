@@ -10,7 +10,7 @@ public interface OrderDal {
 
         List<Order> readAllFromDB();
 
-        Optional<Order> readFromDBById(int id);
+        List<Order> readFromDBById(Integer id);
 
         boolean createOrderInToDB(Order order);
 

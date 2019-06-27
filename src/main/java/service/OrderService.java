@@ -14,4 +14,6 @@ public interface OrderService {
     public Optional<Order> updateOrderInToDB(Order order);
 
     public void deleteOrder(String index);
+
+    public List<Order> findOrderById(Integer id);
 }
