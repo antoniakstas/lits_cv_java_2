@@ -38,6 +38,13 @@ public class OrderServiceImpl implements OrderService {
     public void deleteOrder(String index) {
 
     }
+
+    @Override
+    @Transactional
+    public List<Order> findOrderById(Integer id) {
+        List<Order> orderList = orderDal.readFromDBById(id);
+        return orderList;
+    }
 }
 
 

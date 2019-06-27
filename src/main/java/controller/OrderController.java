@@ -48,12 +48,15 @@ public class OrderController {
 
         List<Order> orderList = orderService.findAllOrder();
 
+        return orderList;
+    }
+
+    @GetMapping(path = "/listById")
+    public List<Order> findOrderById(Integer id) {
 
 
-//        System.out.println("I'm in the GET method!");
-//        OrderModel orderModel = new OrderModel(123, " user name", 1, 2,"e");
-//        OrderDalImp dal = new OrderDalImp();
-//        dal.readAllFromDB();
+        List<Order> orderList = orderService.findOrderById(id);
+
         return orderList;
     }
 }

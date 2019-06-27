@@ -60,11 +60,19 @@ public class OrderDalImp implements OrderDal {
 //
 //
         }
-//
-        @Override
-        public Optional<Order> readFromDBById(int id) {
-            return Optional.empty();
-        }
+
+    @Override
+    @Transactional
+    public List<Order> readFromDBById(Integer id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        List<Order> orderList = (List<Order>) session
+                .createQuery("from dto.Order o " +
+                        "where o.id = :abc")
+                .setParameter("abc",id)
+                .list();
+
+        return orderList;
+    }
 
 
         @Override
