@@ -1,0 +1,38 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>auto parts demo</title>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/main.css}"
+          href="../css/main.css" />
+</head>
+<body>
+<div th:replace="header :: header"/>
+<a th:text="${currentUserName}">id</a>
+<table style="border-style: solid;
+ border-color: red;">
+    <tr>
+        <th>id</th>
+        <th>status</th>
+        <th>manager id</th>
+        <th>customer id</th>
+    </tr>
+    <tr th:each="orderItem : ${orderListWithCartItemsToHtml}">
+        <td style="border-style: solid;
+ border-color: yellow; margin: 15px;">
+            <table>
+                <tr style="border-style: solid; margin: 15px;
+ border-color: #FF0000;" th:each="cartItem : ${orderItem.cartList}">
+                    <td style="border-style: solid;
+ border-color: blue; margin: 15px;" th:text="${cartItem.id}">id</td><td style="border-style: solid;
+ border-color: blue; margin: 15px;" th:text="${cartItem.order_id}">id</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<div th:replace="footer :: footer"/>
+</body>
+</html>

@@ -1,12 +1,20 @@
 package controller;
 
 import org.apache.log4j.Logger;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-    @Controller
+import java.util.ArrayList;
+import java.util.List;
+
+@RestController
+@RequestMapping("/welcome")
     public class WelcomeController {
 
         private static final Logger logger = Logger.getLogger(WelcomeController.class);
@@ -27,6 +35,18 @@ import org.springframework.web.servlet.ModelAndView;
             return model;
 
         }
+
+    @GetMapping(path = "/welcomePage")
+    public ModelAndView findAll() {
+
+
+        ModelAndView modelAndView = new ModelAndView("welcomePage");
+
+
+
+        return modelAndView;
+    }
+
 
     }
 

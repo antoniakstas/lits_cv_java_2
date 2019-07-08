@@ -1,0 +1,51 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>auto parts demo</title>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/main.css}"
+          href="../css/main.css" />
+
+</head>
+<body>
+<div th:replace="header :: header"/>
+
+<table style="border-style: solid;
+border-color: red;">
+    <tr>
+        <th>Menu</th>
+
+    </tr>
+
+        <tr>
+            <td><a href="/application/product/list">product</a></td>
+
+        </tr>
+        <tr>
+            <td><a href="/application/welcome/user">user</a></td>
+
+        </tr>
+        <tr>
+            <td><a href="/application/order/list">order</a></td>
+
+        </tr>
+
+        <tr>
+            <td><a href="/application/user/list">users</a></td>
+
+        </tr>
+
+    </table>
+
+
+
+
+            </table>
+        </td>
+    </tr>
+</table>
+<div th:replace="footer :: footer"/>
+</body>
+</html>

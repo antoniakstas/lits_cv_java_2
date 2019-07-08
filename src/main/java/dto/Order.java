@@ -10,6 +10,7 @@ public class Order {
     @Column(name="id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
    private int id;
+    @Column(name="status")
    private String status;
     @Column(name="user_m_id")
    private int userMId;
