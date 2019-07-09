@@ -126,5 +126,16 @@ class CartController {
         return modelAndView;
     }
 
+    @GetMapping(path = "/emptyCart")
+    public ModelAndView emptyCartPage() {
+
+
+        ModelAndView modelAndView = new ModelAndView("cartIsEmpty");
+
+
+
+        return modelAndView;
+    }
+
 }
 

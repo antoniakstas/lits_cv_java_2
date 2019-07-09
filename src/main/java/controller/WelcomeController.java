@@ -38,11 +38,21 @@ import java.util.List;
 
         }
 
-    @GetMapping(path = "/welcomePage")
+    @GetMapping(path = "/homepage")
     public ModelAndView findAll() {
 
 
-        ModelAndView modelAndView = new ModelAndView("welcomePage");
+        ModelAndView modelAndView = new ModelAndView("homepage");
+
+
+
+        return modelAndView;
+    }
+    @GetMapping(path = "/aboutPage")
+    public ModelAndView aboutPage() {
+
+
+        ModelAndView modelAndView = new ModelAndView("aboutPage");
 
 
 
