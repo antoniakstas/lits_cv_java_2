@@ -5,60 +5,34 @@
     <title>auto parts demo</title>
 
     <meta http-equiv="Content-Type"
-          content="text/html; charset=UTF-8" />
+          content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" th:href="@{/css/main.css}"
-          href="../css/main.css" />
+          href="../css/main.css"/>
 
 </head>
 <body>
 
 <div th:replace="header :: header"/>
-<table width="700" >
+<table width="700">
     <tr>
-        <td><table  width="150" height="450" style="border-style: solid;
-border-color: red;">
-            <tr>
-                <th>Menu</th>
-
-            </tr>
-
-            <tr>
-                <td align="center"><a href="/application/product/productPage"><font size="5" face="Arial">product</font></a></td>
-
-            </tr>
-            <tr>
-                <td align="center"><a href="/application/user/userPage"><font size="5" face="Arial">user</font></a></td>
-
-            </tr>
-            <tr>
-                <td align="center"><a href="/application/order/orderPage"><font size="5" face="Arial">order</font></a></td>
-
-            </tr>
-
-            <tr>
-                <td align="center"><a href="/application/user/usersPage"><font size="5" face="Arial">users</font></a></td>
-
-
-            </tr>
-
-        </table></td>
         <td>
-            <table width="550" height="450" bgcolor="5FFA5F"  align="center">
-                <tr><td align="center">
-                    <h1> User info here</h1>
-                    <td></tr>
-            </table></td>
+            <div th:replace="menu :: menu"/>
+        </td>
+        <td>
+            <table width="550" height="450" bgcolor="5FFA5F" align="center">
+                <tr>
+                    <td align="center">
+                        <h1> User info here</h1>
+                    <td>
+                </tr>
+            </table>
+        </td>
     </tr>
 
 
 </table>
 
 
-
-</table>
-</td>
-</tr>
-</table>
 <div th:replace="footer :: footer"/>
 </body>
 </html>
