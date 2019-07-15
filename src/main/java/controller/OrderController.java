@@ -59,4 +59,15 @@ public class OrderController {
 
         return orderList;
     }
+
+    @GetMapping(path = "/orderPage")
+    public ModelAndView orderPage() {
+
+
+        ModelAndView modelAndView = new ModelAndView("orderPage");
+
+
+
+        return modelAndView;
+    }
 }

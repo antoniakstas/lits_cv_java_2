@@ -132,4 +132,26 @@ public class UserController {
 
         return response;
     }
+
+    @GetMapping(path = "/userPage")
+    public ModelAndView userPage() {
+
+
+        ModelAndView modelAndView = new ModelAndView("userPage");
+
+
+
+        return modelAndView;
+    }
+    @GetMapping(path = "/usersPage")
+    public ModelAndView usersPage() {
+
+
+        ModelAndView modelAndView = new ModelAndView("usersPage");
+
+
+
+        return modelAndView;
+    }
+
 }

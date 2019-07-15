@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import service.PriceService;
 import service.ProductService;
 
@@ -183,7 +184,19 @@ public class ProductController {
         productService.deletePtoduct(Long.valueOf(id));
         return null;
 
+
     }
+    @GetMapping(path = "/productPage")
+    public ModelAndView prPage() {
+
+
+        ModelAndView modelAndView = new ModelAndView("productPage");
+
+
+
+        return modelAndView;
+    }
+
 
 //
 //    @GetMapping(path = "/item")
