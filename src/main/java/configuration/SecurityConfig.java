@@ -11,13 +11,17 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
+import javax.sql.DataSource;
+
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+    @Autowired
+    private DataSource dataSource;
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER")
+                .withUser("user").password(passwordEncoder().encode("password")).roles("USER")
                 .and()
                 .withUser("manager").password(passwordEncoder().encode("anotherpassword")).roles("MANAGER");
     }
@@ -35,6 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http
+
+
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/role/**").hasRole("MANAGER")
