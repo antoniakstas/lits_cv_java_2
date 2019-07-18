@@ -16,4 +16,5 @@ public interface UserDal {
 	public User updateUser( User user);
 
 	public void deleteUser(Integer id);
+	public List<User> readAllFromDBById(Integer IdValue);
 }

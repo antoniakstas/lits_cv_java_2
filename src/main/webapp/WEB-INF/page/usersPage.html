@@ -22,7 +22,31 @@
             <table width="550" height="450" bgcolor="5FFA5F" align="center">
                 <tr>
                     <td align="center">
-                        <h1> Users info here</h1>
+                        <table border="1" align="center">
+                            <tr>
+                                <th>id</th>
+                                <th>name</th>
+                                <th>email</th>
+                                <th>role_id</th>
+                                <th>password</th>
+                                <th>address_id</th>
+                                <th>status</th>
+
+
+                            </tr>
+                            <tr th:each="userItem : ${usersList}">
+
+                                <td th:text="${userItem.id}">someId</td>
+                                <td th:text="${userItem.name}">someName</td>
+                                <td th:text="${userItem.email}">someEmail</td>
+                                <td th:text="${userItem.role_id}">someRole</td>
+                                <td th:text="${userItem.password}">somePassword</td>
+                                <td th:text="${userItem.address_id}">someAddress</td>
+                                <td th:text="${userItem.status}">someStatus</td>
+
+                            </tr>
+
+                        </table>
                     <td>
                 </tr>
             </table>

@@ -21,6 +21,7 @@ public interface UserService extends UserDetailsService {
     public void deleteUser(Integer id);
 
     public boolean registerUser(UserRegistrationRequest requestData);
+    public List<User> readAllFromDBById(Integer IdValue);
 
 
     // TODO: do this with security

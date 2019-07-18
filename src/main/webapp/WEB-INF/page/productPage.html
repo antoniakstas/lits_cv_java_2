@@ -22,8 +22,24 @@
         <td>
             <table width="550" height="450" bgcolor="5FFA5F" align="center">
                 <tr>
-                    <td align="center">
-                        <h1> Product info here</h1>
+                    <td>
+                        <table border="1" align="center" >
+                            <tr>
+                                <th>id</th>
+                                <th>index</th>
+                                <th>name</th>
+                                <th>manufacturer</th>
+                            </tr>
+                            <tr th:each="productItem : ${productList}">
+
+                                <td th:text="${productItem.id}">someId</td>
+                                <td th:text="${productItem.index}">someIndex</td>
+                                <td th:text="${productItem.name}">someName</td>
+                                <td th:text="${productItem.manufacturer}">someManufacturer</td>
+                                <td><button>add to cart</button></td>
+                            </tr>
+
+                        </table>
                     <td>
                 </tr>
             </table>

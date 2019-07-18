@@ -66,4 +66,16 @@ public class UserDalImp implements UserDal {
             logger.info("User deleted successfully, User Details=" + user);
         }
 	}
+	@Override
+	@Transactional
+	public List<User> readAllFromDBById(Integer IdValue) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<User> userList = (List<User>) session
+				.createQuery(
+						"select u from dto.User u " +
+								"where u.id = :abc")
+				.setParameter("abc", IdValue)
+				.list();
+		return userList;
+	}
 }

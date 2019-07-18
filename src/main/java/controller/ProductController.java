@@ -188,9 +188,10 @@ public class ProductController {
     }
     @GetMapping(path = "/productPage")
     public ModelAndView prPage() {
-
+        List<Product> allProduct = productService.findAllProduct();
 
         ModelAndView modelAndView = new ModelAndView("productPage");
+        modelAndView.addObject("productList", allProduct);
 
 
 

@@ -34,23 +34,20 @@ public class UserController {
     private UserService userService;
 
 
-
-
     @GetMapping(path = "/list")
     public List<User> findAll() {
         List<User> userList = userService.findAllUser();
         return userList;
     }
 
-    @PostMapping(value= "/add")
-    public User createUserInToDB(@ModelAttribute("user") User user){
-
+    @PostMapping(value = "/add")
+    public User createUserInToDB(@ModelAttribute("user") User user) {
 
 
         Optional<User> userWasCreated = this.userService.createUserInToDB(user);
 
 
-        if(userWasCreated.isPresent()){
+        if (userWasCreated.isPresent()) {
             return userWasCreated.get();
 
         }
@@ -59,13 +56,13 @@ public class UserController {
     }
 
     @PostMapping(path = "/update")
-    public User updateUserInToDB(@ModelAttribute("user") User user){
+    public User updateUserInToDB(@ModelAttribute("user") User user) {
 
 
         Optional<User> userWasUpdated = this.userService.updateUser(user);
 
 
-        if(userWasUpdated.isPresent()){
+        if (userWasUpdated.isPresent()) {
             return userWasUpdated.get();
 
         }
@@ -134,22 +131,24 @@ public class UserController {
     }
 
     @GetMapping(path = "/userPage")
-    public ModelAndView userPage() {
-
+    public ModelAndView userPage(Integer Id) {
+        List<User> userList = userService.readAllFromDBById(Id=1);
 
         ModelAndView modelAndView = new ModelAndView("userPage");
-
+        modelAndView.addObject("user1", userList);
 
 
         return modelAndView;
     }
+
     @GetMapping(path = "/usersPage")
     public ModelAndView usersPage() {
 
+        List<User> userList = userService.findAllUser();
 
         ModelAndView modelAndView = new ModelAndView("usersPage");
 
-
+        modelAndView.addObject("usersList", userList);
 
         return modelAndView;
     }
