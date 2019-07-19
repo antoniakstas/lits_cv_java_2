@@ -95,6 +95,7 @@ public class ProductController {
 
 
         return response;
+
     }
 
     @GetMapping(path = "/list")
@@ -189,9 +190,52 @@ public class ProductController {
     @GetMapping(path = "/productPage")
     public ModelAndView prPage() {
         List<Product> allProduct = productService.findAllProduct();
+        List<ProductWithPricesResponse> response = new ArrayList<>();
+
+        List<Long> productIdList = new ArrayList<>();
+
+
+        for (Product productItem : allProduct) {
+            productIdList.add(productItem.getId());
+        }
+
+
+        for (Product productItem : allProduct) {
+
+            Long productItemId = productItem.getId();
+            String id = productItemId.toString();
+            String url = "http://localhost:8880/application/product/item?id=" + id;
+
+            List<Price> allPriceByProductId =
+                    priceService.readAllFromDBByProductId(productItemId);
+
+            List<PriceModel> priceModels = new ArrayList<>();
+
+            for (Price priceItem : allPriceByProductId) {
+                PriceModel priceModel = new PriceModel(
+                        priceItem.getId(),
+                        productItemId,
+                        Long.valueOf(priceItem.getValue() * priceItem.getMult()),
+                        2L,
+                        priceItem.getCount(), priceItem.getActive(),
+                        priceItem.getDeliverydays(), "URL HAS To Be Here");
+                priceModels.add(priceModel);
+            }
+
+
+            ProductWithPricesResponse item = new ProductWithPricesResponse(productItemId,
+                    productItem.getIndex(), productItem.getName(), productItem.getManufacturer(),
+                    url, priceModels);
+
+            response.add(item);
+        }
 
         ModelAndView modelAndView = new ModelAndView("productPage");
-        modelAndView.addObject("productList", allProduct);
+       // modelAndView.addObject("productList", allProduct);
+
+        modelAndView.addObject("response", response);
+
+
 
 
 
