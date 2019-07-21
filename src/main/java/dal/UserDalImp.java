@@ -78,4 +78,26 @@ public class UserDalImp implements UserDal {
 				.list();
 		return userList;
 	}
+
+	@Override
+	@Transactional
+	public List<User> readAllFromDBByName(String userName) {
+
+//		Session session = sessionFactory.getCurrentSession();
+//		String queryString = "from User where " + userName + "= :value";
+//		Query queryObject = session.createQuery(queryString);
+//		queryObject.setParameter("value", userName);
+//		List<User> list = queryObject.list();
+//
+
+		Session session = this.sessionFactory.getCurrentSession();
+		List<User> idUserName = (List<User>) session
+				.createQuery(
+						"SELECT u.id FROM dto.User u WHERE u.name = :abc")
+				.setParameter("abc", userName)
+				.list();
+		return idUserName;
+	}
+//	SELECT id FROM lits_cv_java_2.user where name = 'Basil';
+//Query query = session.createQuery("SELECT u.id FROM dto.User u WHERE u.name = 'Basil'");
 }

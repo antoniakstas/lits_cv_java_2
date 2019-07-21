@@ -85,5 +85,10 @@ public class CartServiceImpl implements CartService {
 
         return null;
     }
-
+    @Override
+    @Transactional
+    public List<Cart> readFromDBById(Integer id) {
+        List<Cart> cartList = cartDal.readFromDBById(id);
+        return cartList;
+    }
 }

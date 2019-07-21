@@ -67,6 +67,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
+    public List<User> readAllFromDBByName(String userName){
+        List<User> userList= userDal.readAllFromDBByName(userName);
+        return userList;
+    }
+
+    @Override
     public boolean confirmUserRegistration(String username, String password, String email) {
         return false;
     }

@@ -91,7 +91,18 @@ public class PriceDalImp implements PriceDal {
 
         return priceList;
     }
+    @Override
+    public List<Price> readAllFromDBByPriceId(Long priceIdValue) {
+        Session session = this.sessionFactory.getCurrentSession();
+        List<Price> priceList = (List<Price>) session
+                .createQuery(
+                        "select p from dto.Price p " +
+                                "where p.priceId = :abc")
+                .setParameter("abc", priceIdValue)
+                .list();
 
+        return priceList;
+    }
 }
 
 

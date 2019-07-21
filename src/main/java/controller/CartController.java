@@ -1,20 +1,16 @@
 package controller;
 
 
-import dto.Cart;
-import dto.Order;
-import model.CartListResponseModel;
-import model.CartModel;
-import model.CartResponseModel;
-import model.OrderModelWithCartItems;
+import com.sun.xml.bind.v2.TODO;
+import dto.*;
+import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import service.CartService;
-import service.OrderService;
+import service.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -32,10 +28,15 @@ class CartController {
 
     @Autowired
     private OrderService orderService;
-
+    @Autowired
+    private PriceService priceService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private ProductService productService;
 
     @GetMapping(path = "/read")
-    public CartListResponseModel findItem( Long order_id ) {
+    public CartListResponseModel findItem(Long order_id) {
         CartListResponseModel responseModel = new CartListResponseModel();
 
         List<CartResponseModel> allCartByOrderId = cartService.findAllCartByOrderId(order_id);
@@ -44,7 +45,6 @@ class CartController {
 
         return responseModel;
     }
-
 
 
     @GetMapping(path = "/list")
@@ -69,11 +69,11 @@ class CartController {
     }
 
     @PostMapping(value = "/update")
-    public Cart updateCart(@ModelAttribute("cart") Cart cart){
+    public Cart updateCart(@ModelAttribute("cart") Cart cart) {
 
         Optional<Cart> cartWasUpdated = this.cartService.updateCart(cart);
 
-        if (cartWasUpdated.isPresent()){
+        if (cartWasUpdated.isPresent()) {
             return cartWasUpdated.get();
         }
 
@@ -81,7 +81,7 @@ class CartController {
     }
 
     @GetMapping(value = "/delete")
-    public void deleteLine(Long id){
+    public void deleteLine(Long id) {
 
         Optional<Cart> optionalCart = this.cartService.deleteLine(id);
 
@@ -128,14 +128,39 @@ class CartController {
 
     @GetMapping(path = "/emptyCart")
     public ModelAndView emptyCartPage() {
+        List<CartResponse> response = new ArrayList<>();
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+
+        List<User> allUserListByName = userService.readAllFromDBByName(username);
+//        Integer getUserIdByName = allUserListByName.get(0).getId();
+        //TODO: classcastex Integer
+//        for (User userItem : allUserListByName) {
+//            userItem.getId();
+//        }
+
+        Integer idUserName = 2;
+        List<Order> orderList = orderService.findOrderById(idUserName);
+        Integer orderid = orderList.get(0).getId();
+
+        List<Cart> cartListList = cartService.readFromDBById(orderid);
+        Long priceIdFromCart = Long.valueOf(cartListList.get(0).getPrice_id());
+
+        for (Cart cartItem: cartListList){
+            cartItem.getProduct_count();
+        }
+        List<Price> priceList = priceService.readAllFromDBByPriceId(priceIdFromCart);
+
+//        Integer idUserName = SELECT id FROM lits_cv_java_2.user where name = 'username';
 
         ModelAndView modelAndView = new ModelAndView("cartIsEmpty");
 
 
-
         return modelAndView;
+
+
     }
 
 }
-

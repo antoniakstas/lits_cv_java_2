@@ -18,7 +18,6 @@ public interface PriceService {
     public void deleteLine(Long id);
 
     public List<Price> readAllFromDBByProductId(Long productIdValue);
-
-
+    public List<Price> readAllFromDBByPriceId(Long priceIdValue);
 
     }

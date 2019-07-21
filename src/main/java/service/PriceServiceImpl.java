@@ -74,8 +74,13 @@ public class PriceServiceImpl implements PriceService{
         List<Price> priceList = priceDal.readAllFromDBByProductId(productIdValue);
         return priceList;
     }
+    @Override
+    @Transactional
 
-
+    public List<Price> readAllFromDBByPriceId(Long priceIdValue){
+        List<Price> priceList = priceDal.readAllFromDBByPriceId(priceIdValue);
+        return priceList;
+    }
 
 }
 

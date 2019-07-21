@@ -55,6 +55,20 @@ public class CartDalImp implements CartDal {
 
     @Override
     @Transactional
+    public List<Cart> readFromDBById(Integer id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        List<Cart> cartList = (List<Cart>) session
+                .createQuery("from dto.Cart c " +
+                        "where c.id = :abc")
+                .setParameter("abc",id)
+                .list();
+
+        return cartList;
+    }
+
+
+    @Override
+    @Transactional
     public Cart createCart(Cart cart) {
         Session session = this.sessionFactory.getCurrentSession();
         session.save(cart);
