@@ -5,6 +5,9 @@ import java.util.List;
 public class ProductWithPricesResponse extends ProductModel{
     List<PriceModel> priceModels;
 
+    public ProductWithPricesResponse(){
+
+    }
     public ProductWithPricesResponse(Long id, String index, String name, String manufacturer, String url, List<PriceModel> priceModels) {
         super(id, index, name, manufacturer, url);
         this.priceModels = priceModels;

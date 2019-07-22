@@ -9,6 +9,9 @@ public class ProductModel {
     private String url;
 
 
+    public ProductModel(){
+
+    }
     public ProductModel(Long id, String index, String name, String manufacturer, String url) {
         this.id = id;
         this.index = index;

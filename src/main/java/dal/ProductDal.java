@@ -18,4 +18,5 @@ public interface ProductDal {
     boolean deleteProduct(int id);
 
     public void deleteLine(Long id);
+    public Product findById(Long id);
 }

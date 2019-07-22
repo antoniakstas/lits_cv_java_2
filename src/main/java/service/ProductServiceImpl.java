@@ -82,8 +82,12 @@ public class ProductServiceImpl implements ProductService {
     public void deletePtoduct(Long id) {productDal.deleteLine(id);
 
     }
-
-
+    @Override
+    @Transactional
+    public Product findById(Long id){
+        Product productId = productDal.findById(id);
+        return productId;
+    }
 }
 
 
