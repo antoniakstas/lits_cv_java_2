@@ -1,15 +1,12 @@
 package controller;
 
-import com.fasterxml.jackson.databind.JsonMappingException;
 import dto.Price;
 import dto.Product;
 import io.swagger.annotations.Api;
 import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import service.PriceService;
@@ -34,37 +31,18 @@ public class ProductController {
     @Autowired
     private PriceService priceService;
 
-//    @GetMapping(path = "/list/prices")
-//    public List<Long> findAllProduct() {
-////        List<ProductResponseModel> productResponseModelList = null;
-//
-//        List<Product> allProduct = productService.findAllProduct();
-//        List<Long> productIdList = new ArrayList<>();
-//        for (Product productitem:allProduct) {
-//            productIdList.add(productitem.getId());
-//           }
-//
-////        priceService.findAllProductId();
-//        return productIdList;
-//    }
-
     @GetMapping(path = "/list/price")
     public List<ProductWithPricesResponse> findAllProductsWithPrices() {
 
         List<ProductWithPricesResponse> response = new ArrayList<>();
-
-
         List<Product> allProduct = productService.findAllProduct();
         List<Long> productIdList = new ArrayList<>();
-
 
         for (Product productItem : allProduct) {
             productIdList.add(productItem.getId());
         }
 
-
         for (Product productItem : allProduct) {
-
             Long productItemId = productItem.getId();
             String id = productItemId.toString();
             String url = "http://localhost:8880/application/product/item?id=" + id;
@@ -84,42 +62,53 @@ public class ProductController {
                         priceItem.getDeliverydays(), "URL HAS To Be Here");
                 priceModels.add(priceModel);
             }
-
-
             ProductWithPricesResponse item = new ProductWithPricesResponse(productItemId,
                     productItem.getIndex(), productItem.getName(), productItem.getManufacturer(),
                     url, priceModels);
 
             response.add(item);
         }
-
-
         return response;
-
     }
 
     @GetMapping(path = "/list")
     public List<ProductResponseModel> findAll() {
-//        List<ProductResponseModel> productResponseModelList = null;
-
         List<Product> allProduct = productService.findAllProduct();
 
         List<ProductResponseModel> productResponseModels = new ArrayList<>();
         for (Product productitem : allProduct) {
-//            ProductResponseModel productResponseModel = new ProductResponseModel(productitem);
-//
             ProductResponseModel productResponseModel1 = new ProductResponseModel(productitem.getIndex(), productitem.getName(), productitem.getManufacturer());
             productResponseModels.add(productResponseModel1);
         }
         return productResponseModels;
     }
 
-
     @GetMapping(path = "/item")
-    public ModelAndView findItem(Integer id) {
-        ProductResponseModel responseModel = new ProductResponseModel();
+    public ModelAndView findItem(Long id) {
+        Product product = productService.findById(id);
+        List<Price> allPriceByProductId =
+                priceService.readAllFromDBByProductId(id);
+
+        List<PriceModel> priceModels = new ArrayList<>();
+
+        for (Price priceItem : allPriceByProductId) {
+            PriceModel priceModel = new PriceModel(
+                    priceItem.getId(),
+                    id,
+                    Long.valueOf(priceItem.getValue() * priceItem.getMult()),
+                    2L,
+                    priceItem.getCount(), priceItem.getActive(),
+                    priceItem.getDeliverydays(), null);
+            priceModels.add(priceModel);
+        }
+        ProductWithPricesResponse item = new ProductWithPricesResponse(id,
+                product.getIndex(), product.getName(), product.getManufacturer(),
+                null, priceModels);
+
+
 
         ModelAndView modelAndView = new ModelAndView("productItemPage");
+        modelAndView.addObject("productItem", item);
 
         return modelAndView;
     }
@@ -128,9 +117,6 @@ public class ProductController {
     public CreateNewProductResponse create(Locale locale, @Valid @RequestBody ProductResponseModel model, BindingResult bindingResult) {
         bindingResult.hasErrors();
         ProductResponseModel responseModel = new ProductResponseModel();
-
-//        return responseModel;
-
         Product product = new Product(model);
         CreateNewProductResponse response = new CreateNewProductResponse();
 
@@ -145,15 +131,6 @@ public class ProductController {
         }
         return response;
     }
-
-//    @GetMapping(path = "/delete")
-//    public ProductResponseModel deleteItem(Integer id) {
-//        findAll();
-//        ProductResponseModel responseModel = new ProductResponseModel();
-//
-//        findAll().remove(id);
-//        return responseModel;
-//    }
 
     @PostMapping(path = "/update")
     public CreateNewProductResponse update(Locale locale, @Valid @RequestBody ProductResponseModel model, BindingResult bindingResult) {
@@ -173,23 +150,18 @@ public class ProductController {
 
             } else {
                 String errorMessage = messageSource.getMessage("autoparts.validation.message.updateproductid", new Object[]{responseModel.getIndex()}, locale);
-
-
                 response.setErrorMessage(errorMessage);
             }
-
         }
         return response;
     }
 
     @GetMapping(path = "/delete")
-//    @RequestMapping(value = "/deleteProduct/id", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String deleteProductLine(Integer id) {
         productService.deletePtoduct(Long.valueOf(id));
         return null;
-
-
     }
+
     @GetMapping(path = "/productPage")
     public ModelAndView prPage() {
         List<Product> allProduct = productService.findAllProduct();
@@ -197,14 +169,11 @@ public class ProductController {
 
         List<Long> productIdList = new ArrayList<>();
 
-
         for (Product productItem : allProduct) {
             productIdList.add(productItem.getId());
         }
 
-
         for (Product productItem : allProduct) {
-
             Long productItemId = productItem.getId();
             String id = productItemId.toString();
             String url = "http://localhost:8880/application/product/item?id=" + id;
@@ -224,8 +193,6 @@ public class ProductController {
                         priceItem.getDeliverydays(), "URL HAS To Be Here");
                 priceModels.add(priceModel);
             }
-
-
             ProductWithPricesResponse item = new ProductWithPricesResponse(productItemId,
                     productItem.getIndex(), productItem.getName(), productItem.getManufacturer(),
                     url, priceModels);
@@ -234,26 +201,9 @@ public class ProductController {
         }
 
         ModelAndView modelAndView = new ModelAndView("productPage");
-       // modelAndView.addObject("productList", allProduct);
-
         modelAndView.addObject("response", response);
-
-
-
-
 
         return modelAndView;
     }
-
-
-//
-//    @GetMapping(path = "/item")
-//    public ProductResponseModel findItem(Integer id) {
-//        ProductResponseModel responseModel = new ProductResponseModel();
-//
-//        return responseModel;
-//    }
-
-
 
 }

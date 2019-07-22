@@ -15,6 +15,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 @Repository
 public class ProductDalImp implements ProductDal {
     private static final Logger logger = LoggerFactory.getLogger(PriceDalImp.class);
@@ -80,6 +81,17 @@ public class ProductDalImp implements ProductDal {
 
     }
 
+    @Override
+    public Product findById(Long id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        Product productById = (Product) session
+                .createQuery(
+                        "select pr from dto.Product pr " +
+                                "where pr.id = :abc")
+                .setParameter("abc", id)
+                .uniqueResult();
+        return productById;
+    }
 
 }
 
