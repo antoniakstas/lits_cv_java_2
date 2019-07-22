@@ -157,23 +157,10 @@ class CartController {
 
         ModelAndView modelAndView = new ModelAndView("cartIsEmpty");
 
-        return modelAndView;
-    }
-
-    @GetMapping(path = "/addToCart")
-    public ModelAndView addToCart() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        if (username == "user") {
-
-        }
-
-        ModelAndView modelAndView = new ModelAndView("cartIsEmpty");
 
         return modelAndView;
 
 
     }
-
 
 }

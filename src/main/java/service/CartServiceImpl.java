@@ -53,7 +53,7 @@ public class CartServiceImpl implements CartService {
     @Override
     @Transactional
     public Optional<Cart> createCart(Cart cart) {
-        Integer cartId = cart.getId();
+        Long cartId = cart.getId();
         boolean cartIdIsInDB = false;
         List<Cart> cartList = cartDal.readAllFromDB();
         for (Cart cart1 : cartList) {

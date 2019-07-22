@@ -4,9 +4,9 @@
 <head>
     <title>auto parts demo</title>
     <meta http-equiv="Content-Type"
-          content="text/html; charset=UTF-8"/>
+          content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{/css/main.css}"
-          href="../css/main.css"/>
+          href="../css/main.css" />
 </head>
 <body>
 <div th:replace="header :: header"/>
@@ -26,11 +26,8 @@
                 <tr style="border-style: solid; margin: 15px;
  border-color: #FF0000;" th:each="cartItem : ${orderItem.cartList}">
                     <td style="border-style: solid;
- border-color: blue; margin: 15px;" th:text="${cartItem.id}">id
-                    </td>
-                    <td style="border-style: solid;
- border-color: blue; margin: 15px;" th:text="${cartItem.order_id}">id
-                    </td>
+ border-color: blue; margin: 15px;" th:text="${cartItem.id}">id</td><td style="border-style: solid;
+ border-color: blue; margin: 15px;" th:text="${cartItem.order_id}">id</td>
                 </tr>
             </table>
         </td>
