@@ -70,15 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     }
 
-    @Autowired
-    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery(
-                        "select name,password from user where name=?")
-                .authoritiesByUsernameQuery(
-                        "select name, id from role where name=?");
-    }
     @Bean
     public AuthenticationFailureHandler authenticationFailureHandler() {
         return new CustomAuthenticationFailureHandler();
