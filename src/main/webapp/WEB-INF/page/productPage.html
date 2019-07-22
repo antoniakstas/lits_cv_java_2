@@ -1,6 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>auto parts demo</title>
 
@@ -11,6 +12,7 @@
 
 </head>
 <body>
+<sec:authorize access="hasRole('USER')">
 
 <div th:replace="header :: header"/>
 <table width="700">
@@ -67,5 +69,6 @@
 
 
 <div th:replace="footer :: footer"/>
+    </sec:authorize>
 </body>
 </html>

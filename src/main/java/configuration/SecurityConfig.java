@@ -38,6 +38,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 //    }
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
+
+        http.authorizeRequests().antMatchers("/product/productPage",
+                "/welcome/homepage",
+                "/downloadFile/infoPageIcon.png",
+                "/downloadFile/cartPageIcon.png",
+                "/downloadFile/homePageIcon.png").permitAll();
         http
 
 
@@ -61,8 +67,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .logoutSuccessHandler(logoutSuccessHandler());
 
 
+
     }
 
+    @Autowired
+    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+
+        auth.jdbcAuthentication().dataSource(dataSource)
+                .usersByUsernameQuery(
+                        "select name,password from user where name=?")
+                .authoritiesByUsernameQuery(
+                        "select name, id from role where name=?");
+    }
     @Bean
     public AuthenticationFailureHandler authenticationFailureHandler() {
         return new CustomAuthenticationFailureHandler();
