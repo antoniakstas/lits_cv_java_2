@@ -97,7 +97,7 @@ public class PriceDalImp implements PriceDal {
         List<Price> priceList = (List<Price>) session
                 .createQuery(
                         "select p from dto.Price p " +
-                                "where p.priceId = :abc")
+                                "where p.id = :abc")
                 .setParameter("abc", priceIdValue)
                 .list();
 
