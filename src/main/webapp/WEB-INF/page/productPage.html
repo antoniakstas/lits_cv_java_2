@@ -53,7 +53,9 @@
                                             <td th:text="${priceItem.count}">someC</td>
                                             <td th:text="${priceItem.active}">someA</td>
                                             <td th:text="${priceItem.deliverydays}">someD</td>
-                                            <td><button>url</button></td>
+                                            <td>
+                                                <a th:href="${priceItem.url}">add to cart</a>
+                                            </td>
                                         </tr>
                                     </table>
                                 </td>

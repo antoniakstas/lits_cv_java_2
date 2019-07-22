@@ -215,13 +215,17 @@ public class ProductController {
             List<PriceModel> priceModels = new ArrayList<>();
 
             for (Price priceItem : allPriceByProductId) {
+
+                Long priceItemId = priceItem.getId();
+                String idPrice = priceItemId.toString();
+                String urlPrice = "http://localhost:8880/application/cart/addToCart?priceId=" + idPrice;
                 PriceModel priceModel = new PriceModel(
                         priceItem.getId(),
                         productItemId,
                         Long.valueOf(priceItem.getValue() * priceItem.getMult()),
                         2L,
                         priceItem.getCount(), priceItem.getActive(),
-                        priceItem.getDeliverydays(), "URL HAS To Be Here");
+                        priceItem.getDeliverydays(), urlPrice);
                 priceModels.add(priceModel);
             }
 

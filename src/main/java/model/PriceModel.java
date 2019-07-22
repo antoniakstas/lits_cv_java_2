@@ -34,6 +34,7 @@ public class PriceModel {
         this.count = count;
         this.active = active;
         this.deliverydays = deliverydays;
+        this.url = url;
 
     }
 

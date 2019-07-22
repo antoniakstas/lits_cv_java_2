@@ -164,8 +164,8 @@ class CartController {
 
     }
 
-    @GetMapping(path = "/addTocart")
-    public ModelAndView addProductToCart() {
+    @GetMapping(path = "/addToCart")
+    public ModelAndView addProductToCart(Integer priceId) {
         ModelAndView modelAndView = new ModelAndView("cart");
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -177,13 +177,12 @@ class CartController {
 
         String status = "not worked out";
 
-        Integer priceId = null;
 
         List<Order> orderList = orderService.findOrderByUserCId(userId, status);
         Order curentOrder = orderList.get(0);
         curentOrder.getId();
         Cart cart = new Cart(null, curentOrder.getId(), 1, priceId);
-
+        cartService.createCart(cart);
 
         return modelAndView;
 
