@@ -3,6 +3,7 @@ package controller;
 
 import com.sun.xml.bind.v2.TODO;
 import dto.*;
+import io.swagger.models.auth.In;
 import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -148,7 +149,7 @@ class CartController {
         List<Cart> cartListList = cartService.readFromDBById(orderid);
         Long priceIdFromCart = Long.valueOf(cartListList.get(0).getPrice_id());
 
-        for (Cart cartItem: cartListList){
+        for (Cart cartItem : cartListList) {
             cartItem.getProduct_count();
         }
         List<Price> priceList = priceService.readAllFromDBByPriceId(priceIdFromCart);
@@ -163,4 +164,32 @@ class CartController {
 
     }
 
+    @GetMapping(path = "/addTocart")
+    public ModelAndView addProductToCart() {
+        ModelAndView modelAndView = new ModelAndView("cart");
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+
+        Integer userId = userService.readUserIdByName(username);
+
+
+        String status = "not worked out";
+
+        Integer priceId = null;
+
+        List<Order> orderList = orderService.findOrderByUserCId(userId, status);
+        Order curentOrder = orderList.get(0);
+        curentOrder.getId();
+        Cart cart = new Cart(null, curentOrder.getId(), 1, priceId);
+
+
+        return modelAndView;
+
+    }
+
+
 }
+
+

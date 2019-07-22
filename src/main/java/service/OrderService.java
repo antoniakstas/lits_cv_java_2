@@ -1,7 +1,9 @@
 package service;
 
 import dto.Order;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 
+import javax.swing.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,5 +18,7 @@ public interface OrderService {
     public void deleteOrder(String index);
 
     public List<Order> findOrderById(Integer id);
+
+    public List<Order> findOrderByUserCId(Integer userCId, String status);
 
 }

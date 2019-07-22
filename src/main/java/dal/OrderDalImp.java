@@ -85,7 +85,21 @@ public class OrderDalImp implements OrderDal {
             return false;
         }
 
-        @Override
+    @Override
+    @Transactional
+    public List<Order> findOrderByUserCId(Integer userCId, String status) {
+        Session session = this.sessionFactory.getCurrentSession();
+       List<Order> orderList = (List<Order>) session
+                .createQuery("select o from dto.Order o " +
+                        "where o.userCId = :abc " +
+                        "and o.status = :asd")
+                .setParameter("abc",userCId)
+                .setParameter("asd", status)
+               .list();
+        return orderList;
+    }
+
+    @Override
         public boolean createOrderInToDB(Order order) {
 //            try {
 //                Connection connection = null;

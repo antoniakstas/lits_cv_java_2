@@ -25,5 +25,5 @@ public interface UserService extends UserDetailsService {
 
     // TODO: do this with security
     public boolean confirmUserRegistration(String username, String password, String email);
-
+    public Integer readUserIdByName(String userName);
 }

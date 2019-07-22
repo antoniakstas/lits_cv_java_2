@@ -18,4 +18,6 @@ public interface OrderDal {
 
         boolean deleteOrder(int id);
 
+        public List<Order> findOrderByUserCId (Integer userCId, String status);
+
     }

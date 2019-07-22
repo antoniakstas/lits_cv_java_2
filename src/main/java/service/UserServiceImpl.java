@@ -73,9 +73,19 @@ public class UserServiceImpl implements UserService {
         return userList;
     }
 
+
+
+
+
     @Override
     public boolean confirmUserRegistration(String username, String password, String email) {
         return false;
+    }
+
+    @Override
+    public Integer readUserIdByName(String userName) {
+
+    return userDal.readUserIdByName(userName);
     }
 
     @Override
