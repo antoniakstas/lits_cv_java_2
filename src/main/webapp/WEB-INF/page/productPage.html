@@ -35,7 +35,9 @@
                             <tr th:each="productItem : ${response}">
 
                                 <td th:text="${productItem.id}">someId</td>
-                                <td th:text="${productItem.index}">someIndex</td>
+                                <td>
+                                    <a th:href="${productItem.url}" th:text="${productItem.index}"></a>
+                                </td>
                                 <td th:text="${productItem.name}">someName</td>
                                 <td th:text="${productItem.manufacturer}">someManufacturer</td>
                                 <td>

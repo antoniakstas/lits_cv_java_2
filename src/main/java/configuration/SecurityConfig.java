@@ -14,9 +14,10 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import javax.sql.DataSource;
 
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
@@ -26,16 +27,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .withUser("manager").password(passwordEncoder().encode("anotherpassword")).roles("MANAGER");
     }
 
-//
-//    @Override
-//    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("user1").password(passwordEncoder().encode("user1Pass")).roles("USER")
-//                .and()
-//                .withUser("user2").password(passwordEncoder().encode("user2Pass")).roles("USER")
-//                .and()
-//                .withUser("manager").password(passwordEncoder().encode("anotherpassword")).roles("MANAGER");
-//    }
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
 
@@ -43,10 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 "/welcome/homepage",
                 "/downloadFile/infoPageIcon.png",
                 "/downloadFile/cartPageIcon.png",
-                "/downloadFile/homePageIcon.png").permitAll();
+                "/downloadFile/homePageIcon.png", "/product/item*").permitAll();
         http
-
-
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/role/**").hasRole("MANAGER")
@@ -55,21 +44,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-//                .loginPage("/login.html")
-//                .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/homepage.html", false)
-//                //.failureUrl("/login.html?error=true")
+                .defaultSuccessUrl("/product/productPage", false)
                 .failureHandler(authenticationFailureHandler())
                 .and()
                 .logout()
                 .logoutUrl("/perform_logout")
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessHandler(logoutSuccessHandler());
-
-
-
     }
-
 
     @Bean
     public AuthenticationFailureHandler authenticationFailureHandler() {

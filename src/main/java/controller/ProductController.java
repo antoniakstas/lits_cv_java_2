@@ -116,10 +116,12 @@ public class ProductController {
 
 
     @GetMapping(path = "/item")
-    public ProductResponseModel findItem(Integer id) {
+    public ModelAndView findItem(Integer id) {
         ProductResponseModel responseModel = new ProductResponseModel();
 
-        return responseModel;
+        ModelAndView modelAndView = new ModelAndView("productItemPage");
+
+        return modelAndView;
     }
 
     @PostMapping(path = "/item")

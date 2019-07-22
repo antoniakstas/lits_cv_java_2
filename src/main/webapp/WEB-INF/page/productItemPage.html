@@ -1,0 +1,40 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>auto parts products info</title>
+
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"
+          href="../css/main.css"/>
+
+</head>
+<body>
+
+
+<div th:replace="header :: header"/>
+<table width="700">
+    <tr>
+        <td>
+            <div th:replace="menu :: menu"/>
+        </td>
+        <td>
+            <table width="550" height="450" bgcolor="5FFA5F" align="center">
+                <tr>
+                    <td align="center">
+                        <h1> Product info here</h1>
+                    <td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+
+</table>
+
+
+<div th:replace="footer :: footer"/>
+</body>
+</html>
