@@ -92,13 +92,17 @@ public class ProductController {
         List<PriceModel> priceModels = new ArrayList<>();
 
         for (Price priceItem : allPriceByProductId) {
+            Long priceItemId = priceItem.getId();
+            String idPrice = priceItemId.toString();
+            String urlPrice = "http://localhost:8880/application/cart/addToCart?priceId=" + idPrice;
+
             PriceModel priceModel = new PriceModel(
                     priceItem.getId(),
                     id,
                     Long.valueOf(priceItem.getValue() * priceItem.getMult()),
                     2L,
                     priceItem.getCount(), priceItem.getActive(),
-                    priceItem.getDeliverydays(), null);
+                    priceItem.getDeliverydays(), urlPrice);
             priceModels.add(priceModel);
         }
         ProductWithPricesResponse item = new ProductWithPricesResponse(id,

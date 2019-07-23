@@ -24,7 +24,42 @@
             <table width="550" height="450" bgcolor="5FFA5F" align="center">
                 <tr>
                     <td align="center">
-                        <h1> Product info here</h1>
+                        <table border="1" align="center">
+                            <tr>
+                                <th>id</th>
+                                <th>index</th>
+                                <th>name</th>
+                                <th>manufacturer</th>
+                            </tr>
+                            <tr>
+                                <td th:text="${productItem.id}">someId</td>
+                                <td>
+                                    <a th:href="${productItem.url}" th:text="${productItem.index}"></a>
+                                </td>
+                                <td th:text="${productItem.name}">someName</td>
+                                <td th:text="${productItem.manufacturer}">someManufacturer</td>
+                                <td>
+                                    <table border="1" align="center">
+                                        <tr>
+                                            <th>value</th>
+                                            <th>count</th>
+                                            <th>active</th>
+                                            <th>deliverydays</th>
+                                        </tr>
+                                        <tr th:each="priceItem : ${productItem.priceModels}">
+                                            <td th:text="${priceItem.value}">someValue</td>
+                                            <td th:text="${priceItem.count}">someC</td>
+                                            <td th:text="${priceItem.active}">someA</td>
+                                            <td th:text="${priceItem.deliverydays}">someD</td>
+                                            <td>
+                                                <a th:href="${priceItem.url}">add to cart</a>
+                                                </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                        </table>
                     <td>
                 </tr>
             </table>
