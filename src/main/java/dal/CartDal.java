@@ -19,7 +19,7 @@ public interface CartDal {
     public Cart updateCart(Cart cart);
     void deleteCart(Long id);
     public List<Cart> readFromDBById(Integer id);
-
+    public List<Cart> readFromDBByOrderId(Integer orderId);
 }
 
 

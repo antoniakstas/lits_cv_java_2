@@ -89,14 +89,15 @@ public class UserDalImp implements UserDal {
 //		queryObject.setParameter("value", userName);
 //		List<User> list = queryObject.list();
 //
-
 		Session session = this.sessionFactory.getCurrentSession();
-		List<User> idUserName = (List<User>) session
+		List<User> userList = (List<User>) session
 				.createQuery(
 						"SELECT u.id FROM dto.User u WHERE u.name = :abc")
 				.setParameter("abc", userName)
 				.list();
-		return idUserName;
+
+
+		return userList;
 	}
 	@Override
 	@Transactional

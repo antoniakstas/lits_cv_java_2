@@ -11,6 +11,9 @@ public class CartResponse {
     private String cancelUrl;
     private String confirmUrl;
 
+    public CartResponse(){
+
+    }
     public CartResponse(String index, String name, String manufacturer, Integer price, String deliverydays, Integer count, String deleteUrl, String cancelUrl, String confirmUrl) {
         this.index = index;
         this.name = name;

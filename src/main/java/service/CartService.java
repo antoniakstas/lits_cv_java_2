@@ -19,4 +19,6 @@ public interface CartService {
     public Optional<Cart> updateCart(Cart cart);
     public Optional<Cart> deleteLine(Long id);
     public List<Cart> readFromDBById(Integer id);
+    public List<Cart> readFromDBByOrderId(Integer orderId);
+
 }

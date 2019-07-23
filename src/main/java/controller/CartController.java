@@ -135,28 +135,38 @@ class CartController {
         String username = authentication.getName();
 
 
-        List<User> allUserListByName = userService.readAllFromDBByName(username);
+//        List<User> allUserListByName = userService.readAllFromDBByName(username);
 //        Integer getUserIdByName = allUserListByName.get(0).getId();
         //TODO: classcastex Integer
 //        for (User userItem : allUserListByName) {
 //            userItem.getId();
 //        }
+        Integer idUserName = userService.readUserIdByName(username);
 
-        Integer idUserName = 2;
-        List<Order> orderList = orderService.findOrderById(idUserName);
+//        Integer idUserName = 2;
+        String status = "not worked out";
+        List<Order> orderList = orderService.findOrderByUserCId(idUserName, status);
         Integer orderid = orderList.get(0).getId();
 
-        List<Cart> cartListList = cartService.readFromDBById(orderid);
+//        List<Cart> cartListList = cartService.readFromDBById(orderid);
+
+        List<Cart> cartListList = cartService.readFromDBByOrderId(orderid);
+
         Long priceIdFromCart = Long.valueOf(cartListList.get(0).getPrice_id());
 
         for (Cart cartItem : cartListList) {
-            cartItem.getProduct_count();
+        CartResponse cartResponse = new CartResponse();
+        cartResponse.setCount(cartItem.getProduct_count());;
+        response.add(cartResponse);
         }
+
         List<Price> priceList = priceService.readAllFromDBByPriceId(priceIdFromCart);
 
 //        Integer idUserName = SELECT id FROM lits_cv_java_2.user where name = 'username';
 
-        ModelAndView modelAndView = new ModelAndView("cartIsEmpty");
+        ModelAndView modelAndView = new ModelAndView("cartByUserName");
+
+        modelAndView.addObject("response", response);
 
 
         return modelAndView;
