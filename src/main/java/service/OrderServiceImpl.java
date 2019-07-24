@@ -1,7 +1,9 @@
 package service;
 
 import dal.OrderDal;
+import dal.UserDal;
 import dto.Order;
+import dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,10 @@ import java.util.Optional;
 @Service
 public class OrderServiceImpl implements OrderService {
 
+
+    @Autowired
+    @Qualifier(value = "userDal")
+    private  UserDal userDal;
     @Autowired
     @Qualifier(value = "orderDal")
     private OrderDal orderDal;
@@ -28,7 +34,23 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Optional<Order> createOrderInToDB(Order order) {
-        return Optional.empty();
+        Integer userIdFromOrder = order.getUserCId();
+        boolean userIdIsInDB = false;
+        List<User> userList = userDal.readAllFromDB();
+        for (User userItem : userList) {
+            if (userIdFromOrder == userItem.getId()) {
+                userIdIsInDB = true;
+                break;
+            }
+
+        }
+
+        if (userIdIsInDB) {
+
+            return Optional.of(this.orderDal.createOrderInToDB(order));
+        }
+        return Optional.of(new Order());
+
     }
 
     @Override
@@ -50,7 +72,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> findOrderByUserCId(Integer userCId, String status) {
+
         return orderDal.findOrderByUserCId(userCId,status);
+
     }
 }
 

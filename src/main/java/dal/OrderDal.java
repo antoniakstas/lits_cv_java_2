@@ -12,7 +12,7 @@ public interface OrderDal {
 
         List<Order> readFromDBById(Integer id);
 
-        boolean createOrderInToDB(Order order);
+        public Order createOrderInToDB(Order order);
 
         boolean updateOrder(int id, Order order);
 

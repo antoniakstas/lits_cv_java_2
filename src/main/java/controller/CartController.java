@@ -155,9 +155,9 @@ class CartController {
         Long priceIdFromCart = Long.valueOf(cartListList.get(0).getPrice_id());
 
         for (Cart cartItem : cartListList) {
-        CartResponse cartResponse = new CartResponse();
-        cartResponse.setCount(cartItem.getProduct_count());;
-        response.add(cartResponse);
+            CartResponse cartResponse = new CartResponse();
+            cartResponse.setCount(cartItem.getProduct_count());
+            response.add(cartResponse);
         }
 
         List<Price> priceList = priceService.readAllFromDBByPriceId(priceIdFromCart);
@@ -184,15 +184,26 @@ class CartController {
 
         Integer userId = userService.readUserIdByName(username);
 
-
         String status = "not worked out";
 
 
         List<Order> orderList = orderService.findOrderByUserCId(userId, status);
-        Order curentOrder = orderList.get(0);
-        curentOrder.getId();
-        Cart cart = new Cart(null, curentOrder.getId(), 1, priceId);
-        cartService.createCart(cart);
+
+
+        if (orderList.isEmpty()) {
+            Order order = new Order(1, status, 1, userId);
+            orderService.createOrderInToDB(order);
+            Cart cart1 = new Cart(null, order.getId(), 1, priceId);
+            cartService.createCart(cart1);
+
+
+        } else {
+            Order curentOrder = orderList.get(0);
+            curentOrder.getId();
+            Cart cart = new Cart(null, curentOrder.getId(), 1, priceId);
+            cartService.createCart(cart);
+        }
+
 
         return modelAndView;
 
