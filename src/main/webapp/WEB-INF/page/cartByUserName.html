@@ -25,12 +25,18 @@
                     <td align="center" valign="top">
                             <table border="1" align="center">
                             <tr>
+                                <th>index</th>
+                                <th>name</th>
+                                <th>manufacturer</th>
                                 <th>count</th>
                                 <th>price</th>
                                 <th>deliverydays</th>
                             </tr>
                             <tr th:each="productItem : ${response}">
 
+                                <td th:text="${productItem.index}">someindex</td>
+                                <td th:text="${productItem.name}">somename</td>
+                                <td th:text="${productItem.manufacturer}">somemanufacturer</td>
                                 <td th:text="${productItem.count}">somecount</td>
                                 <td th:text="${productItem.price}">someprice</td>
                                 <td th:text="${productItem.deliverydays}">somedeliverydays</td>

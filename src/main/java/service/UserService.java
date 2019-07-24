@@ -21,7 +21,7 @@ public interface UserService extends UserDetailsService {
 
     public boolean registerUser(UserRegistrationRequest requestData);
     public List<User> readAllFromDBById(Integer IdValue);
-    public List<User> readAllFromDBByName(String userName);
+    public List<User>  readAllFromDBByName(String userName);
 
     // TODO: do this with security
     public boolean confirmUserRegistration(String username, String password, String email);
