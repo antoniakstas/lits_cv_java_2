@@ -157,6 +157,18 @@ class CartController {
         for (Cart cartItem : cartListList) {
             CartResponse cartResponse = new CartResponse();
             cartResponse.setCount(cartItem.getProduct_count());
+            Long priceItemByCart = Long.valueOf(cartItem.getPrice_id());
+
+            List<Price> allPriceByProductId =
+                    priceService.readAllFromDBByPriceId(priceItemByCart);
+
+            for (Price priceItem : allPriceByProductId) {
+
+                Long priceItemId = priceItem.getId();
+                String idPrice = priceItemId.toString();
+                cartResponse.setPrice((int) (priceItem.getValue()*priceItem.getMult()));
+                cartResponse.setDeliverydays(priceItem.getDeliverydays());
+            }
             response.add(cartResponse);
         }
 

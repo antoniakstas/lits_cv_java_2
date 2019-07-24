@@ -26,10 +26,14 @@
                             <table border="1" align="center">
                             <tr>
                                 <th>count</th>
+                                <th>price</th>
+                                <th>deliverydays</th>
                             </tr>
                             <tr th:each="productItem : ${response}">
 
                                 <td th:text="${productItem.count}">somecount</td>
+                                <td th:text="${productItem.price}">someprice</td>
+                                <td th:text="${productItem.deliverydays}">somedeliverydays</td>
                     <td>
                 </tr>
             </table>
