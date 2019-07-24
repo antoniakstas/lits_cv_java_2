@@ -111,6 +111,8 @@ class CartController {
     public ModelAndView emptyCartPage() {
         List<CartResponse> response = new ArrayList<>();
 
+        Integer summary = 0;
+                
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
@@ -140,10 +142,12 @@ class CartController {
                 cartResponse.setManufacturer(productByProductId.getManufacturer());
             }
             response.add(cartResponse);
+            summary = (cartResponse.getCount()*cartResponse.getPrice())+summary;
         }
         ModelAndView modelAndView = new ModelAndView("cartByUserName");
 
         modelAndView.addObject("response", response);
+        modelAndView.addObject("response2", summary);
 
         return modelAndView;
     }
