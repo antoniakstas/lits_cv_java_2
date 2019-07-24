@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -210,6 +211,17 @@ public class ProductController {
 
         ModelAndView modelAndView = new ModelAndView("productPage");
         modelAndView.addObject("response", response);
+
+        return modelAndView;
+    }
+
+    @GetMapping(path = "/addProductPage")
+    public ModelAndView addPage() {
+
+
+        ModelAndView modelAndView = new ModelAndView("product");
+
+
 
         return modelAndView;
     }
