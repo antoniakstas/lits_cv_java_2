@@ -44,7 +44,7 @@ public class ProductDalImp implements ProductDal {
     @Transactional
     public Product createProductInToDB(Product product) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.persist(product);
+        session.save(product);
         //   session.persist(price);
         logger.info("Product saved successfully, Product Details=" + product);
         return product;

@@ -30,11 +30,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
 
-        http.authorizeRequests().antMatchers("/product/productPage",
+        http.authorizeRequests().antMatchers(
+                "/product/productPage",
                 "/welcome/homepage",
                 "/downloadFile/infoPageIcon.png",
                 "/downloadFile/cartPageIcon.png",
-                "/downloadFile/homePageIcon.png", "/product/item*").permitAll();
+                "/downloadFile/homePageIcon.png",
+                "/product/item*",
+                "/welcome/aboutPage").permitAll();
         http
                 .csrf().disable()
                 .authorizeRequests()
