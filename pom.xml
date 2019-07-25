@@ -20,15 +20,15 @@
 
     </properties>
 
-    <profiles>
-        <profile>
-            <id>litsCvJava2Profile</id>
-            <properties>
-                <db.password>${db.password}</db.password>
-                <db.user>${db.username}</db.user>
-            </properties>
-        </profile>
-    </profiles>
+    <!--<profiles>-->
+        <!--<profile>-->
+            <!--<id>litsCvJava2Profile</id>-->
+            <!--<properties>-->
+                <!--<db.password>${db.password}</db.password>-->
+                <!--<db.user>${db.user}</db.user>-->
+            <!--</properties>-->
+        <!--</profile>-->
+    <!--</profiles>-->
 
     <dependencies>
 
