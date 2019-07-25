@@ -1,0 +1,47 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>auto parts demo</title>
+
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/main.css}"
+          href="../css/main.css"/>
+
+</head>
+<body>
+
+
+<div th:replace="header :: header"/>
+<table width="700">
+    <tr>
+        <td>
+            <div th:replace="menu :: menu"/>
+        </td>
+        <td>
+            <table width="940" height="450" bgcolor="5FFA5F" align="center">
+                <tr>
+                    <td align="center">
+
+                        <h1>Form</h1>
+                        <form action="#" th:action="@{/product/addPr}" th:object="${productForm}" method="post">
+                            <p>index <input type="text" th:field="*{index}" /></p>
+                            <p> name <input type="text" th:field="*{name}" /></p>
+                            <p> manufacturer <input type="text" th:field="*{manufacturer}" /></p>
+                            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+                        </form>
+                    <td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+
+</table>
+
+
+<div th:replace="footer :: footer"/>
+</body>
+</html>

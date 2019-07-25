@@ -28,19 +28,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public Optional<Product> createProductInToDB(Product product) {
-//        int productIdFromProduct = product.getId();
-//        boolean productIdIsInDB = false;
-//        List<Product> productsList = productDal.readAllFromDB();
-//
-//        for (Product productItem : productsList) {
-//            if (productIdFromProduct == productItem.getId()) {
-//                productIdIsInDB = true;
-//                break;
-//            }
-//
-//        }
 
-//        if (productIdIsInDB) {
 
            Optional.of(this.productDal.createProductInToDB(product));
 
@@ -51,28 +39,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public Optional<Product> updateProductInToDB(Product product) {
-//       this.productDal.updateProduct(product);
-
-
-//       String productIdFromProduct = product.getIndex();
-//        boolean productIdIsInDB = false;
-//        List<Product> productsList = productDal.readAllFromDB();
-//        for (Product productItem : productsList) {
-//            if (productIdFromProduct == productItem.getIndex()) {
-//                productIdIsInDB = true;
-//                break;
-//            }
-//
-//        }
-//
-//        if (productIdIsInDB) {
-//
-//
-//            return Optional.of(this.productDal.updateProduct(product));
-//        }
-//        return Optional.of(new Price());
-
-
 
         return Optional.of(this.productDal.updateProduct(product));
     }

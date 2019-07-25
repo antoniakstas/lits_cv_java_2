@@ -6,7 +6,9 @@ import io.swagger.annotations.Api;
 import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.parameters.P;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -109,7 +111,6 @@ public class ProductController {
         ProductWithPricesResponse item = new ProductWithPricesResponse(id,
                 product.getIndex(), product.getName(), product.getManufacturer(),
                 null, priceModels);
-
 
 
         ModelAndView modelAndView = new ModelAndView("productItemPage");
@@ -218,12 +219,28 @@ public class ProductController {
     @GetMapping(path = "/addProductPage")
     public ModelAndView addPage() {
 
+        AddProductModel addProductModel = new AddProductModel();
 
-        ModelAndView modelAndView = new ModelAndView("product");
+        if (addProductModel == null) {
+            addProductModel = new AddProductModel();
 
-
-
+        }
+        ModelAndView modelAndView = new ModelAndView("addProduct");
+        modelAndView.addObject("productForm", addProductModel);
         return modelAndView;
     }
 
+    @PostMapping("/addPr")
+    public ModelAndView Submit(AddProductModel model) {
+        ModelAndView modelAndView = new ModelAndView();
+       model.getIndex();
+       model.getName();
+       model.getManufacturer();
+
+       Product product = new Product((long) 1,model.getIndex(),model.getName(),model.getManufacturer());
+       productService.createProductInToDB(product);
+
+        return new ModelAndView("redirect:/product/productPage");
+    }
 }
+

@@ -23,6 +23,14 @@ public class Product {
 
     }
 
+
+
+    public Product(Long id, String index, String name, String manufacturer) {
+        this.id = id;
+        this.index = index;
+        this.name = name;
+        this.manufacturer = manufacturer;
+    }
     public Product(ProductResponseModel productResponseModel) {
         this.index = productResponseModel.getIndex();
         this.name = productResponseModel.getName();
@@ -36,13 +44,6 @@ public class Product {
 
     public Product(Long id, String name, String manufacturer) {
         this.id = id;
-        this.name = name;
-        this.manufacturer = manufacturer;
-    }
-
-    public Product(Long id, String index, String name, String manufacturer) {
-        this.id = id;
-        this.index = index;
         this.name = name;
         this.manufacturer = manufacturer;
     }
