@@ -24,7 +24,25 @@
             <table width="550" height="450" bgcolor="5FFA5F" align="center">
                 <tr>
                     <td align="center">
-                        <h1> Order info here</h1>
+                        <table border="1" align="center">
+                            <tr>
+                                <th>id</th>
+                                <th>status</th>
+                                <th>user_m_id</th>
+                                <th>user_c_id</th>
+
+                            </tr>
+                            <tr th:each="orderItem : ${ordersList}">
+
+                                <td th:text="${orderItem.id}">someId</td>
+                                <td th:text="${orderItem.status}">someStatus</td>
+                                <td th:text="${orderItem.userMId}">someUserMId</td>
+                                <td th:text="${orderItem.userCId}">someUserCId</td>
+
+
+                            </tr>
+
+                        </table>
                     <td>
                 </tr>
             </table>

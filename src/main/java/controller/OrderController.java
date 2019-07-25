@@ -60,14 +60,16 @@ public class OrderController {
         return orderList;
     }
 
-    @GetMapping(path = "/orderPage")
-    public ModelAndView orderPage() {
+    @GetMapping(path = "/ordersPage")
+    public ModelAndView ordersPage() {
 
+        List<Order> orderList = orderService.findAllOrder();
 
         ModelAndView modelAndView = new ModelAndView("orderPage");
 
-
+        modelAndView.addObject("ordersList", orderList);
 
         return modelAndView;
     }
+
 }
