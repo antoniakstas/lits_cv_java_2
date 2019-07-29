@@ -178,5 +178,30 @@ public class UserController {
         return new ModelAndView("redirect:/user/usersPage");
     }
 
+    @GetMapping(path = "/login")
+    public ModelAndView loginPage() {
+
+        UserModel userModel = new UserModel();
+
+        if (userModel == null) {
+            userModel = new UserModel();
+
+        }
+        ModelAndView modelAndView = new ModelAndView("login");
+        modelAndView.addObject("user", userModel);
+        return modelAndView;
+    }
+    @PostMapping("/login")
+    public ModelAndView SubmitRU(UserModel model) {
+        ModelAndView modelAndView = new ModelAndView();
+        model.getName();
+        model.getPassword();
+
+
+
+        return new ModelAndView("redirect:/welcome/homepage");
+    }
+
+
 
 }
