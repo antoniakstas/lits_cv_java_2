@@ -178,7 +178,7 @@ class CartController {
             cartService.createCart(cart);
         }
 
-        return modelAndView;
+        return new ModelAndView("redirect:/cart/emptyCart");
 
     }
 
