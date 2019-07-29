@@ -76,6 +76,11 @@ public class OrderServiceImpl implements OrderService {
         return orderDal.findOrderByUserCId(userCId,status);
 
     }
+
+    public void updateOrderStatus(Integer orderId){
+        orderDal.updateOrderStatus(orderId);
+    }
+
 }
 
 

@@ -14,6 +14,7 @@ public interface OrderService {
     public Optional<Order> createOrderInToDB(Order order);
 
     public Optional<Order> updateOrderInToDB(Order order);
+    public void updateOrderStatus(Integer orderId);
 
     public void deleteOrder(String index);
 
