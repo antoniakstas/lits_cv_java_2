@@ -145,12 +145,24 @@ class CartController {
             response.add(cartResponse);
             summary = (cartResponse.getCount()*cartResponse.getPrice())+summary;
         }
+
+//        foro){
+//            ModelAndView modelAndViewempty = new ModelAndView("cartisEmpty");
+//            return modelAndViewempty;
+//        }else{
+
+        String urlSubmitCart = "http://localhost:8880/application/cart/emptyCart/submitCart?orderId=" + orderid;
+
         ModelAndView modelAndView = new ModelAndView("cartByUserName");
+            modelAndView.addObject("response", response);
+            modelAndView.addObject("response2", summary);
+            modelAndView.addObject("urLSubmit", urlSubmitCart);
+            return modelAndView;
+//        }
 
-        modelAndView.addObject("response", response);
-        modelAndView.addObject("response2", summary);
 
-        return modelAndView;
+
+
     }
 
     @GetMapping(path = "/addToCart")
@@ -183,4 +195,20 @@ class CartController {
     }
 
 
+    @GetMapping(path ="/emptyCart/submitCart")
+    public ModelAndView SubmitCart(Integer orderId) {
+
+        String urlSubmitCart = "http://localhost:8880/application/cart/emptyCart/submitCart?orderId=" + orderId;
+
+
+        orderService.updateOrderStatus(orderId);
+
+
+        String congratulations = "Congratulations! Order with number "+orderId+ " was confirm.";
+        ModelAndView modelAndView = new ModelAndView("orderConfirm");
+        modelAndView.addObject("text", congratulations);
+
+//        return new ModelAndView("redirect:/product/productPage");
+        return modelAndView;
+    }
 }
