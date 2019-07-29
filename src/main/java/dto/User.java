@@ -14,9 +14,19 @@ public class User {
 	private String name;
 	private String email;
 	private int role_id;
+	@Column(length = 60)
 	private String password;
 	private int address_id;
 	private String status;
+	private String role;
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	public User() {
 	}
@@ -90,7 +100,7 @@ public class User {
 		this.status = status;
 	}
 
-	public User(Integer id, String name, String email, int role_id, String password, int address_id, String status) {
+	public User(Integer id, String name, String email, int role_id, String password, int address_id, String status,String role) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
@@ -98,5 +108,6 @@ public class User {
 		this.password = password;
 		this.address_id = address_id;
 		this.status = status;
+		this.role = role;
 	}
 }

@@ -9,6 +9,7 @@ import model.UserRegistrationRequest;
 import model.UserRegistrationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -32,6 +33,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     @GetMapping(path = "/list")
@@ -81,7 +85,7 @@ public class UserController {
     @GetMapping(path = "/listpage")
     public ModelAndView findAllPage() {
         System.out.println("I'm in the GET method!");
-        UserModel userModel = new UserModel(123, " user name", "url");
+        UserModel userModel = new UserModel();
         ModelAndView model = new ModelAndView("testPage");
         model.addObject("msg", "some message from Controller");
 
@@ -170,13 +174,41 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         model.getName();
         model.getEmail();
-        model.getPassword();
+        passwordEncoder.encode(model.getPassword());
 
-        User user = new User(1,model.getName(),model.getEmail(),1,model.getPassword(),1,"on");
+
+        User user = new User(1,model.getName(),model.getEmail(),1, passwordEncoder.encode(model.getPassword()),1,"on","USER");
         userService.createUserInToDB(user);
 
         return new ModelAndView("redirect:/user/usersPage");
     }
+    @GetMapping(path = "/registerManager")
+    public ModelAndView addPageM() {
+
+        UserModel userModel = new UserModel();
+
+        if (userModel == null) {
+            userModel = new UserModel();
+
+        }
+        ModelAndView modelAndView = new ModelAndView("registrationMan");
+        modelAndView.addObject("user", userModel);
+        return modelAndView;
+    }
+    @PostMapping("/addManager")
+    public ModelAndView SubmitM(UserModel model) {
+        ModelAndView modelAndView = new ModelAndView();
+        model.getName();
+        model.getEmail();
+        passwordEncoder.encode(model.getPassword());
+
+
+        User user = new User(1,model.getName(),model.getEmail(),1, passwordEncoder.encode(model.getPassword()),1,"on","MANAGER");
+        userService.createUserInToDB(user);
+
+        return new ModelAndView("redirect:/user/usersPage");
+    }
+
 
     @GetMapping(path = "/login")
     public ModelAndView loginPage() {

@@ -2,6 +2,8 @@ package configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.*;
@@ -9,7 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import service.UserService;
+import service.UserServiceImpl;
 
 import javax.sql.DataSource;
 
@@ -18,13 +23,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
+    @Bean("authenticationManager")
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("user").password(passwordEncoder().encode("password")).roles("USER")
-                .and()
-                .withUser("manager").password(passwordEncoder().encode("anotherpassword")).roles("MANAGER");
+    private UserService userService;
+
+        @Override
+    protected void configure(AuthenticationManagerBuilder auth)
+            throws Exception {
+        auth.userDetailsService(userService);
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
+        return new MySimpleUrlAuthenticationSuccessHandler();
     }
 
     @Override
@@ -37,7 +53,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/downloadFile/cartPageIcon.png",
                 "/downloadFile/homePageIcon.png",
                 "/product/item*",
-                "/welcome/aboutPage").permitAll();
+                "/welcome/aboutPage",
+                "user/registerUser",
+                "user/addUser",
+                "user/usersPage").permitAll();
         http
                 .csrf().disable()
                 .authorizeRequests()
@@ -45,9 +64,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/anonymous*").anonymous()
                 .antMatchers("/login*").permitAll()
                 .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login.html")
+//                .loginProcessingUrl("/login")
+//                .successHandler(myAuthenticationSuccessHandler())
                 .and()
                 .formLogin()
                 .defaultSuccessUrl("/product/productPage", false)
+                .successHandler(myAuthenticationSuccessHandler())
                 .failureHandler(authenticationFailureHandler())
                 .and()
                 .logout()
@@ -55,6 +80,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessHandler(logoutSuccessHandler());
     }
+
 
     @Bean
     public AuthenticationFailureHandler authenticationFailureHandler() {

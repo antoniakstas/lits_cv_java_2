@@ -92,7 +92,7 @@ public class UserDalImp implements UserDal {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<User> userList = (List<User>) session
 				.createQuery(
-						"SELECT u.id FROM dto.User u WHERE u.name = :abc")
+						"SELECT u FROM dto.User u WHERE u.name = :abc")
 				.setParameter("abc", userName)
 				.list();
 
@@ -113,6 +113,5 @@ public class UserDalImp implements UserDal {
 
 		return idUserListByName.get(0);
 	}
-//	SELECT id FROM lits_cv_java_2.user where name = 'Basil';
-//Query query = session.createQuery("SELECT u.id FROM dto.User u WHERE u.name = 'Basil'");
+
 }
