@@ -152,5 +152,31 @@ public class UserController {
 
         return modelAndView;
     }
+    @GetMapping(path = "/registerUser")
+    public ModelAndView addPage() {
+
+        UserModel userModel = new UserModel();
+
+        if (userModel == null) {
+            userModel = new UserModel();
+
+        }
+        ModelAndView modelAndView = new ModelAndView("registration");
+        modelAndView.addObject("user", userModel);
+        return modelAndView;
+    }
+    @PostMapping("/addUser")
+    public ModelAndView Submit(UserModel model) {
+        ModelAndView modelAndView = new ModelAndView();
+        model.getName();
+        model.getEmail();
+        model.getPassword();
+
+        User user = new User(1,model.getName(),model.getEmail(),1,model.getPassword(),1,"on");
+        userService.createUserInToDB(user);
+
+        return new ModelAndView("redirect:/user/usersPage");
+    }
+
 
 }

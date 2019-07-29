@@ -1,0 +1,13 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<h1>Registration</h1>
+<form action="#" th:action="@{/user/addUser}" th:object="${user}" method="POST" enctype="utf8">
+        <p> UserName <input type="text" th:field="*{name}" /></p>
+        <p> Email <input type="text" th:field="*{email}" /></p>
+        <p> Password <input type="text" th:field="*{password}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>
