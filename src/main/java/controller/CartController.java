@@ -119,47 +119,52 @@ class CartController {
         Integer idUserName = userService.readUserIdByName(username);
         String status = "not worked out";
         List<Order> orderList = orderService.findOrderByUserCId(idUserName, status);
-        Integer orderid = orderList.get(0).getId();
 
-        List<Cart> cartListList = cartService.readFromDBByOrderId(orderid);
+        if (orderList.isEmpty()){
+            ModelAndView modelAndViewempty = new ModelAndView("cartIsEmpty");
+            return modelAndViewempty;
+        }else{
+            Integer orderid = orderList.get(0).getId();
+
+            List<Cart> cartListList = cartService.readFromDBByOrderId(orderid);
 
 
-        for (Cart cartItem : cartListList) {
-            CartResponse cartResponse = new CartResponse();
-            cartResponse.setCount(cartItem.getProduct_count());
-            Long priceItemByCart = Long.valueOf(cartItem.getPrice_id());
+            for (Cart cartItem : cartListList) {
+                CartResponse cartResponse = new CartResponse();
+                cartResponse.setCount(cartItem.getProduct_count());
+                Long priceItemByCart = Long.valueOf(cartItem.getPrice_id());
 
-            List<Price> allPriceByProductId =
-                    priceService.readAllFromDBByPriceId(priceItemByCart);
+                List<Price> allPriceByProductId =
+                        priceService.readAllFromDBByPriceId(priceItemByCart);
 
-            for (Price priceItem : allPriceByProductId) {
-                cartResponse.setPrice((int) (priceItem.getValue() * priceItem.getMult()));
-                cartResponse.setDeliverydays(priceItem.getDeliverydays());
-                Long productItemByPrice = priceItem.getProductId();
-                Product productByProductId =
-                        productService.findById(productItemByPrice);
-                cartResponse.setIndex(productByProductId.getIndex());
-                cartResponse.setName(productByProductId.getName());
-                cartResponse.setManufacturer(productByProductId.getManufacturer());
+                for (Price priceItem : allPriceByProductId) {
+                    cartResponse.setPrice((int) (priceItem.getValue() * priceItem.getMult()));
+                    cartResponse.setDeliverydays(priceItem.getDeliverydays());
+                    Long productItemByPrice = priceItem.getProductId();
+                    Product productByProductId =
+                            productService.findById(productItemByPrice);
+                    cartResponse.setIndex(productByProductId.getIndex());
+                    cartResponse.setName(productByProductId.getName());
+                    cartResponse.setManufacturer(productByProductId.getManufacturer());
+                }
+                response.add(cartResponse);
+                summary = (cartResponse.getCount() * cartResponse.getPrice()) + summary;
             }
-            response.add(cartResponse);
-            summary = (cartResponse.getCount()*cartResponse.getPrice())+summary;
-        }
 
-//        foro){
+
+
+
+
+                String urlSubmitCart = "http://localhost:8880/application/cart/emptyCart/submitCart?orderId=" + orderid;
+
+                ModelAndView modelAndView = new ModelAndView("cartByUserName");
+                modelAndView.addObject("response", response);
+                modelAndView.addObject("response2", summary);
+                modelAndView.addObject("urLSubmit", urlSubmitCart);
+                return modelAndView;
+            }
 //            ModelAndView modelAndViewempty = new ModelAndView("cartisEmpty");
 //            return modelAndViewempty;
-//        }else{
-
-        String urlSubmitCart = "http://localhost:8880/application/cart/emptyCart/submitCart?orderId=" + orderid;
-
-        ModelAndView modelAndView = new ModelAndView("cartByUserName");
-            modelAndView.addObject("response", response);
-            modelAndView.addObject("response2", summary);
-            modelAndView.addObject("urLSubmit", urlSubmitCart);
-            return modelAndView;
-//        }
-
 
 
 
