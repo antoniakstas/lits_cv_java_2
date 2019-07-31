@@ -180,7 +180,7 @@ public class UserController {
         User user = new User(1,model.getName(),model.getEmail(),1, passwordEncoder.encode(model.getPassword()),1,"on","USER");
         userService.createUserInToDB(user);
 
-        return new ModelAndView("redirect:/user/usersPage");
+        return new ModelAndView("redirect:/user/thankForRegister");
     }
     @GetMapping(path = "/registerManager")
     public ModelAndView addPageM() {
@@ -206,7 +206,7 @@ public class UserController {
         User user = new User(1,model.getName(),model.getEmail(),1, passwordEncoder.encode(model.getPassword()),1,"on","MANAGER");
         userService.createUserInToDB(user);
 
-        return new ModelAndView("redirect:/user/usersPage");
+        return new ModelAndView("redirect:/user/thankForRegister");
     }
 
 
@@ -228,12 +228,22 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         model.getName();
         model.getPassword();
+      //  userService.loadUserByUsername(model.getName());
+        modelAndView.addObject(model);
 
 
 
-        return new ModelAndView("redirect:/welcome/homepage");
+        return modelAndView;
     }
 
+    @GetMapping(path = "/thankForRegister")
+    public ModelAndView thankForRegister() {
+
+
+        ModelAndView modelAndView = new ModelAndView("thankForRegister");
+
+        return modelAndView;
+    }
 
 
 }

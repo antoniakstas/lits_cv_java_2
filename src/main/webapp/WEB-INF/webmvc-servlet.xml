@@ -30,7 +30,7 @@
     <property name="paramName" value="locale"> </property>
 
 </bean>
-
+    <mvc:resources mapping="/css/**" location="classpath:/static/css/" />
     <mvc:interceptors>
         <bean id="anyInterceptor" class="interceptor.MyCustomInterceptor"/>
     </mvc:interceptors>

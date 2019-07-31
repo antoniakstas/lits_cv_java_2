@@ -92,7 +92,7 @@ public class UserDalImp implements UserDal {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<User> userList = (List<User>) session
 				.createQuery(
-						"SELECT u FROM dto.User u WHERE u.name = :abc")
+						"select u from dto.User u where u.name = :abc")
 				.setParameter("abc", userName)
 				.list();
 

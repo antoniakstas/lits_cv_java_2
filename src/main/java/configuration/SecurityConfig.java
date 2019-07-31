@@ -54,16 +54,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/downloadFile/homePageIcon.png",
                 "/product/item*",
                 "/welcome/aboutPage",
-                "user/registerUser",
-                "user/addUser",
-                "user/usersPage").permitAll();
+                "/user/login",
+                "/user/registerUser",
+                "/user/addUser",
+                "/user/addManager",
+                "/user/registerManager",
+                "/user/thankForRegister"
+
+        ).permitAll();
         http
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/role/**").hasRole("MANAGER")
                 .antMatchers("/anonymous*").anonymous()
                 .antMatchers("/login*").permitAll()
-                .anyRequest().authenticated()
+               .anyRequest().authenticated()
 //                .and()
 //                .formLogin()
 //                .loginPage("/login.html")
@@ -71,7 +76,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .successHandler(myAuthenticationSuccessHandler())
                 .and()
                 .formLogin()
+                .loginPage("/user/login")
+                .loginProcessingUrl("/user/login")
                 .defaultSuccessUrl("/product/productPage", false)
+                .usernameParameter("name")
+                .passwordParameter("password")
                 .successHandler(myAuthenticationSuccessHandler())
                 .failureHandler(authenticationFailureHandler())
                 .and()
