@@ -1,0 +1,55 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>auto parts demo</title>
+
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"
+          href="../css/main.css"/>
+
+</head>
+<body>
+<div th:replace="header :: header"/>
+<table width="700">
+    <tr>
+        <td>
+            <div th:replace="menu :: menu"/>
+        </td>
+        <td>
+            <table width="550" height="450" bgcolor="5FFA5F" align="center">
+                <th align="center"><a>
+                    <tr>
+                        <th>index</th>
+                        <th>name</th>
+                        <th>manufacturer</th>
+                        <th>count</th>
+                        <th>price</th>
+                        <th>deliverydays</th>
+                    </tr>
+                    <tr th:each="productItem : ${response}">
+
+                        <td th:text="${productItem.index}">someindex</td>
+                        <td th:text="${productItem.name}">somename</td>
+                        <td th:text="${productItem.manufacturer}">somemanufacturer</td>
+                        <td th:text="${productItem.count}">somecount</td>
+                        <td th:text="${productItem.price}">someprice</td>
+                        <td th:text="${productItem.deliverydays}">somedeliverydays</td>
+
+                        <td>
+                    </tr>
+            </table>
+            <span th:text="${response2}"></span>
+          <button>   <a th:href="${urlCloseOrder}" th:text="closeOrder"></a> </button>
+
+        </td>
+    </tr>
+
+
+</table>
+
+
+<div th:replace="footer :: footer"/>
+</body>
+</html>

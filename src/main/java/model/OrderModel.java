@@ -58,6 +58,10 @@ public class OrderModel {
         this.user_c_id = user_c_id;
     }
 
+
+    public OrderModel() {
+    }
+
     public OrderModel(int id, String status, int user_m_id, int user_c_id, String url) {
         this.id = id;
         this.status = status;

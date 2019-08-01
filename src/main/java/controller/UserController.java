@@ -140,7 +140,7 @@ public class UserController {
 
         ModelAndView modelAndView = new ModelAndView("userPage");
         modelAndView.addObject("user1", userList);
-
+        
 
         return modelAndView;
     }

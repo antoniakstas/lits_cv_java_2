@@ -36,8 +36,11 @@
 
                                 <td th:text="${orderItem.id}">someId</td>
                                 <td th:text="${orderItem.status}">someStatus</td>
-                                <td th:text="${orderItem.userMId}">someUserMId</td>
-                                <td th:text="${orderItem.userCId}">someUserCId</td>
+                                <td th:text="${orderItem.user_m_id}">someUser_m_id</td>
+                                <td th:text="${orderItem.user_c_id}">someUser_c_id</td>
+                                <td>
+                                    <a th:href="${orderItem.url}">url</a>
+                                </td>
 
 
                             </tr>
