@@ -262,22 +262,21 @@ public class ProductController {
 
         ClassPathResource imgFile = new ClassPathResource("/image/product/" + ineg + ".jpg");
 
-try {
-    return ResponseEntity
-            .ok()
-            .contentType(MediaType.IMAGE_JPEG)
-            .body(new InputStreamResource(imgFile.getInputStream()));
-}catch (FileNotFoundException ex){
-    ClassPathResource imgFile1 = new ClassPathResource("/image/product/dafaultPage.jpg");
-
-    return ResponseEntity
-            .ok()
-            .contentType(MediaType.IMAGE_JPEG)
-            .body(new InputStreamResource(imgFile1.getInputStream()));
-
-}
+        try {
+            return ResponseEntity
+                    .ok()
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .body(new InputStreamResource(imgFile.getInputStream()));
+        } catch (FileNotFoundException ex) {
+            ClassPathResource imgFile1 = new ClassPathResource("/image/product/dafaultPage.jpg");
 
 
+            return ResponseEntity
+                    .ok()
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .body(new InputStreamResource(imgFile1.getInputStream()));
+
+        }
 
 
     }
