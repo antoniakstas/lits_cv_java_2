@@ -1,9 +1,12 @@
 package controller;
 
 
+import crunchify.com.tutorials.CrunchifyEmailAPI;
 import dto.*;
 import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -151,10 +154,6 @@ class CartController {
                 summary = (cartResponse.getCount() * cartResponse.getPrice()) + summary;
             }
 
-
-
-
-
                 String urlSubmitCart = "http://localhost:8880/application/cart/emptyCart/submitCart?orderId=" + orderid;
 
                 ModelAndView modelAndView = new ModelAndView("cartByUserName");
@@ -163,10 +162,6 @@ class CartController {
                 modelAndView.addObject("urLSubmit", urlSubmitCart);
                 return modelAndView;
             }
-//            ModelAndView modelAndViewempty = new ModelAndView("cartisEmpty");
-//            return modelAndViewempty;
-
-
 
     }
 
@@ -192,7 +187,6 @@ class CartController {
             Order curentOrder = orderList.get(0);
             Integer orderId = curentOrder.getId();
 
-
             Cart cartItem = cartService.readByOrderIdAndPriceId(orderId, priceId);
             if (cartItem == null){
                 Cart cart = new Cart(null, curentOrder.getId(), 1, priceId);
@@ -209,21 +203,35 @@ class CartController {
 
     }
 
-
     @GetMapping(path ="/emptyCart/submitCart")
     public ModelAndView SubmitCart(Integer orderId) {
 
         String urlSubmitCart = "http://localhost:8880/application/cart/emptyCart/submitCart?orderId=" + orderId;
 
-
         orderService.updateOrderStatus(orderId);
-
 
         String congratulations = "Congratulations! Order with number "+orderId+ " was confirm.";
         ModelAndView modelAndView = new ModelAndView("orderConfirm");
         modelAndView.addObject("text", congratulations);
 
-//        return new ModelAndView("redirect:/product/productPage");
+        String crunchifyConfFile = "email-bean.xml";
+        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(crunchifyConfFile);
+        CrunchifyEmailAPI crunchifyEmailAPI = (CrunchifyEmailAPI) context.getBean("crunchifyEmail");
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        List <User> userList = userService.readAllFromDBByName(username);
+        String toAddr = userList.get(0).getEmail();
+        String fromAddr = "ilia97ap76@gmail.com";
+        String subject = "AutoParts Order";
+        String body = "Thank you. Order number " + orderId + " was confirmed. ";
+        crunchifyEmailAPI.crunchifyReadyToSendEmail(toAddr, fromAddr, subject, body);
+
+        String bodyForManager = "New Order! Order number " + orderId + " was confirmed by " + userList.get(0).getName() +
+                " , " + userList.get(0).getEmail();
+        crunchifyEmailAPI.crunchifyReadyToSendEmail(fromAddr, fromAddr, subject, bodyForManager);
+
         return modelAndView;
     }
 }
