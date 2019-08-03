@@ -21,9 +21,11 @@
             <div th:replace="menu :: menu"/>
         </td>
         <td>
-            <table width="550" height="450" bgcolor="5FFA5F" align="center">
+            <table width="940" height="700" bgcolor="5FFA5F" align="center">
                 <tr>
                     <td align="center">
+<!--                        <img src="http://localhost:8880/application/product/image/"+{productItem.id}  width="50" height="50">-->
+                        <img th:src="@{${'/product/image/' + productItem.id}}" title="TODO" />
                         <table border="1" align="center">
                             <tr>
                                 <th>id</th>
@@ -32,6 +34,7 @@
                                 <th>manufacturer</th>
                             </tr>
                             <tr>
+
                                 <td th:text="${productItem.id}">someId</td>
                                 <td>
                                     <a th:href="${productItem.url}" th:text="${productItem.index}"></a>
@@ -55,6 +58,8 @@
                                                 <a th:href="${priceItem.url}">add to cart</a>
                                                 </td>
                                         </tr>
+
+
                                     </table>
                                 </td>
                             </tr>

@@ -24,13 +24,15 @@ public class FileController {
 
     @Autowired
     private FileStorageService fileStorageService;
+    @Autowired
+    private FileStorageService fileStorageService1;
 
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(
             @RequestParam("file") MultipartFile file) {
 
         String fileName =
-                fileStorageService.storeFile(file);
+                fileStorageService1.storeFile(file);
 
         String fileDownloadUri =
                 ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -61,6 +63,25 @@ public class FileController {
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(contentType))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
+
+    }
+    @GetMapping("/downloadFile1/{id:.+}")
+    public ResponseEntity<Resource> downloadFile1(@PathVariable String id, HttpServletRequest request) {
+        Resource resource = fileStorageService.loadFileAsResource1(id);
+        String contentType = null;
+        try {
+            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+        } catch (IOException ex) {
+            logger.info("Could not determine file type.");
+        }
+        if(contentType == null) {
+            contentType = "application/octet-stream";
+        }
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; id=\"" + resource.getFilename() + "\"")
                 .body(resource);
     }
 

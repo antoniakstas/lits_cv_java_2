@@ -1,6 +1,7 @@
 package controller;
 
 
+import crunchify.com.tutorials.CrunchifyEmailAPI;
 import dal.UserDalImp;
 import dto.User;
 import model.ResponseModel;
@@ -8,7 +9,9 @@ import model.UserModel;
 import model.UserRegistrationRequest;
 import model.UserRegistrationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.MessageSource;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -239,6 +242,21 @@ public class UserController {
     @GetMapping(path = "/thankForRegister")
     public ModelAndView thankForRegister() {
 
+        // Spring Bean file you specified in /src/main/resources folder
+        String crunchifyConfFile = "crunchify-bean.xml";
+        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(crunchifyConfFile);
+
+        // @Service("crunchifyEmail") <-- same annotation you specified in CrunchifyEmailAPI.java
+        CrunchifyEmailAPI crunchifyEmailAPI = (CrunchifyEmailAPI) context.getBean("crunchifyEmail");
+        String toAddr = "ilia97ap76@gmail.com";
+        String fromAddr = "ilia97ap76@gmail.com";
+
+        // email subject
+        String subject = "Hey.. This email sent by Crunchify's Spring MVC Tutorial";
+
+        // email body
+        String body = "There you go.. You got an email.. Let's understand details on how Spring MVC works -- By Crunchify Admin";
+        crunchifyEmailAPI.crunchifyReadyToSendEmail(toAddr, fromAddr, subject, body);
 
         ModelAndView modelAndView = new ModelAndView("thankForRegister");
 

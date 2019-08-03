@@ -2,12 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <body>
-<h1>Registration Manager</h1>
+<h1 align="center">Registration Manager</h1>
 <form action="#" th:action="@{/user/addManager}" th:object="${user}" method="POST" enctype="utf8">
-    <p> UserName <input type="text" th:field="*{name}" /></p>
-    <p> Email <input type="text" th:field="*{email}" /></p>
-    <p> Password <input type="text" th:field="*{password}" /></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    <table width="420" height="160" border="1" bgcolor="5FFA5F" align="center">
+        <tr>
+            <td>UserName:</td>
+            <td><input type='text' name='username' value=''th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type='text' name='email' th:field="*{email}"/></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type='password' name='password' th:field="*{password}"/></td>
+        </tr>
+        <tr>
+
+            <td><input name="submit" type="submit" value="Submit" /><input type="reset" value="Reset" /></td>
+
+        </tr>
+
+    </table>
 </form>
 </body>
 </html>

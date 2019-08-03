@@ -149,7 +149,9 @@
 
     <bean name="javaSecurityConfig" class="configuration.SecurityConfig" />
 
-<!--    <import resource="resources/ crunchify-beans.xml"/>-->
+    <import resource="classpath:crunchify-bean.xml"/>
+
+
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 

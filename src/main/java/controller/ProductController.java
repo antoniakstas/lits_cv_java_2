@@ -6,16 +6,20 @@ import io.swagger.annotations.Api;
 import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.security.core.parameters.P;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import service.FileStorageService;
 import service.PriceService;
 import service.ProductService;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -30,6 +34,9 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private FileStorageService fileStorageService1;
 
     @Autowired
     private PriceService priceService;
@@ -231,16 +238,33 @@ public class ProductController {
     }
 
     @PostMapping("/addPr")
-    public ModelAndView Submit(AddProductModel model) {
+    public ModelAndView Submit(@RequestParam("file") MultipartFile file, AddProductModel model) {
         ModelAndView modelAndView = new ModelAndView();
-       model.getIndex();
-       model.getName();
-       model.getManufacturer();
 
-       Product product = new Product((long) 1,model.getIndex(),model.getName(),model.getManufacturer());
-       productService.createProductInToDB(product);
+        model.getIndex();
+        model.getName();
+        model.getManufacturer();
 
+        Product product = new Product((long) 1, model.getIndex(), model.getName(), model.getManufacturer());
+        productService.createProductInToDB(product);
+        String fileName =
+                fileStorageService1.storeFile1(file, product.getId());
         return new ModelAndView("redirect:/product/productPage");
     }
+
+
+    @RequestMapping(value = "/image/{id}", method = RequestMethod.GET,
+            produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<InputStreamResource> getImage(@PathVariable Long id) throws IOException {
+        Product product = productService.findById(id);
+        Long ineg = product.getId();
+        ClassPathResource imgFile = new ClassPathResource("/image/product/" + ineg + ".jpg");
+
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(new InputStreamResource(imgFile.getInputStream()));
+    }
 }
+
 

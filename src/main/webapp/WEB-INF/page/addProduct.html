@@ -21,17 +21,22 @@
             <div th:replace="menu :: menu"/>
         </td>
         <td>
-            <table width="940" height="450" bgcolor="5FFA5F" align="center">
+            <table width="940" height="700" bgcolor="5FFA5F" align="center">
                 <tr>
                     <td align="center">
 
                         <h1>Form</h1>
-                        <form action="#" th:action="@{/product/addPr}" th:object="${productForm}" method="post">
+                        <form action="#" th:action="@{/product/addPr}" th:object="${productForm}" method="post" enctype="multipart/form-data">
                             <p>index <input type="text" th:field="*{index}" /></p>
                             <p> name <input type="text" th:field="*{name}" /></p>
                             <p> manufacturer <input type="text" th:field="*{manufacturer}" /></p>
+                            <p><label path="file">Select a file to upload</label></p>
+                            <p><input type="file" name="file" /></p>
+
                             <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
                         </form>
+
+                                                <td>
                     <td>
                 </tr>
             </table>
