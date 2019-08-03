@@ -22,7 +22,7 @@ public class FileStorageService {
     public FileStorageService() {
         this.fileStorageLocation = Paths.get("myCustomDirectory/")
                 .toAbsolutePath().normalize();
-        this.fileStorageLocation1 = Paths.get("myCustomDirectory/images/product/")
+        this.fileStorageLocation1 = Paths.get("src/main/resources/image/product")
                 .toAbsolutePath().normalize();
 
 

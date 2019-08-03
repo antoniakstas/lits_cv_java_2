@@ -149,7 +149,7 @@
 
     <bean name="javaSecurityConfig" class="configuration.SecurityConfig" />
 
-    <import resource="classpath:crunchify-bean.xml"/>
+    <import resource="classpath:email-bean.xml"/>
 
 
     <bean id="multipartResolver"

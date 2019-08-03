@@ -2,9 +2,7 @@ package controller;
 
 
 import crunchify.com.tutorials.CrunchifyEmailAPI;
-import dal.UserDalImp;
 import dto.User;
-import model.ResponseModel;
 import model.UserModel;
 import model.UserRegistrationRequest;
 import model.UserRegistrationResponse;
@@ -243,7 +241,7 @@ public class UserController {
     public ModelAndView thankForRegister() {
 
         // Spring Bean file you specified in /src/main/resources folder
-        String crunchifyConfFile = "crunchify-bean.xml";
+        String crunchifyConfFile = "email-bean.xml";
         ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(crunchifyConfFile);
 
         // @Service("crunchifyEmail") <-- same annotation you specified in CrunchifyEmailAPI.java

@@ -14,7 +14,7 @@ public class CrunchifyEmailTest {
     public static void main(String args[]) {
 
         // Spring Bean file you specified in /src/main/resources folder
-        String crunchifyConfFile = "crunchify-bean.xml";
+        String crunchifyConfFile = "email-bean.xml";
         ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(crunchifyConfFile);
 
         // @Service("crunchifyEmail") <-- same annotation you specified in CrunchifyEmailAPI.java
