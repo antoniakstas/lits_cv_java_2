@@ -18,12 +18,32 @@
             <div th:replace="menu :: menu"/>
         </td>
         <td>
-            <table width="940" height="700" bgcolor="5FFA5F" align="center">
-                <th align="center"><a>
-                    </a></th>
-                <tr>
-                    <td align="center" valign="top">
-                            <table border="1" align="center">
+            <style>
+#autoParts {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#autoParts td, #autoParts th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#autoParts tr:nth-child(even){background-color: #f2f2f2;}
+
+#autoParts tr:hover {background-color: #ddd;}
+
+#autoParts th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+
+            <table id="autoParts">
                             <tr>
                                 <th>index</th>
                                 <th>name</th>

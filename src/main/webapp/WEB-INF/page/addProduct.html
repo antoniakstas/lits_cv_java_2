@@ -21,22 +21,39 @@
             <div th:replace="menu :: menu"/>
         </td>
         <td>
-            <table width="940" height="700" bgcolor="5FFA5F" align="center">
-                <tr>
-                    <td align="center">
+            <style>
+#autoParts {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 200%;
+}
 
+#autoParts td, #autoParts th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#autoParts tr:nth-child(even){background-color: #f2f2f2;}
+
+#autoParts tr:hover {background-color: #ddd;}
+
+#autoParts th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+
+            <table id="autoParts">
                         <h1>Form</h1>
-                        <form action="#" th:action="@{/product/addPr}" th:object="${productForm}" method="post" enctype="multipart/form-data">
+                        <form action="#" th:action="@{/product/addPr}" th:object="${productForm}" method="post">
                             <p>index <input type="text" th:field="*{index}" /></p>
                             <p> name <input type="text" th:field="*{name}" /></p>
                             <p> manufacturer <input type="text" th:field="*{manufacturer}" /></p>
-                            <p><label path="file">Select a file to upload</label></p>
-                            <p><input type="file" name="file" /></p>
-
                             <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
                         </form>
-
-                                                <td>
                     <td>
                 </tr>
             </table>
