@@ -21,15 +21,38 @@
             <div th:replace="menu :: menu"/>
         </td>
         <td>
-            <table width="940" height="700" bgcolor="5FFA5F" align="center">
-                <tr>
-                    <td align="center">
-                        <table border="1" align="center">
+            <style>
+#autoParts {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#autoParts td, #autoParts th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#autoParts tr:nth-child(even){background-color: #f2f2f2;}
+
+#autoParts tr:hover {background-color: #ddd;}
+
+#autoParts th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+
+            <table id="autoParts">
                             <tr>
                                 <th>id</th>
                                 <th>status</th>
                                 <th>user_m_id</th>
                                 <th>user_c_id</th>
+                                <th>URL</th>
 
                             </tr>
                             <tr th:each="orderItem : ${ordersList}">

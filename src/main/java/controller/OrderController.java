@@ -108,14 +108,11 @@ public class OrderController {
         modelAndView.addObject("response", response);
         modelAndView.addObject("response2", summary);
 
-        String urlCloseOrder = "http://localhost:8880/application/order/listById?orderId=" + orderId;
+        String urlCloseOrder = "http://localhost:8880/application/order/ordersPage";
 
         modelAndView.addObject("urlCloseOrder", urlCloseOrder);
         return modelAndView;
     }
-
-    ModelAndView modelAndView = new ModelAndView("ordersPage");
-
 
     @GetMapping(path = "/ordersPage")
     public ModelAndView ordersPage() {
