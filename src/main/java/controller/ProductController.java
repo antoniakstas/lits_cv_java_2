@@ -19,6 +19,7 @@ import service.PriceService;
 import service.ProductService;
 
 import javax.validation.Valid;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -258,13 +259,29 @@ public class ProductController {
     public ResponseEntity<InputStreamResource> getImage(@PathVariable Long id) throws IOException {
         Product product = productService.findById(id);
         Long ineg = product.getId();
+
         ClassPathResource imgFile = new ClassPathResource("/image/product/" + ineg + ".jpg");
 
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_JPEG)
-                .body(new InputStreamResource(imgFile.getInputStream()));
+try {
+    return ResponseEntity
+            .ok()
+            .contentType(MediaType.IMAGE_JPEG)
+            .body(new InputStreamResource(imgFile.getInputStream()));
+}catch (FileNotFoundException ex){
+    ClassPathResource imgFile1 = new ClassPathResource("/image/product/dafaultPage.jpg");
+
+    return ResponseEntity
+            .ok()
+            .contentType(MediaType.IMAGE_JPEG)
+            .body(new InputStreamResource(imgFile1.getInputStream()));
+
+}
+
+
+
+
     }
+
 }
 
 
