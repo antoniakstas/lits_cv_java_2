@@ -20,6 +20,7 @@ public interface CartDal {
     void deleteCart(Long id);
     public List<Cart> readFromDBById(Integer id);
     public List<Cart> readFromDBByOrderId(Integer orderId);
-}
+    public Cart readByOrderIdAndPriceId(Integer orderId, Integer priceid);
+    }
 
 

@@ -65,7 +65,22 @@ public class CartDalImp implements CartDal {
 
         return cartList;
     }
+
     @Override
+    @Transactional
+    public Cart readByOrderIdAndPriceId(Integer orderId, Integer priceid){
+        Session session = this.sessionFactory.getCurrentSession();
+        Cart cart = (Cart) session
+                .createQuery("from dto.Cart c " +
+                        "where c.order_id = :abc " +
+                        "and c.price_id = :bcm")
+                .setParameter("abc",orderId)
+                .setParameter("bcm", priceid)
+                .uniqueResult();
+        return cart;
+    }
+
+        @Override
     @Transactional
     public List<Cart> readFromDBByOrderId(Integer orderId){
         Session session = this.sessionFactory.getCurrentSession();

@@ -190,9 +190,19 @@ class CartController {
             cartService.createCart(cart1);
         } else {
             Order curentOrder = orderList.get(0);
-            curentOrder.getId();
-            Cart cart = new Cart(null, curentOrder.getId(), 1, priceId);
-            cartService.createCart(cart);
+            Integer orderId = curentOrder.getId();
+
+
+            Cart cartItem = cartService.readByOrderIdAndPriceId(orderId, priceId);
+            if (cartItem == null){
+                Cart cart = new Cart(null, curentOrder.getId(), 1, priceId);
+                cartService.createCart(cart);
+            }else{
+                Integer newProductCount = cartItem.getProduct_count()+1;
+                cartItem.setProduct_count(newProductCount);
+                cartService.updateCart(cartItem);
+            }
+
         }
 
         return new ModelAndView("redirect:/cart/emptyCart");
