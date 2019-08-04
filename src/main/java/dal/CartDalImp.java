@@ -113,9 +113,10 @@ public class CartDalImp implements CartDal {
 
     @Override
     @Transactional
-    public void deleteCart(Long id) {
+    public void deleteCart(Integer id) {
         Session session = this.sessionFactory.getCurrentSession();
-        Cart cart = (Cart) session.load(Cart.class, Long.valueOf(id));
+//        Cart cart = (Cart) session.load(Cart.class, Long.valueOf(id));
+        Cart cart = session.load(Cart.class, id);
         if (cart != null) {
             session.delete(cart);
             logger.info("Cart deleted successfully, Cart Details=" + cart);

@@ -37,7 +37,7 @@
 #autoParts th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
+  text-align: center;
   background-color: #4CAF50;
   color: white;
 }
@@ -51,6 +51,7 @@
                                 <th>count</th>
                                 <th>price</th>
                                 <th>deliverydays</th>
+                                <th>delete</th>
                             </tr>
                             <tr th:each="productItem : ${response}">
 
@@ -60,11 +61,18 @@
                                 <td th:text="${productItem.count}">somecount</td>
                                 <td th:text="${productItem.price}">someprice</td>
                                 <td th:text="${productItem.deliverydays}">somedeliverydays</td>
-                    <td>
+                                <td>
+                                    <a th:href="${productItem.deleteUrl}">delete</a>
+                                </td>
+<!--                    <td>-->
                 </tr>
             </table>
+
+
+
                         <span th:text="${response2}"></span>
                         <a th:href="${urLSubmit}" th:text="submit"></a>
+
 
                     </td>
     </tr>
