@@ -2,7 +2,6 @@
 package dal;
 
 import dto.Order;
-import dto.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -10,10 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class OrderDalImp implements OrderDal {
@@ -61,6 +57,19 @@ public class OrderDalImp implements OrderDal {
 
     @Override
     @Transactional
+    public void deleteOrder(Integer id) {
+        Session session = this.sessionFactory.getCurrentSession();
+//        Cart cart = (Cart) session.load(Cart.class, Long.valueOf(id));
+        Order order = session.load(Order.class, id);
+        if (order != null) {
+            session.delete(order);
+            logger.info("order deleted successfully, order Details=" + order);
+        }
+    }
+
+
+    @Override
+    @Transactional
     public List<Order> findOrderByUserCId(Integer userCId, String status) {
         Session session = this.sessionFactory.getCurrentSession();
         List<Order> orderList = (List<Order>) session
@@ -88,7 +97,7 @@ public class OrderDalImp implements OrderDal {
 
     @Override
     @Transactional
-    public void updateOrderStatus(Integer orderId){
+    public void updateOrderStatus(Long orderId){
         String status = "confirm";
         Session session = this.sessionFactory.getCurrentSession();
 

@@ -130,10 +130,6 @@ class CartController {
             Integer orderid = orderList.get(0).getId();
 
             List<Cart> cartListList = cartService.readFromDBByOrderId(orderid);
-//            Integer cartId =
-
-            Cart cartItemFromList;
-
             for (Cart cartItem : cartListList) {
                 CartResponse cartResponse = new CartResponse();
                 cartResponse.setCount(cartItem.getProduct_count());
@@ -168,6 +164,7 @@ class CartController {
 
             return modelAndView;
         }
+
 
     }
 
@@ -210,9 +207,10 @@ class CartController {
     }
 
     @GetMapping(path = "/emptyCart/submitCart")
-    public ModelAndView SubmitCart(Integer orderId) {
+    public ModelAndView SubmitCart(Long orderId) {
 
         String urlSubmitCart = "http://localhost:8880/application/cart/emptyCart/submitCart?orderId=" + orderId;
+
 
         orderService.updateOrderStatus(orderId);
 
@@ -239,12 +237,28 @@ class CartController {
         crunchifyEmailAPI.crunchifyReadyToSendEmail(fromAddr, fromAddr, subject, bodyForManager);
 
         return modelAndView;
+
     }
 
     @GetMapping(path = "/emptyCart/deleteCart")
     public ModelAndView DeleteCart(Integer cartId) {
 
         cartService.deleteLine(cartId);
-        return new ModelAndView("redirect:/cart/emptyCart");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Integer idUserName = userService.readUserIdByName(username);
+        String status = "not worked out";
+        List<Order> orderList = orderService.findOrderByUserCId(idUserName, status);
+        Integer orderid = orderList.get(0).getId();
+        List<Cart> cartListList = cartService.readFromDBByOrderId(orderid);
+        if (cartListList.isEmpty()) {
+            orderService.deleteLine(orderid);
+            ModelAndView modelAndViewempty = new ModelAndView("cartIsEmpty");
+            return modelAndViewempty;
+        } else {
+
+            return new ModelAndView("redirect:/cart/emptyCart");
+
+        }
     }
 }
