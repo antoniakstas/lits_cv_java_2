@@ -68,7 +68,7 @@ public class FileController {
     }
     @GetMapping("/downloadFile1/{id:.+}")
     public ResponseEntity<Resource> downloadFile1(@PathVariable String id, HttpServletRequest request) {
-        Resource resource = fileStorageService.loadFileAsResource1(id);
+        Resource resource = fileStorageService.loadFileAsResourceFromProducts(id);
         String contentType = null;
         try {
             contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());

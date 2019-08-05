@@ -17,18 +17,18 @@ import java.nio.file.StandardCopyOption;
 public class FileStorageService {
 
     private final Path fileStorageLocation;
-    private Path fileStorageLocation1;
+    private Path fileStorageLocationFromProducts;
 
     public FileStorageService() {
         this.fileStorageLocation = Paths.get("myCustomDirectory/")
                 .toAbsolutePath().normalize();
-        this.fileStorageLocation1 = Paths.get("src/main/resources/image/product")
+        this.fileStorageLocationFromProducts = Paths.get("src/main/resources/image/product")
                 .toAbsolutePath().normalize();
 
 
         try {
             Files.createDirectories(this.fileStorageLocation);
-            Files.createDirectories(this.fileStorageLocation1);
+            Files.createDirectories(this.fileStorageLocationFromProducts);
         } catch (Exception ex) {
             throw new RuntimeException("Could not create the directory where the uploaded files will be stored.", ex);
         }
@@ -57,7 +57,7 @@ public class FileStorageService {
         }
     }
 
-    public String storeFile1(MultipartFile file, Long id) {
+    public String storeFileFromProducts(MultipartFile file, Long id) {
         // Normalize file name
         String fileName =
                 StringUtils
@@ -73,7 +73,7 @@ public class FileStorageService {
 
 
             // Copy file to the target location (Replacing existing file with the same name)
-            Path targetLocation = this.fileStorageLocation1.resolve(name);
+            Path targetLocation = this.fileStorageLocationFromProducts.resolve(name);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
             return name;
@@ -97,9 +97,9 @@ public class FileStorageService {
         }
     }
 
-    public Resource loadFileAsResource1(String id) {
+    public Resource loadFileAsResourceFromProducts(String id) {
         try {
-            Path filePath = this.fileStorageLocation1.resolve(id).normalize();
+            Path filePath = this.fileStorageLocationFromProducts.resolve(id).normalize();
             Resource resource = new UrlResource(id);
             if (resource.exists()) {
                 return resource;

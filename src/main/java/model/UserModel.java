@@ -1,11 +1,22 @@
 package model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
+
 public class UserModel {
 
 	private Integer id;
+	@NotNull
+	@NotEmpty
 	private String name;
+	@NotNull
+	@NotEmpty
 	private String email;
+	@NotNull
+	@NotEmpty
 	private String password;
+
 
 	public String getEmail() {
 		return email;

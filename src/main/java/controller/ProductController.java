@@ -37,7 +37,7 @@ public class ProductController {
     private ProductService productService;
 
     @Autowired
-    private FileStorageService fileStorageService1;
+    private FileStorageService fileStorageService;
 
     @Autowired
     private PriceService priceService;
@@ -251,7 +251,7 @@ public class ProductController {
         Product product = new Product((long) 1, model.getIndex(), model.getName(), model.getManufacturer());
         productService.createProductInToDB(product);
         String fileName =
-                fileStorageService1.storeFile1(file, product.getId());
+                fileStorageService.storeFileFromProducts(file, product.getId());
         return new ModelAndView("redirect:/product/productPage");
     }
 
@@ -270,7 +270,7 @@ public class ProductController {
                     .contentType(MediaType.IMAGE_JPEG)
                     .body(new InputStreamResource(imgFile.getInputStream()));
         } catch (FileNotFoundException ex) {
-            ClassPathResource imgFile1 = new ClassPathResource("/image/product/dafaultPage.jpg");
+            ClassPathResource imgFile1 = new ClassPathResource("/image/product/defaultPage.jpg");
 
 
             return ResponseEntity
