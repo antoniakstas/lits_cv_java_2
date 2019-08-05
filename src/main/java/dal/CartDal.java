@@ -17,7 +17,7 @@ public interface CartDal {
     public Cart createCart(Cart cart);
 
     public Cart updateCart(Cart cart);
-    void deleteCart(Long id);
+    public void deleteCart(Integer id);
     public List<Cart> readFromDBById(Integer id);
     public List<Cart> readFromDBByOrderId(Integer orderId);
     public Cart readByOrderIdAndPriceId(Integer orderId, Integer priceid);

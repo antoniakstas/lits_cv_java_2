@@ -74,11 +74,11 @@ class CartController {
         return null;
     }
 
-    @GetMapping(value = "/delete")
-    public void deleteLine(Long id) {
-
-        Optional<Cart> optionalCart = this.cartService.deleteLine(id);
-    }
+//    @GetMapping(value = "/delete")
+//    public void deleteLine(Long id) {
+//
+//        Optional<Cart> optionalCart = this.cartService.deleteLine(id);
+//    }
 
     @GetMapping(path = "/listToCart")
     public ModelAndView findAll1() {
@@ -123,19 +123,20 @@ class CartController {
         String status = "not worked out";
         List<Order> orderList = orderService.findOrderByUserCId(idUserName, status);
 
-        if (orderList.isEmpty()){
+        if (orderList.isEmpty()) {
             ModelAndView modelAndViewempty = new ModelAndView("cartIsEmpty");
             return modelAndViewempty;
-        }else{
+        } else {
             Integer orderid = orderList.get(0).getId();
 
             List<Cart> cartListList = cartService.readFromDBByOrderId(orderid);
-
-
             for (Cart cartItem : cartListList) {
                 CartResponse cartResponse = new CartResponse();
                 cartResponse.setCount(cartItem.getProduct_count());
                 Long priceItemByCart = Long.valueOf(cartItem.getPrice_id());
+                String urlDelete = "http://localhost:8880/application/cart/emptyCart/deleteCart?cartId=" + cartItem.getId();
+
+                cartResponse.setDeleteUrl(urlDelete);
 
                 List<Price> allPriceByProductId =
                         priceService.readAllFromDBByPriceId(priceItemByCart);
@@ -154,14 +155,16 @@ class CartController {
                 summary = (cartResponse.getCount() * cartResponse.getPrice()) + summary;
             }
 
-                String urlSubmitCart = "http://localhost:8880/application/cart/emptyCart/submitCart?orderId=" + orderid;
+            String urlSubmitCart = "http://localhost:8880/application/cart/emptyCart/submitCart?orderId=" + orderid;
 
-                ModelAndView modelAndView = new ModelAndView("cartByUserName");
-                modelAndView.addObject("response", response);
-                modelAndView.addObject("response2", summary);
-                modelAndView.addObject("urLSubmit", urlSubmitCart);
-                return modelAndView;
-            }
+            ModelAndView modelAndView = new ModelAndView("cartByUserName");
+            modelAndView.addObject("response", response);
+            modelAndView.addObject("response2", summary);
+            modelAndView.addObject("urLSubmit", urlSubmitCart);
+
+            return modelAndView;
+        }
+
 
     }
 
@@ -188,11 +191,11 @@ class CartController {
             Integer orderId = curentOrder.getId();
 
             Cart cartItem = cartService.readByOrderIdAndPriceId(orderId, priceId);
-            if (cartItem == null){
+            if (cartItem == null) {
                 Cart cart = new Cart(null, curentOrder.getId(), 1, priceId);
                 cartService.createCart(cart);
-            }else{
-                Integer newProductCount = cartItem.getProduct_count()+1;
+            } else {
+                Integer newProductCount = cartItem.getProduct_count() + 1;
                 cartItem.setProduct_count(newProductCount);
                 cartService.updateCart(cartItem);
             }
@@ -203,14 +206,15 @@ class CartController {
 
     }
 
-    @GetMapping(path ="/emptyCart/submitCart")
-    public ModelAndView SubmitCart(Integer orderId) {
+    @GetMapping(path = "/emptyCart/submitCart")
+    public ModelAndView SubmitCart(Long orderId) {
 
         String urlSubmitCart = "http://localhost:8880/application/cart/emptyCart/submitCart?orderId=" + orderId;
 
+
         orderService.updateOrderStatus(orderId);
 
-        String congratulations = "Congratulations! Order with number "+orderId+ " was confirm.";
+        String congratulations = "Congratulations! Order with number " + orderId + " was confirm.";
         ModelAndView modelAndView = new ModelAndView("orderConfirm");
         modelAndView.addObject("text", congratulations);
 
@@ -221,7 +225,7 @@ class CartController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
-        List <User> userList = userService.readAllFromDBByName(username);
+        List<User> userList = userService.readAllFromDBByName(username);
         String toAddr = userList.get(0).getEmail();
         String fromAddr = "ilia97ap76@gmail.com";
         String subject = "AutoParts Order";
@@ -233,5 +237,28 @@ class CartController {
         crunchifyEmailAPI.crunchifyReadyToSendEmail(fromAddr, fromAddr, subject, bodyForManager);
 
         return modelAndView;
+
+    }
+
+    @GetMapping(path = "/emptyCart/deleteCart")
+    public ModelAndView DeleteCart(Integer cartId) {
+
+        cartService.deleteLine(cartId);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Integer idUserName = userService.readUserIdByName(username);
+        String status = "not worked out";
+        List<Order> orderList = orderService.findOrderByUserCId(idUserName, status);
+        Integer orderid = orderList.get(0).getId();
+        List<Cart> cartListList = cartService.readFromDBByOrderId(orderid);
+        if (cartListList.isEmpty()) {
+            orderService.deleteLine(orderid);
+            ModelAndView modelAndViewempty = new ModelAndView("cartIsEmpty");
+            return modelAndViewempty;
+        } else {
+
+            return new ModelAndView("redirect:/cart/emptyCart");
+
+        }
     }
 }

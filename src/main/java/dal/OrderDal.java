@@ -2,9 +2,6 @@ package dal;
 
 import dto.Order;
 import java.util.List;
-import java.util.Optional;
-import java.util.List;
-import java.util.Optional;
 
 public interface OrderDal {
 
@@ -17,10 +14,11 @@ public interface OrderDal {
         boolean updateOrder(int id, Order order);
 
         boolean deleteOrder(int id);
+        public void deleteOrder(Integer id);
 
         public List<Order> findOrderByUserCId (Integer userCId, String status);
 
-        public void updateOrderStatus(Integer orderId);
+        public void updateOrderStatus(Long orderId);
 
 
         }

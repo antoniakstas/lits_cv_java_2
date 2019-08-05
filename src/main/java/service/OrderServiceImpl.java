@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,6 +64,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
+    public Optional<Order> deleteLine(Integer id) {
+        orderDal.deleteOrder(id);
+
+        return null;
+    }
+    @Override
+    @Transactional
     public List<Order> findOrderById(Integer id) {
         List<Order> orderList = orderDal.readFromDBById(id);
         return orderList;
@@ -77,7 +83,7 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
-    public void updateOrderStatus(Integer orderId){
+    public void updateOrderStatus(Long orderId){
         orderDal.updateOrderStatus(orderId);
     }
 

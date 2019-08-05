@@ -80,7 +80,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     @Transactional
-    public Optional<Cart> deleteLine(Long id) {
+    public Optional<Cart> deleteLine(Integer id) {
         cartDal.deleteCart(id);
 
         return null;
