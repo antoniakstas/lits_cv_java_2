@@ -97,7 +97,7 @@ public class OrderDalImp implements OrderDal {
 
     @Override
     @Transactional
-    public void updateOrderStatus(Long orderId){
+    public void updateOrderStatus(Integer orderId){
         String status = "confirm";
         Session session = this.sessionFactory.getCurrentSession();
 

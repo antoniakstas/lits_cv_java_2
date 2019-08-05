@@ -83,7 +83,7 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
-    public void updateOrderStatus(Long orderId){
+    public void updateOrderStatus(Integer orderId){
         orderDal.updateOrderStatus(orderId);
     }
 

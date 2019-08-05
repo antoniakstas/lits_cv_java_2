@@ -207,7 +207,7 @@ class CartController {
     }
 
     @GetMapping(path = "/emptyCart/submitCart")
-    public ModelAndView SubmitCart(Long orderId) {
+    public ModelAndView SubmitCart(Integer orderId) {
 
         String urlSubmitCart = "http://localhost:8880/application/cart/emptyCart/submitCart?orderId=" + orderId;
 

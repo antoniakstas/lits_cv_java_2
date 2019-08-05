@@ -12,7 +12,7 @@ public interface OrderService {
     public Optional<Order> createOrderInToDB(Order order);
 
     public Optional<Order> updateOrderInToDB(Order order);
-    public void updateOrderStatus(Long orderId);
+    public void updateOrderStatus(Integer orderId);
 
     public void deleteOrder(String index);
     public Optional<Order> deleteLine(Integer id);
