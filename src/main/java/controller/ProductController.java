@@ -297,13 +297,12 @@ public class ProductController {
     }
 
     @PostMapping(path = "/updatePr")
-    public ModelAndView updatePrInToDB( @ModelAttribute("product") Product product, Long id, AddProductModel addProductModel) {
+    public ModelAndView updatePrInToDB(@ModelAttribute("product") Product product, Long id, AddProductModel addProductModel) {
         ModelAndView modelAndView = new ModelAndView();
         product.getId();
         product.getIndex();
         product.getName();
         product.getManufacturer();
-
 
         Optional<Product> productWasUpdated = this.productService.updateProductInToDB(product);
 
