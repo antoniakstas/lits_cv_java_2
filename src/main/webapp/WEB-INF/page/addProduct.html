@@ -44,21 +44,55 @@
   background-color: #4CAF50;
   color: white;
 }
-</style>
+
+            </style>
 
             <table width="940" height="700" bgcolor="5FFA5F" align="center">
                 <tr>
                     <td align="center">
-                        <h1>Form</h1>
-                        <form action="#" th:action="@{/product/addPr}" th:object="${productForm}" method="post" enctype="multipart/form-data">
-                            <p>index <input type="text" th:field="*{index}" /></p>
-                            <p> name <input type="text" th:field="*{name}" /></p>
-                            <p> manufacturer <input type="text" th:field="*{manufacturer}" /></p>
+                        <h1>Add product</h1>
+                        <form action="#" th:action="@{/product/addPr}" th:object="${productForm}" method="post"
+                              enctype="multipart/form-data">
+                            <table width="420" height="160" border="1" bgcolor="5FFA5F" align="center">
+                                <tr>
+                                    <td>Index:</td>
+                                    <td><input type='text' name='index' value='' th:field="*{index}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Name:</td>
+                                    <td><input type='text' name='name' th:field="*{name}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Manufacturer:</td>
+                                    <td><input type='text' name='manufacturer' th:field="*{manufacturer}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label path="file">Select a file to upload</label></td>
+                                    <td><input type="file" name="file"/></td>
+                                </tr>
+                                <tr>
 
-                            <p><label path="file">Select a file to upload</label></p>
-                            <p><input type="file" name="file" /></p>
+                                    <td><input name="submit" type="submit" value="Submit"/><input type="reset"
+                                                                                                  value="Reset"/></td>
 
-                            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+                                </tr>
+                            </table>
+
+
+                                <!--                        -->
+                                <!--                        <form action="#" th:action="@{/product/addPr}" th:object="${productForm}" method="post" enctype="multipart/form-data">-->
+                                <!--                            <p>index <input type="text" th:field="*{index}" /></p>-->
+                                <!--                            <p> name <input type="text" th:field="*{name}" /></p>-->
+                                <!--                            <p> manufacturer <input type="text" th:field="*{manufacturer}" /></p>-->
+
+                                <!--                            <p><label path="file">Select a file to upload</label></p>-->
+                                <!--                            <p><input type="file" name="file" /></p>-->
+
+                                <!--                            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>-->
+                                <!--                        </form>-->
+
+                                <!--                    <td>-->
+
                         </form>
 
                     <td>
