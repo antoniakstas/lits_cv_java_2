@@ -244,7 +244,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/thankForRegister")
-    public ModelAndView thankForRegister() {
+    public ModelAndView thankForRegister(String email) {
 
         // Spring Bean file you specified in /src/main/resources folder
         String crunchifyConfFile = "email-bean.xml";

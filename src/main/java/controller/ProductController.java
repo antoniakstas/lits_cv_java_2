@@ -259,10 +259,9 @@ public class ProductController {
     @RequestMapping(value = "/image/{id}", method = RequestMethod.GET,
             produces = MediaType.IMAGE_JPEG_VALUE)
     public ResponseEntity<InputStreamResource> getImage(@PathVariable Long id) throws IOException {
-        Product product = productService.findById(id);
-        Long ineg = product.getId();
 
-        ClassPathResource imgFile = new ClassPathResource("/image/product/" + ineg + ".jpg");
+
+        ClassPathResource imgFile = new ClassPathResource("/image/product/" + id + ".jpg");
 
         try {
             return ResponseEntity

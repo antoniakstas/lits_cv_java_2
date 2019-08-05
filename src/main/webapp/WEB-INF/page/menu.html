@@ -1,4 +1,5 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <div th:fragment="header-css">
         <link rel="stylesheet" th:href="@{/css/main.css}"
@@ -20,24 +21,73 @@ border-color: red;">
             </td>
 
         </tr>
-        <tr>
-            <td align="center"><a href="/application/product/addProductPage"><font size="5" face="Arial">Add product</font></a></td>
 
-        </tr>
         <tr>
             <td align="center"><a href="/application/user/userPage"><font size="5" face="Arial">User</font></a></td>
 
         </tr>
         <tr>
-            <td align="center"><a href="/application/order/ordersPage"><font size="5" face="Arial">Order</font></a></td>
+            <td  align="center">
+               <span sec:authorize="hasAuthority('MANAGER')">
+                   <div>
+
+            <a href="/application/product/addProductPage">
+                <font size="5" face="Arial">
+                   Add product</font>
+               </a>
+                  </div>
+
+               </span>
+            </td>
+        </tr>
+        <tr>
+            <td  align="center">
+               <span sec:authorize="hasAuthority('MANAGER')">
+                   <div>
+
+            <a href="/application/order/ordersPage">
+                <font size="5" face="Arial">
+                   Orders</font>
+               </a>
+                  </div>
+
+               </span>
+            </td>
 
         </tr>
 
         <tr>
-            <td align="center"><a href="/application/user/usersPage"><font size="5" face="Arial">Users</font></a></td>
+        <td  align="center">
+               <span sec:authorize="hasAuthority('MANAGER')">
+                   <div>
 
+            <a href="/application/user/usersPage">
+                <font size="5" face="Arial">
+                   Users</font>
+               </a>
+                  </div>
+
+               </span>
+        </td>
+
+    </tr>
+        <tr>
+            <td  align="center">
+               <span sec:authorize="hasAuthority('MANAGER')">
+                   <div>
+
+            <a href="/application//user/addManager">
+                <font size="5" face="Arial">
+
+                    Registration</font>
+               </a>
+                  </div>
+
+               </span>
+            </td>
 
         </tr>
+
 
     </table>
 </div>
