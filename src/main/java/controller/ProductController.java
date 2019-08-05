@@ -100,6 +100,7 @@ public class ProductController {
         List<Price> allPriceByProductId =
                 priceService.readAllFromDBByProductId(id);
         String url2 = "http://localhost:8880/application/product/updateProduct?id=" + id;
+        String url = "http://localhost:8880/application/product/delete?id=" + id;
         List<PriceModel> priceModels = new ArrayList<>();
 
         for (Price priceItem : allPriceByProductId) {
@@ -117,8 +118,7 @@ public class ProductController {
             priceModels.add(priceModel);
         }
         ProductWithPricesResponse item = new ProductWithPricesResponse(id,
-                product.getIndex(), product.getName(), product.getManufacturer(),
-                null, url2, priceModels);
+                product.getIndex(), product.getName(), product.getManufacturer(), url, url2, priceModels);
 
 
         ModelAndView modelAndView = new ModelAndView("productItemPage");
@@ -172,9 +172,9 @@ public class ProductController {
     }
 
     @GetMapping(path = "/delete")
-    public String deleteProductLine(Integer id) {
+    public ModelAndView deleteProductLine(Integer id) {
         productService.deletePtoduct(Long.valueOf(id));
-        return null;
+        return new ModelAndView("redirect:/product/productPage");
     }
 
     @GetMapping(path = "/productPage")
@@ -297,7 +297,7 @@ public class ProductController {
     }
 
     @PostMapping(path = "/updatePr")
-    public ModelAndView updatePrInToDB(@ModelAttribute("product") Product product, Long id, AddProductModel addProductModel) {
+    public ModelAndView updatePrInToDB(@ModelAttribute("product") Product product) {
         ModelAndView modelAndView = new ModelAndView();
         product.getId();
         product.getIndex();
