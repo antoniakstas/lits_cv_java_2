@@ -8,8 +8,8 @@ public class ProductWithPricesResponse extends ProductModel{
     public ProductWithPricesResponse(){
 
     }
-    public ProductWithPricesResponse(Long id, String index, String name, String manufacturer, String url, List<PriceModel> priceModels) {
-        super(id, index, name, manufacturer, url);
+    public ProductWithPricesResponse(Long id, String index, String name, String manufacturer, String url, String url2, List<PriceModel> priceModels) {
+        super(id, index, name, manufacturer, url,url2);
         this.priceModels = priceModels;
     }
 

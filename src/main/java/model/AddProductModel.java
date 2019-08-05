@@ -1,12 +1,21 @@
 package model;
 
 public class AddProductModel {
+    private Long id;
     private String index;
     private String name;
     private String manufacturer;
 
 
     public AddProductModel() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getIndex() {

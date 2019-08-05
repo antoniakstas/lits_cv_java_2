@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
@@ -54,6 +55,9 @@ public class ProductServiceImpl implements ProductService {
         Product productId = productDal.findById(id);
         return productId;
     }
+
+
+
 }
 
 

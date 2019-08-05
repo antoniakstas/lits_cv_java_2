@@ -49,6 +49,10 @@
                                 <th>id</th>
                                 <th>name</th>
                                 <th>email</th>
+                                <th>address_id</th>
+                                <th>status</th>
+                                <th>role</th>
+
 
                             </tr>
                             <tr th:each="userItem : ${user1}">
@@ -56,6 +60,9 @@
                                 <td th:text="${userItem.id}">someId</td>
                                 <td th:text="${userItem.name}">someName</td>
                                 <td th:text="${userItem.email}">someEmail</td>
+                                <td th:text="${userItem.address_id}">someA</td>
+                                <td th:text="${userItem.status}">someS</td>
+                                <td th:text="${userItem.role}">someR</td>
 
                             </tr>
 

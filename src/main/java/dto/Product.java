@@ -31,6 +31,12 @@ public class Product {
         this.name = name;
         this.manufacturer = manufacturer;
     }
+    public Product( String index, String name, String manufacturer) {
+        this.index = index;
+        this.name = name;
+        this.manufacturer = manufacturer;
+    }
+
     public Product(ProductResponseModel productResponseModel) {
         this.index = productResponseModel.getIndex();
         this.name = productResponseModel.getName();

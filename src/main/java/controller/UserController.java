@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -137,7 +139,11 @@ public class UserController {
 
     @GetMapping(path = "/userPage")
     public ModelAndView userPage(Integer Id) {
-        List<User> userList = userService.readAllFromDBById(Id=1);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Integer userId = userService.readUserIdByName(username);
+        List<User> userList = userService.readAllFromDBById(userId);
 
         ModelAndView modelAndView = new ModelAndView("userPage");
         modelAndView.addObject("user1", userList);

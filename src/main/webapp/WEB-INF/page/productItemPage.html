@@ -37,10 +37,13 @@
 
                                 <td th:text="${productItem.id}">someId</td>
                                 <td>
-                                    <a th:href="${productItem.url}" th:text="${productItem.index}"></a>
-                                </td>
+                                <a th:href="${productItem.url}" th:text="${productItem.index}"></a>
+                            </td>
                                 <td th:text="${productItem.name}">someName</td>
                                 <td th:text="${productItem.manufacturer}">someManufacturer</td>
+                                <td>
+                                <a th:href="${productItem.url2}" th:text="update"></a>
+                                </td>
                                 <td>
                                     <table border="1" align="center">
                                         <tr>

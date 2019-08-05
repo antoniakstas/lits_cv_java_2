@@ -7,18 +7,41 @@ public class ProductModel {
     private String name;
     private String manufacturer;
     private String url;
+    private String url2;
 
-
-    public ProductModel(){
-
+    @Override
+    public String toString() {
+        return "ProductModel{" +
+                "id=" + id +
+                ", index='" + index + '\'' +
+                ", name='" + name + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", url='" + url + '\'' +
+                ", url2='" + url2 + '\'' +
+                '}';
     }
-    public ProductModel(Long id, String index, String name, String manufacturer, String url) {
+
+    public ProductModel(Long id, String index, String name, String manufacturer, String url, String url2) {
         this.id = id;
         this.index = index;
         this.name = name;
         this.manufacturer = manufacturer;
         this.url = url;
+        this.url2 = url2;
     }
+
+    public String getUrl2() {
+        return url2;
+    }
+
+    public void setUrl2(String url2) {
+        this.url2 = url2;
+    }
+
+    public ProductModel(){
+
+    }
+
 
     public Long getId() {
         return id;
@@ -60,16 +83,7 @@ public class ProductModel {
         this.url = url;
     }
 
-    @Override
-    public String toString() {
-        return "ProductModel{" +
-                "id=" + id +
-                ", index='" + index + '\'' +
-                ", name='" + name + '\'' +
-                ", manufacturer='" + manufacturer + '\'' +
-                ", url='" + url + '\'' +
-                '}';
-    }
+
 }
 
 

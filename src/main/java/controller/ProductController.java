@@ -75,7 +75,7 @@ public class ProductController {
             }
             ProductWithPricesResponse item = new ProductWithPricesResponse(productItemId,
                     productItem.getIndex(), productItem.getName(), productItem.getManufacturer(),
-                    url, priceModels);
+                    url, null, priceModels);
 
             response.add(item);
         }
@@ -99,7 +99,7 @@ public class ProductController {
         Product product = productService.findById(id);
         List<Price> allPriceByProductId =
                 priceService.readAllFromDBByProductId(id);
-
+        String url2 = "http://localhost:8880/application/product/updateProduct?id=" + id;
         List<PriceModel> priceModels = new ArrayList<>();
 
         for (Price priceItem : allPriceByProductId) {
@@ -118,7 +118,7 @@ public class ProductController {
         }
         ProductWithPricesResponse item = new ProductWithPricesResponse(id,
                 product.getIndex(), product.getName(), product.getManufacturer(),
-                null, priceModels);
+                null, url2, priceModels);
 
 
         ModelAndView modelAndView = new ModelAndView("productItemPage");
@@ -168,6 +168,7 @@ public class ProductController {
             }
         }
         return response;
+
     }
 
     @GetMapping(path = "/delete")
@@ -191,6 +192,7 @@ public class ProductController {
             Long productItemId = productItem.getId();
             String id = productItemId.toString();
             String url = "http://localhost:8880/application/product/item?id=" + id;
+            String url2 = "http://localhost:8880/application/product/updateProduct?id=" + id;
 
             List<Price> allPriceByProductId =
                     priceService.readAllFromDBByProductId(productItemId);
@@ -213,7 +215,7 @@ public class ProductController {
             }
             ProductWithPricesResponse item = new ProductWithPricesResponse(productItemId,
                     productItem.getIndex(), productItem.getName(), productItem.getManufacturer(),
-                    url, priceModels);
+                    url, url2, priceModels);
 
             response.add(item);
         }
@@ -278,7 +280,36 @@ public class ProductController {
 
         }
 
+    }
 
+    @GetMapping(path = "/updateProduct")
+    public ModelAndView update(Long id) {
+        Product product = productService.findById(id);
+        product.getId();
+
+        AddProductModel addProductModel = new AddProductModel();
+        addProductModel.getId();
+
+
+        ModelAndView modelAndView = new ModelAndView("updateProduct");
+        modelAndView.addObject("productUp", product);
+        return modelAndView;
+    }
+
+    @PostMapping(path = "/updatePr")
+    public ModelAndView updatePrInToDB( @ModelAttribute("product") Product product, Long id, AddProductModel addProductModel) {
+        ModelAndView modelAndView = new ModelAndView();
+        product.getId();
+        product.getIndex();
+        product.getName();
+        product.getManufacturer();
+
+
+        Optional<Product> productWasUpdated = this.productService.updateProductInToDB(product);
+
+        modelAndView.addObject(productWasUpdated);
+
+        return new ModelAndView("redirect:/product/productPage");
     }
 
 }

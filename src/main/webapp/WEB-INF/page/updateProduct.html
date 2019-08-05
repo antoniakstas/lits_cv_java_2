@@ -1,0 +1,93 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>auto parts demo</title>
+
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/main.css}"
+          href="../css/main.css"/>
+
+</head>
+<body>
+
+
+<div th:replace="header :: header"/>
+<table width="700">
+    <tr>
+        <td>
+            <div th:replace="menu :: menu"/>
+        </td>
+        <td>
+            <style>
+#autoParts {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 200%;
+}
+
+#autoParts td, #autoParts th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#autoParts tr:nth-child(even){background-color: #f2f2f2;}
+
+#autoParts tr:hover {background-color: #ddd;}
+
+#autoParts th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+
+            <table id="autoParts">
+                <h1>Form</h1>
+
+                <form action="#" th:action="@{/product/updatePr}" th:object="${productUp}" method="post">
+                    <table width="420" height="160" border="1" bgcolor="5FFA5F" align="center">
+                        <tr>
+                            <td>Id:</td>
+                            <td ><input type='text' th:field="*{id}"></td>
+                        </tr>
+                        <tr>
+                            <td>Index:</td>
+                            <td ><input type='text' th:field="*{index}"></td>
+                        </tr>
+                        <tr>
+                            <td>Name:</td>
+                            <td ><input type='text'  th:field="*{name}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Manufacturer:</td>
+                            <td ><input type='text'  th:field="*{manufacturer}"/></td>
+                        </tr>
+                        <tr>
+
+                            <td><input name="submit" type="submit" value="Submit" /><input type="reset" value="Reset" /></td>
+
+                        </tr>
+
+                    </table>
+
+
+
+                </form>
+
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+
+</table>
+
+
+<div th:replace="footer :: footer"/>
+</body>
+</html>
