@@ -12,20 +12,45 @@
 
 </head>
 <body>
-<sec:authorize access="hasRole('USER')">
+
 
 <div th:replace="header :: header"/>
-<table width="700">
+<table width="1300">
     <tr>
         <td>
             <div th:replace="menu :: menu"/>
 
         </td>
         <td>
-            <table width="940" height="700" bgcolor="5FFA5F" align="center">
+            <style>
+#autoParts {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#autoParts td, #autoParts th {
+  border: 0.5px solid #ddd;
+  padding: 0.5px;
+}
+
+#autoParts tr:nth-child(even){background-color: #f2f2f2;}
+
+#autoParts tr:hover {background-color: #ddd;}
+
+#autoParts th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #4CAF50;
+  color: white;
+}
+
+            </style>
+            <table width="800" height="700"  align="center">
                 <tr>
                     <td>
-                        <table border="1" align="center">
+                        <table id="autoParts" border="1" align="center">
                             <tr>
                                 <th>id</th>
                                 <th>index</th>

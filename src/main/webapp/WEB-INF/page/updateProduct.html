@@ -25,7 +25,7 @@
 #autoParts {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 200%;
+  width: 100%;
 }
 
 #autoParts td, #autoParts th {
@@ -40,17 +40,17 @@
 #autoParts th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
+  text-align: center;
   background-color: #4CAF50;
   color: white;
 }
 </style>
 
-            <table id="autoParts">
+            <table >
                 <h1>Form</h1>
 
                 <form action="#" th:action="@{/product/updatePr}" th:object="${productUp}" method="post">
-                    <table width="420" height="160" border="1" bgcolor="5FFA5F" align="center">
+                    <table id="autoParts" bgcolor="5FFA5F" align="center">
                         <tr>
                             <td>Id:</td>
                             <td ><input type='text' th:field="*{id}"></td>

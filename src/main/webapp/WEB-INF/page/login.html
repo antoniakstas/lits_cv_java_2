@@ -12,17 +12,17 @@
 </head>
 <body>
 <div th:replace="header :: header"/>
-<form action="#" th:action="@{/user/login}" th:object="${user}" method="post" enctype="utf8">
 
-    <table width="700">
+
+    <table width="900">
         <tr>
             <td>
                 <div th:replace="menu :: menu"/>
             </td>
 
             <td>
-
-                <table width="350" height="100" border="5" bgcolor="5FFA5F" align="center">
+                <form action="#" th:action="@{/user/login}" th:object="${user}" method="post" enctype="utf8">
+                <table  id="autoParts" bgcolor="5FFA5F" align="center">
                     <h1 align="center" border="1">Login</h1>
 
                     <tr>
@@ -41,13 +41,14 @@
                     </tr>
 
                 </table>
+                </form>
             </td>
         </tr>
 
 
     </table>
-</form>
+
 <div th:replace="footer :: footer"/>
-</sec:authorize>
+
 </body>
 </html>

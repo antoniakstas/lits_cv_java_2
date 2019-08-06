@@ -25,7 +25,7 @@
 #autoParts {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 200%;
+  width: 100%;
 }
 
 #autoParts td, #autoParts th {
@@ -40,25 +40,26 @@
 #autoParts th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
+  text-align: center;
   background-color: #4CAF50;
   color: white;
 }
 
             </style>
 
-            <table width="940" height="700" bgcolor="5FFA5F" align="center">
+            <table width="540" height="700" align="center">
                 <tr>
                     <td align="center">
                         <h1>Update cartItem</h1>
                         <form action="#" th:action="@{/cart/updateCartItem}" th:object="${cartModel}" method="post">
 <!--                              enctype="multipart/form-data">-->
-                            <table width="420" height="160" border="1" bgcolor="5FFA5F" align="center">
+                            <table id="autoParts" bgcolor="5FFA5F" align="center">
                                 <tr>
                                     <td>Count:</td>
                                     <td><input type='text' name='productCount' value='' th:field="*{productCount}"></td>
                                 </tr>
 
+                                <tr>
 
                                     <td><input name="submit" type="submit" value="Submit"/><input type="reset"
                                                                                                   value="Reset"/></td>

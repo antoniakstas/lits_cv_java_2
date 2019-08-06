@@ -1,30 +1,57 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>auto parts demo</title>
+
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"
+          href="../css/main.css"/>
+</head>
 <body>
-<h1 align="center">Registration User</h1>
-<form action="#" th:action="@{/user/addUser}" th:object="${user}" method="POST" enctype="utf8">
-    <table width="420" height="160" border="1" bgcolor="5FFA5F" align="center">
-        <tr>
-            <td>UserName:</td>
-            <td><input type='text' name='username' value=''th:field="*{name}"></td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td><input type='text' name='email' th:field="*{email}"/></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type='password' name='password' th:field="*{password}"/></td>
-        </tr>
-        <tr>
+<div th:replace="header :: header"/>
 
-            <td><input name="submit" type="submit" value="Submit" /><input type="reset" value="Reset" /></td>
 
-        </tr>
+<table width="900">
+    <tr>
+        <td>
+            <div th:replace="menu :: menu"/>
+        </td>
 
-    </table>
+        <td>
+            <h1 align="center">Registration User</h1>
+            <form action="#" th:action="@{/user/addUser}" th:object="${user}" method="POST" enctype="utf8">
+                <table id="autoParts" width="420" height="160" border="1" bgcolor="5FFA5F" align="center">
+                    <tr>
+                        <td>UserName:</td>
+                        <td><input type='text' name='username' value=''th:field="*{name}"></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type='text' name='email' th:field="*{email}"/></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input type='password' name='password' th:field="*{password}"/></td>
+                    </tr>
+                    <tr>
 
-    </form>
+                        <td><input name="submit" type="submit" value="Submit" /><input type="reset" value="Reset" /></td>
+
+                    </tr>
+
+                </table>
+
+            </form>
+        </td>
+    </tr>
+
+
+</table>
+
+<div th:replace="footer :: footer"/>
+
 </body>
 </html>
