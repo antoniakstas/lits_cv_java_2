@@ -43,6 +43,7 @@ header {
   padding: 8px;
 }
 
+
 #autoParts tr:nth-child(even){background-color: #f2f2f2;}
 
 #autoParts tr:hover {background-color: #ddd;}
