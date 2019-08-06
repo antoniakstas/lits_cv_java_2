@@ -48,6 +48,16 @@ public class OrderController {
                 numberOfProductsInCartfromDB);
         return mAV;
     }
+    @GetMapping(path = "/delete")
+    public ModelAndView deleteOrderLine(Integer id) {
+        List<Cart> cartListList = cartService.readFromDBByOrderId(id);
+        Integer cartDel = cartListList.get(0).getId();
+        cartService.deleteLine(cartDel);
+
+        orderService.deleteLine(Integer.valueOf(id));
+        return new ModelAndView("redirect:/order/ordersPage");
+    }
+
 
     @PostMapping("/addToCartSuccess")
     public ModelAndView addToOrderModelSuccess(@ModelAttribute AddToOrderModel addToOrderModel){
@@ -108,7 +118,7 @@ public class OrderController {
         modelAndView.addObject("response", response);
         modelAndView.addObject("response2", summary);
 
-        String urlCloseOrder = "http://localhost:8880/application/order/ordersPage";
+        String urlCloseOrder = "http://localhost:8880/application/order/delete?id="+orderId;
 
         modelAndView.addObject("urlCloseOrder", urlCloseOrder);
         return modelAndView;

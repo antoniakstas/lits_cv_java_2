@@ -1,6 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <title>auto parts products info</title>
@@ -25,7 +26,8 @@
                 <tr>
                     <td align="center">
 
-                        <img th:src="@{${'/product/image/' + productItem.id}}" title="Image here" width="420" height="350" />
+                        <img th:src="@{${'/product/image/' + productItem.id}}" title="Image here" width="420"
+                             height="350"/>
                         <table border="1" align="center">
                             <tr>
                                 <th>id</th>
@@ -37,16 +39,23 @@
 
                                 <td th:text="${productItem.id}">someId</td>
                                 <td>
-                                <a th:href="${productItem.url}" th:text="${productItem.index}"></a>
-                            </td>
+                                    <a th:text="${productItem.index}"></a>
+                                </td>
                                 <td th:text="${productItem.name}">someName</td>
                                 <td th:text="${productItem.manufacturer}">someManufacturer</td>
-                                <td>
-                                <a th:href="${productItem.url2}" th:text="update"></a>
+                                <span sec:authorize="hasAuthority('MANAGER')">
+                                <td align="center">
+
+                                    <a th:href="${productItem.url2}" th:text="update"></a>
+
                                 </td>
-                                <td>
+                                     </span>
+
+                                <span sec:authorize="hasAuthority('MANAGER')">
+                                <td align="center">
                                     <a th:href="${productItem.url}" th:text="delete"></a>
                                 </td>
+                                    </span>
                                 <td>
                                     <table border="1" align="center">
                                         <tr>
@@ -62,7 +71,7 @@
                                             <td th:text="${priceItem.deliverydays}">someD</td>
                                             <td>
                                                 <a th:href="${priceItem.url}">add to cart</a>
-                                                </td>
+                                            </td>
                                         </tr>
 
                                     </table>

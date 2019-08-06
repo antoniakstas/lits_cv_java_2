@@ -173,7 +173,7 @@ public class ProductController {
 
     @GetMapping(path = "/delete")
     public ModelAndView deleteProductLine(Integer id) {
-        productService.deletePtoduct(Long.valueOf(id));
+      productService.deleteProduct(Long.valueOf(id));
         return new ModelAndView("redirect:/product/productPage");
     }
 

@@ -13,6 +13,6 @@ public interface ProductService {
 
     public Optional<Product> updateProductInToDB(Product product);
 
-    public void deletePtoduct(Long id);
+    public void deleteProduct(Long id);
     public Product findById(Long id);
 }
