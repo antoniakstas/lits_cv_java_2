@@ -7,6 +7,9 @@ public class CartModel {
     private Integer product_count;
     private Integer price_id;
 
+    public CartModel() {
+    }
+
     public CartModel(Integer id,
                      Integer order_id,
                      Integer product_count,

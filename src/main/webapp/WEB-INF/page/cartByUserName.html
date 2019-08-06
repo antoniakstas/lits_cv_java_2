@@ -52,6 +52,7 @@
                                 <th>price</th>
                                 <th>deliverydays</th>
                                 <th>delete</th>
+                                <th>update</th>
                             </tr>
                             <tr th:each="productItem : ${response}">
 
@@ -63,6 +64,9 @@
                                 <td th:text="${productItem.deliverydays}">somedeliverydays</td>
                                 <td>
                                     <a th:href="${productItem.deleteUrl}">delete</a>
+                                </td>
+                                <td>
+                                    <a th:href="${productItem.updateUrl}">updatecart</a>
                                 </td>
 <!--                    <td>-->
                 </tr>

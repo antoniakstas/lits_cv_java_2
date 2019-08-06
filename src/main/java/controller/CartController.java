@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import service.*;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -135,8 +136,10 @@ class CartController {
                 cartResponse.setCount(cartItem.getProduct_count());
                 Long priceItemByCart = Long.valueOf(cartItem.getPrice_id());
                 String urlDelete = "http://localhost:8880/application/cart/emptyCart/deleteCart?cartId=" + cartItem.getId();
+                String urlUpdate = "http://localhost:8880/application/cart/emptyCart/updateCart?cartId=" + cartItem.getId();
 
                 cartResponse.setDeleteUrl(urlDelete);
+                cartResponse.setUpdateUrl(urlUpdate);
 
                 List<Price> allPriceByProductId =
                         priceService.readAllFromDBByPriceId(priceItemByCart);
@@ -261,4 +264,35 @@ class CartController {
 
         }
     }
+
+    @GetMapping(path = "/emptyCart/updateCart")
+    public ModelAndView updateCart(Integer cartId) {
+
+//        CartModel cartModel = new CartModel();
+        CartModelCount cartModelCount = new CartModelCount();
+
+        String urlSubmitCartItem = "http://localhost:8880/application/cart/emptyCart/submitCart?oardId=" + cartId;
+
+        ModelAndView modelAndView = new ModelAndView("updateCartItem");
+        modelAndView.addObject("cartModel", cartModelCount);
+//        modelAndView.addObject("submit", urlSubmitCartItem);
+        return modelAndView;
+
+        }
+
+    @PostMapping(path ="/updateCartItem")
+    public ModelAndView Submit(Integer cartModelCount) {
+//        ModelAndView modelAndView = new ModelAndView();
+
+//        model.getProduct_count();
+//        Cart cart = new Cart(1, model.getOrder_id(), model.getOrder_id(), model.getPrice_id());
+//        productService.createProductInToDB(product);
+//        String fileName =
+//                fileStorageService.storeFileFromProducts(file, product.getId());
+        return new ModelAndView("redirect:/cart/emptyCart");
+    }
+
+
+
+
 }

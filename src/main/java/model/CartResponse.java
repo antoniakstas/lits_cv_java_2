@@ -8,13 +8,13 @@ public class CartResponse {
     private String deliverydays;
     private Integer count;
     private String deleteUrl;
-    private String cancelUrl;
+    private String updateUrl;
     private String confirmUrl;
 
     public CartResponse(){
 
     }
-    public CartResponse(String index, String name, String manufacturer, Integer price, String deliverydays, Integer count, String deleteUrl, String cancelUrl, String confirmUrl) {
+    public CartResponse(String index, String name, String manufacturer, Integer price, String deliverydays, Integer count, String deleteUrl, String updateUrl, String confirmUrl) {
         this.index = index;
         this.name = name;
         this.manufacturer = manufacturer;
@@ -22,7 +22,7 @@ public class CartResponse {
         this.deliverydays = deliverydays;
         this.count = count;
         this.deleteUrl = deleteUrl;
-        this.cancelUrl = cancelUrl;
+        this.updateUrl = updateUrl;
         this.confirmUrl = confirmUrl;
     }
 
@@ -54,8 +54,8 @@ public class CartResponse {
         return deleteUrl;
     }
 
-    public String getCancelUrl() {
-        return cancelUrl;
+    public String getUpdateUrl() {
+        return updateUrl;
     }
 
     public String getConfirmUrl() {
@@ -90,8 +90,8 @@ public class CartResponse {
         this.deleteUrl = deleteUrl;
     }
 
-    public void setCancelUrl(String cancelUrl) {
-        this.cancelUrl = cancelUrl;
+    public void setUpdateUrl(String updateUrl) {
+        this.updateUrl = updateUrl;
     }
 
     public void setConfirmUrl(String confirmUrl) {
@@ -108,7 +108,7 @@ public class CartResponse {
                 ", deliverydays='" + deliverydays + '\'' +
                 ", count=" + count +
                 ", deleteUrl='" + deleteUrl + '\'' +
-                ", cancelUrl='" + cancelUrl + '\'' +
+                ", updateUrl='" + updateUrl + '\'' +
                 ", confirmUrl='" + confirmUrl + '\'' +
                 '}';
     }
