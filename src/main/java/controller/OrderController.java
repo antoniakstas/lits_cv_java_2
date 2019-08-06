@@ -57,6 +57,12 @@ public class OrderController {
         orderService.deleteLine(Integer.valueOf(id));
         return new ModelAndView("redirect:/order/ordersPage");
     }
+    @GetMapping(path = "/updateStatus")
+    public ModelAndView updateOrder(Integer id) {
+
+        orderService.updateOrderStatusFromManager(Integer.valueOf(id));
+        return new ModelAndView("redirect:/order/ordersPage");
+    }
 
 
     @PostMapping("/addToCartSuccess")
@@ -118,7 +124,7 @@ public class OrderController {
         modelAndView.addObject("response", response);
         modelAndView.addObject("response2", summary);
 
-        String urlCloseOrder = "http://localhost:8880/application/order/delete?id="+orderId;
+        String urlCloseOrder = "http://localhost:8880/application/order/updateStatus?id="+orderId;
 
         modelAndView.addObject("urlCloseOrder", urlCloseOrder);
         return modelAndView;

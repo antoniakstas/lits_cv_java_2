@@ -20,5 +20,6 @@ public interface OrderService {
     public List<Order> findOrderById(Integer id);
 
     public List<Order> findOrderByUserCId(Integer userCId, String status);
+    public void updateOrderStatusFromManager(Integer orderId);
 
 }
