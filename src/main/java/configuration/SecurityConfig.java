@@ -59,9 +59,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/user/addUser",
                 "/user/addManager",
                 "/user/registerManager",
-                "/user/thankForRegister"
+                "/user/thankForRegister",
+                "/css/main.css",
+               "/product//image/{id}"
+
 
         ).permitAll();
+
         http
                 .csrf().disable()
                 .authorizeRequests()

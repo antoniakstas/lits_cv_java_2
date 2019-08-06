@@ -52,7 +52,7 @@
                                 <th>status</th>
                                 <th>user_m_id</th>
                                 <th>user_c_id</th>
-                                <th>URL</th>
+                                <th>View</th>
 
                             </tr>
                             <tr th:each="orderItem : ${ordersList}">
@@ -62,7 +62,7 @@
                                 <td th:text="${orderItem.user_m_id}">someUser_m_id</td>
                                 <td th:text="${orderItem.user_c_id}">someUser_c_id</td>
                                 <td>
-                                    <a th:href="${orderItem.url}">url</a>
+                                    <a th:href="${orderItem.url}">View</a>
                                 </td>
 
 
