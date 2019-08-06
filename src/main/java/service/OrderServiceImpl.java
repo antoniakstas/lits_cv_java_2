@@ -86,6 +86,9 @@ public class OrderServiceImpl implements OrderService {
     public void updateOrderStatus(Integer orderId){
         orderDal.updateOrderStatus(orderId);
     }
+    public void updateOrderStatusFromManager(Integer orderId){
+        orderDal.updateOrderStatusFromManager(orderId);
+    }
 
 }
 

@@ -19,6 +19,7 @@ public interface OrderDal {
         public List<Order> findOrderByUserCId (Integer userCId, String status);
 
         public void updateOrderStatus(Integer orderId);
+        public void updateOrderStatusFromManager(Integer orderId);
 
 
         }

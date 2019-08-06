@@ -109,19 +109,32 @@ public class OrderDalImp implements OrderDal {
                 .uniqueResult();
         order.setStatus(status);
         session.update(order);
-//        Session session = this.sessionFactory.getCurrentSession();
-//        session
-//                .createQuery("update o from dto.Order o set o.status = :bcm " +
-//                        "where o.id = :abc")
-//                .setParameter("abc", orderId)
-//                .setParameter("bcm", status);
-//        session.update(status);
-//        int result = session.executeUpdate();
-//        UPDATE `lits_cv_java_2`.`orders` SET `status` = 'confirm' WHERE (`id` = '10');
 
         logger.info("Order updated successfully, Order Details=" + orderId);
     }
 
+
+    @Override
+    @Transactional
+    public void updateOrderStatusFromManager(Integer orderId){
+        String status = "worked out";
+        Session session = this.sessionFactory.getCurrentSession();
+
+        Order order = (Order) session
+                .createQuery(
+                        "select o from dto.Order o " +
+                                "where o.id = :abc")
+                .setParameter("abc", orderId)
+                .uniqueResult();
+        order.setStatus(status);
+        session.update(order);
+
+        logger.info("Order updated successfully, Order Details=" + orderId);
+    }
+
+
+
 }
+
 
 
