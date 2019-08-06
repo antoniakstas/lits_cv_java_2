@@ -1,0 +1,99 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>auto parts demo</title>
+
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/main.css}"
+          href="../css/main.css"/>
+
+</head>
+<body>
+
+
+<div th:replace="header :: header"/>
+<table width="700">
+    <tr>
+        <td>
+            <div th:replace="menu :: menu"/>
+        </td>
+        <td>
+            <style>
+#autoParts {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 200%;
+}
+
+#autoParts td, #autoParts th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#autoParts tr:nth-child(even){background-color: #f2f2f2;}
+
+#autoParts tr:hover {background-color: #ddd;}
+
+#autoParts th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+            </style>
+
+            <table width="940" height="700" bgcolor="5FFA5F" align="center">
+                <tr>
+                    <td align="center">
+                        <h1>Update cartItem</h1>
+                        <form action="#" th:action="@{/cart/updateCartItem}" th:object="${cartModel}" method="post">
+<!--                              enctype="multipart/form-data">-->
+                            <table width="420" height="160" border="1" bgcolor="5FFA5F" align="center">
+                                <tr>
+                                    <td>Count:</td>
+                                    <td><input type='text' name='productCount' value='' th:field="*{productCount}"></td>
+                                </tr>
+
+
+                                    <td><input name="submit" type="submit" value="Submit"/><input type="reset"
+                                                                                                  value="Reset"/></td>
+
+                                </tr>
+                            </table>
+
+
+                                <!--                        -->
+                                <!--                        <form action="#" th:action="@{/product/addPr}" th:object="${productForm}" method="post" enctype="multipart/form-data">-->
+                                <!--                            <p>index <input type="text" th:field="*{index}" /></p>-->
+                                <!--                            <p> name <input type="text" th:field="*{name}" /></p>-->
+                                <!--                            <p> manufacturer <input type="text" th:field="*{manufacturer}" /></p>-->
+
+                                <!--                            <p><label path="file">Select a file to upload</label></p>-->
+                                <!--                            <p><input type="file" name="file" /></p>-->
+
+                                <!--                            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>-->
+                                <!--                        </form>-->
+
+                                <!--                    <td>-->
+
+                        </form>
+
+                    <td>
+
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+
+</table>
+
+
+<div th:replace="footer :: footer"/>
+</body>
+</html>
