@@ -13,7 +13,7 @@
 
     <properties>
         <org.springframework.version>5.1.6.RELEASE</org.springframework.version>
-        <jackson-databind.version>2.9.4</jackson-databind.version>
+        <jackson-databind.version>2.12.6.1</jackson-databind.version>
         <hibernate.version>5.4.2.Final</hibernate.version>
 <!--    <spring.version>4.1.6.RELEASE</spring.version>-->
         <log4j.version>1.2.17</log4j.version>
